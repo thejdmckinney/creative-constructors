@@ -2,6 +2,9 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { seoConfig } from "@/seo.config";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import RelatedServices from "@/components/RelatedServices";
+import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 
 const serviceArea = "Dallas-Fort Worth Metroplex";
 
@@ -210,6 +213,38 @@ const jsonLd = {
   }
 };
 
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Services", path: "/services" },
+  { name: "Installation Services", path: "/services/installation" },
+]);
+
+const faqSchema = generateFAQSchema([
+  {
+    question: "How quickly can you schedule an installation?",
+    answer: "We offer same-day and next-day installation services for most projects. Emergency installations can often be accommodated within hours. Standard installations are typically scheduled within 2-3 business days."
+  },
+  {
+    question: "Do you provide warranties on installation work?",
+    answer: "Yes! All our installation work comes with a workmanship warranty. The specific warranty period depends on the type of installation, but we guarantee our work and will address any issues that arise from our installation."
+  },
+  {
+    question: "Will you remove and dispose of old fixtures or appliances?",
+    answer: "Absolutely. As part of our installation service, we'll remove your old fixtures, appliances, or equipment and dispose of them properly. We handle all the cleanup so you don't have to worry about it."
+  },
+  {
+    question: "Are your installers licensed and insured?",
+    answer: "Yes, all our installation technicians are licensed, insured, and extensively trained. We carry both liability insurance and workers' compensation coverage for your protection and peace of mind."
+  },
+  {
+    question: "What areas do you serve for installation services?",
+    answer: "We provide installation services throughout the Dallas-Fort Worth Metroplex, including Dallas, Fort Worth, Plano, Frisco, Arlington, McKinney, Allen, Richardson, and all surrounding communities within a 50-mile radius."
+  },
+  {
+    question: "Do I need to provide the items being installed or do you supply them?",
+    answer: "We can work either way! If you've already purchased your items, we'll install them expertly. We can also source and supply items for you at competitive prices, handling everything from selection to installation."
+  },
+]);
+
 export default function InstallationPage() {
   return (
     <>
@@ -217,8 +252,21 @@ export default function InstallationPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       
       <main className="flex-grow">
+        <Breadcrumbs items={[
+          { name: "Services", path: "/services" },
+          { name: "Installation Services", path: "/services/installation" },
+        ]} />
+        
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-navy via-royal-blue to-navy text-white py-20">
           <div className="container mx-auto px-4">
@@ -634,6 +682,9 @@ export default function InstallationPage() {
             </div>
           </div>
         </section>
+
+        {/* Related Services - Internal Linking */}
+        <RelatedServices category="installation" />
       </main>
     </>
   );
