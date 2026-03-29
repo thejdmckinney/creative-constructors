@@ -4,9 +4,17 @@ import Image from "next/image";
 import { seoConfig } from "@/seo.config";
 
 export const metadata: Metadata = {
-  title: "Electrical Services",
-  description:
-    "Professional electrical services in Dallas-Fort Worth. Licensed electricians for installation, repair, and maintenance of residential and commercial electrical systems.",
+  title: `Licensed Electrical Services in Dallas-Fort Worth | ${seoConfig.business.name}`,
+  description: `Professional electrical services in Dallas-Fort Worth. Licensed electricians for installation, repair, and maintenance of residential and commercial electrical systems. Same-day service available. Call ${seoConfig.business.phone}`,
+  keywords: [
+    "electrician Dallas",
+    "electrical services Fort Worth",
+    "licensed electrician Dallas TX",
+    "residential electrician",
+    "commercial electrician Dallas",
+    "electrical repair Dallas",
+    "electrical installation",
+  ],
   alternates: {
     canonical: "/services/electrical",
   },

@@ -4,8 +4,17 @@ import Link from "next/link";
 import { seoConfig } from "@/seo.config";
 
 export const metadata: Metadata = {
-  title: "Home",
-  description: seoConfig.defaultDescription,
+  title: `${seoConfig.business.name} | Professional Home Services in Dallas-Fort Worth`,
+  description: `Expert home services in Dallas-Fort Worth. Installation, repair, maintenance, assembly, painting & electrical. Licensed & insured. 15+ years experience. Call ${seoConfig.business.phone} for same-day service.`,
+  keywords: [
+    "home services Dallas",
+    "handyman Fort Worth",
+    "home repair Dallas TX",
+    "installation services Dallas",
+    "professional contractor Dallas",
+    "home maintenance Fort Worth",
+    "licensed contractor Dallas",
+  ],
   alternates: {
     canonical: "/",
   },
