@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { seoConfig } from "@/seo.config";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import RelatedServices from "@/components/RelatedServices";
+import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 
 const serviceArea = "Dallas-Fort Worth Metroplex";
 
@@ -279,6 +282,13 @@ const jsonLd = {
   }
 };
 
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Services", path: "/services" },
+  { name: "Painting Services", path: "/services/painting" },
+]);
+
+const faqSchema = generateFAQSchema(paintingFAQ);
+
 export default function PaintingPage() {
   return (
     <>
@@ -286,8 +296,21 @@ export default function PaintingPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       
       <main className="flex-grow">
+        <Breadcrumbs items={[
+          { name: "Services", path: "/services" },
+          { name: "Painting Services", path: "/services/painting" },
+        ]} />
+        
         {/* Hero Section */}
         <section className="relative bg-white py-20">
           <div className="container mx-auto px-4">
@@ -617,6 +640,9 @@ export default function PaintingPage() {
             </div>
           </div>
         </section>
+
+        {/* Related Services - Internal Linking */}
+        <RelatedServices category="painting" />
       </main>
     </>
   );

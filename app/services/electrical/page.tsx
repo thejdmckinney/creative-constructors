@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { seoConfig } from "@/seo.config";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import RelatedServices from "@/components/RelatedServices";
+import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: `Licensed Electrical Services in Dallas-Fort Worth | ${seoConfig.business.name}`,
@@ -26,9 +29,51 @@ export const metadata: Metadata = {
   },
 };
 
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Services", path: "/services" },
+  { name: "Electrical Services", path: "/services/electrical" },
+]);
+
+const faqSchema = generateFAQSchema([
+  {
+    question: "Are your electricians licensed and insured?",
+    answer: "Yes, all our electricians are fully licensed, insured, and continuously trained on the latest electrical codes and safety standards. We carry comprehensive liability insurance and workers' compensation coverage."
+  },
+  {
+    question: "Do you handle both residential and commercial electrical work?",
+    answer: "Absolutely! We provide electrical services for both residential homes and commercial properties. Our team has experience with everything from single-family homes to multi-unit buildings and commercial spaces."
+  },
+  {
+    question: "Can you help with electrical emergencies?",
+    answer: "Yes, we offer emergency electrical services for urgent issues like power outages, sparking outlets, burning smells, or any situation that poses a safety hazard. Call us immediately for emergency electrical problems."
+  },
+  {
+    question: "How do I know if my electrical panel needs upgrading?",
+    answer: "Signs include frequent breaker trips, flickering lights, burning smells, outdated panel (20+ years old), or if you're adding major appliances. We provide free panel inspections and upgrade recommendations."
+  },
+  {
+    question: "Do you provide warranties on electrical work?",
+    answer: "Yes, all our electrical work comes with a workmanship warranty. Specific warranty terms depend on the type of service, but we guarantee our work and will address any issues that arise."
+  },
+]);
+
 export default function ElectricalPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      
+      <Breadcrumbs items={[
+        { name: "Services", path: "/services" },
+        { name: "Electrical Services", path: "/services/electrical" },
+      ]} />
+      
       {/* Hero Section */}
       <section className="bg-navy text-white py-16 px-4">
         <div className="container mx-auto max-w-6xl">
@@ -283,6 +328,9 @@ export default function ElectricalPage() {
           </Link>
         </div>
       </section>
+
+      {/* Related Services - Internal Linking */}
+      <RelatedServices category="electrical" />
     </>
   );
 }

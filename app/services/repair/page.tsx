@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { seoConfig } from "@/seo.config";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import RelatedServices from "@/components/RelatedServices";
+import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 
 const serviceArea = "Dallas-Fort Worth Metroplex";
 
@@ -242,6 +245,34 @@ const jsonLd = {
   }))
 };
 
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Services", path: "/services" },
+  { name: "Repair Services", path: "/services/repair" },
+]);
+
+const faqSchema = generateFAQSchema([
+  {
+    question: "Do you offer emergency repair services?",
+    answer: "Yes! We offer 24/7 emergency repair services for urgent issues like water leaks, electrical problems, broken locks, and structural damage. Most emergency repairs can be addressed within 2-4 hours."
+  },
+  {
+    question: "How much do repair services typically cost?",
+    answer: "Repair costs vary based on the complexity and materials needed. We provide upfront pricing before starting any work. Simple repairs start around $150, while complex repairs may cost more. We'll give you a detailed estimate after inspection."
+  },
+  {
+    question: "Will you identify the root cause or just fix the symptom?",
+    answer: "We always diagnose the root cause of problems, not just treat symptoms. For example, if you have a leak, we'll find out why it's leaking and fix the underlying issue to prevent future problems."
+  },
+  {
+    question: "Do repairs come with a warranty?",
+    answer: "Yes, all our repair work includes a workmanship warranty. Specific warranty periods depend on the type of repair, but we stand behind our work and will address any issues that arise."
+  },
+  {
+    question: "Can you work with my insurance company for covered repairs?",
+    answer: "Absolutely. We have experience working with insurance companies and can provide detailed documentation, photos, and estimates for your claim. We'll work with your adjuster to ensure proper coverage."
+  },
+]);
+
 export default function RepairPage() {
   return (
     <>
@@ -249,8 +280,21 @@ export default function RepairPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       
       <main className="flex-grow">
+        <Breadcrumbs items={[
+          { name: "Services", path: "/services" },
+          { name: "Repair Services", path: "/services/repair" },
+        ]} />
+        
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-navy via-royal-blue to-navy text-white py-16 md:py-24">
           <div className="container mx-auto px-4">
@@ -602,6 +646,9 @@ export default function RepairPage() {
             </div>
           </div>
         </section>
+
+        {/* Related Services - Internal Linking */}
+        <RelatedServices category="repair" />
       </main>
     </>
   );

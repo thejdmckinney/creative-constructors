@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { seoConfig } from "@/seo.config";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import RelatedServices from "@/components/RelatedServices";
+import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 
 const serviceArea = "Dallas-Fort Worth Metroplex";
 
@@ -274,6 +277,34 @@ const jsonLd = {
   }
 };
 
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Services", path: "/services" },
+  { name: "Maintenance Services", path: "/services/maintenance" },
+]);
+
+const faqSchema = generateFAQSchema([
+  {
+    question: "How often should I schedule home maintenance?",
+    answer: "We recommend quarterly maintenance visits (every 3 months) for comprehensive home care. Some tasks like gutter cleaning should be done twice yearly, while HVAC filter changes should be monthly. Our maintenance plans are customized to your home's specific needs."
+  },
+  {
+    question: "What's included in a maintenance plan?",
+    answer: "Our maintenance plans include seasonal inspections, gutter cleaning, HVAC filter checks, dryer vent cleaning, smoke detector testing, minor caulking, and priority scheduling. Higher tier plans include deck staining, plumbing inspections, and more comprehensive services."
+  },
+  {
+    question: "Can maintenance really prevent major repairs?",
+    answer: "Absolutely! Studies show that 80% of major home repairs can be prevented with regular maintenance. For example, annual gutter cleaning prevents water damage that can cost thousands to repair. Regular HVAC maintenance doubles the lifespan of your system."
+  },
+  {
+    question: "Do I need to be home during maintenance visits?",
+    answer: "Not necessarily. Many of our regular maintenance customers provide access information, and we complete the work while they're at work. We'll provide a detailed report of all work completed and any issues found."
+  },
+  {
+    question: "What if you find something that needs repair during maintenance?",
+    answer: "We'll document any issues found and provide recommendations with pricing. Maintenance plan members receive discounts on repair services (10-20% depending on plan). You decide what to address immediately and what can wait."
+  },
+]);
+
 export default function MaintenancePage() {
   return (
     <>
@@ -281,8 +312,21 @@ export default function MaintenancePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       
       <main className="flex-grow">
+        <Breadcrumbs items={[
+          { name: "Services", path: "/services" },
+          { name: "Maintenance Services", path: "/services/maintenance" },
+        ]} />
+        
         {/* Hero Section */}
         <section className="relative bg-white py-16 md:py-20">
           <div className="container mx-auto px-4">
@@ -612,6 +656,9 @@ export default function MaintenancePage() {
             </div>
           </div>
         </section>
+
+        {/* Related Services - Internal Linking */}
+        <RelatedServices category="maintenance" />
       </main>
     </>
   );

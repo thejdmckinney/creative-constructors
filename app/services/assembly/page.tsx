@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { seoConfig } from "@/seo.config";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import RelatedServices from "@/components/RelatedServices";
+import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 
 const serviceArea = "Dallas-Fort Worth Metroplex";
 
@@ -218,6 +221,34 @@ const jsonLd = {
   }
 };
 
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Services", path: "/services" },
+  { name: "Assembly Services", path: "/services/assembly" },
+]);
+
+const faqSchema = generateFAQSchema([
+  {
+    question: "How much does furniture assembly cost?",
+    answer: "Assembly costs depend on item complexity. Simple items (chairs, nightstands) run $75-$150 and take 15-60 minutes. Medium items (bed frames, desks) cost $150-$350 and take 1-3 hours. Complex items (playsets, treadmills) range from $350-$800+ and take 3-10 hours. We provide upfront quotes."
+  },
+  {
+    question: "Do I need to provide tools?",
+    answer: "No! We bring all professional-grade tools needed for assembly. You don't need to provide anything - we even bring extra hardware in case pieces are missing from your package."
+  },
+  {
+    question: "How long does assembly typically take?",
+    answer: "It varies by item. A simple bookshelf takes 30-60 minutes. A bed frame takes 1-2 hours. A playset can take 6-10 hours. We're typically 2-3x faster than DIY assembly because we do this professionally every day."
+  },
+  {
+    question: "What if parts are missing or damaged?",
+    answer: "We'll identify any missing or damaged parts during assembly and help you contact the manufacturer for replacements. We can often improvise temporary solutions or return to complete assembly once replacement parts arrive."
+  },
+  {
+    question: "Will you remove all the packaging?",
+    answer: "Yes! Box cleanup is included in our service. We'll break down all boxes, bag up packaging materials, and haul everything away. When we leave, you'll just see your beautifully assembled furniture - no mess!"
+  },
+]);
+
 export default function AssemblyPage() {
   return (
     <>
@@ -225,8 +256,21 @@ export default function AssemblyPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       
       <main className="flex-grow">
+        <Breadcrumbs items={[
+          { name: "Services", path: "/services" },
+          { name: "Assembly Services", path: "/services/assembly" },
+        ]} />
+        
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-royal-blue via-navy to-royal-blue text-white py-20">
           <div className="absolute inset-0 opacity-10">
@@ -539,6 +583,9 @@ export default function AssemblyPage() {
             </div>
           </div>
         </section>
+
+        {/* Related Services - Internal Linking */}
+        <RelatedServices category="assembly" />
       </main>
     </>
   );
