@@ -21,11 +21,30 @@ module.exports = {
       '/services': 0.9,
       '/contact': 0.9,
       '/about': 0.8,
+      // Main service pages (high priority)
+      '/services/installation': 0.9,
+      '/services/repair': 0.9,
+      '/services/maintenance': 0.9,
+      '/services/assembly': 0.9,
+      '/services/painting': 0.9,
+      '/services/electrical': 0.9,
+    };
+
+    // Set higher changefreq for service pages
+    const changefreqs = {
+      '/': 'daily',
+      '/services': 'daily',
+      '/services/installation': 'weekly',
+      '/services/repair': 'weekly',
+      '/services/maintenance': 'weekly',
+      '/services/assembly': 'weekly',
+      '/services/painting': 'weekly',
+      '/services/electrical': 'weekly',
     };
 
     return {
       loc: path,
-      changefreq: config.changefreq,
+      changefreq: changefreqs[path] || config.changefreq,
       priority: priorities[path] || config.priority,
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
     };
