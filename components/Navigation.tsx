@@ -8,11 +8,11 @@ import clsx from "clsx";
 
 const services = [
   { name: "Electrical", href: "/services/electrical" },
-  { name: "Installation", href: "/services#Installation" },
-  { name: "Repair", href: "/services#Repair" },
-  { name: "Maintenance", href: "/services#Maintenance" },
-  { name: "Assembly", href: "/services#Assembly" },
-  { name: "Painting", href: "/services#Painting" },
+  { name: "Installation", href: "/services/installation" },
+  { name: "Repair", href: "/services/repair" },
+  { name: "Maintenance", href: "/services/maintenance" },
+  { name: "Assembly", href: "/services/assembly" },
+  { name: "Painting", href: "/services/painting" },
 ];
 
 export default function Navigation() {
