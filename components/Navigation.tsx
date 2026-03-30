@@ -131,6 +131,18 @@ export default function Navigation() {
               </Link>
 
               <Link
+                href="/blog"
+                className={clsx(
+                  "font-medium transition-colors",
+                  isActive("/blog")
+                    ? "text-orange"
+                    : "text-gray-700 hover:text-orange"
+                )}
+              >
+                Blog
+              </Link>
+
+              <Link
                 href="/contact"
                 className={clsx(
                   "font-medium transition-colors",
@@ -259,6 +271,16 @@ export default function Navigation() {
               onClick={() => setIsMenuOpen(false)}
             >
               About
+            </Link>
+            <Link
+              href="/blog"
+              className={clsx(
+                "block py-2 font-medium",
+                isActive("/blog") ? "text-orange" : "text-gray-700"
+              )}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Blog
             </Link>
             <Link
               href="/contact"
