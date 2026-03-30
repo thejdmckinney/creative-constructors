@@ -1,6 +1,6 @@
 # Sanity CMS Setup
 
-This project uses **Sanity CMS** for blog content management with an embedded Studio.
+This project uses **Sanity v3 CMS** for blog content management with an embedded Studio.
 
 ## 🎨 Accessing the Studio
 
@@ -154,11 +154,13 @@ CORS origins are already configured for:
 
 ## 📦 Dependencies
 
-- `sanity` - Sanity CMS core
-- `@sanity/vision` - GROQ query tool in Studio
+- `sanity@^3` - Sanity CMS v3 (stable)
+- `@sanity/vision@^3` - GROQ query tool in Studio
 - `@sanity/image-url` - Image URL builder
-- `next-sanity` - Next.js integration
+- `next-sanity@^7` - Next.js integration for Sanity v3
+- `@portabletext/react` - Portable Text renderer
 - `styled-components` - Required by Sanity UI
+- `react@^18.3.1` - React 18 (compatible with Next.js 14)
 
 ## 🔐 Security
 
