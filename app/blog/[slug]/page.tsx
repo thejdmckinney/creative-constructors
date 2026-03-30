@@ -5,7 +5,7 @@ import { POST_QUERY, POST_SLUGS_QUERY } from '@/sanity/lib/queries'
 import { seoConfig } from '@/seo.config'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/client'
-import { PortableText } from 'next-sanity'
+import { PortableText } from '@portabletext/react'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Link from 'next/link'
 
