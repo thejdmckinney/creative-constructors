@@ -75,7 +75,7 @@ export default function Navigation() {
                 <Link
                   href="/services"
                   className={clsx(
-                    "font-medium transition-colors",
+                    "font-medium transition-colors py-2 block",
                     isActive("/services")
                       ? "text-orange"
                       : "text-gray-700 hover:text-orange"
@@ -84,7 +84,7 @@ export default function Navigation() {
                   Services
                 </Link>
                 {isServicesOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-56 bg-white shadow-lg rounded-lg py-2 border border-gray-200">
+                  <div className="absolute top-full left-0 w-56 bg-white shadow-lg rounded-lg py-2 border border-gray-200 z-50">
                     {services.map((service) => (
                       <Link
                         key={service.href}
