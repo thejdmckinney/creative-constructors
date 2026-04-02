@@ -42,6 +42,12 @@ type Post = {
 
 export default async function BlogPage() {
   const posts = await client.fetch<Post[]>(POSTS_QUERY)
+  
+  // Debug logging
+  console.log('=== BLOG PAGE DEBUG ===')
+  console.log('Posts fetched:', posts?.length || 0)
+  console.log('Posts data:', JSON.stringify(posts, null, 2))
+  console.log('======================')
 
   const breadcrumbItems = [
     { name: 'Blog', path: '/blog' },

@@ -7,8 +7,8 @@ export const POSTS_QUERY = groq`*[_type == "post" && defined(slug.current)] | or
   slug,
   excerpt,
   publishedAt,
-  "featuredImage": featuredImage{
-    asset->{url, metadata},
+  featuredImage{
+    asset,
     alt
   },
   author->{
@@ -29,8 +29,8 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
   slug,
   excerpt,
   publishedAt,
-  "featuredImage": featuredImage{
-    asset->{url, metadata},
+  featuredImage{
+    asset,
     alt
   },
   author->{
