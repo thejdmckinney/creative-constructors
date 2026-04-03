@@ -233,12 +233,12 @@ export default async function BlogPostPage({
 
             {/* Featured Image */}
             {post.featuredImage && (
-              <div className="relative w-full h-96 md:h-[500px] rounded-xl overflow-hidden shadow-xl">
+              <div className="relative w-full h-96 md:h-[500px] rounded-xl overflow-hidden shadow-xl bg-gray-100">
                 <Image
-                  src={urlFor(post.featuredImage.asset).width(1200).height(630).url()}
+                  src={urlFor(post.featuredImage.asset).width(1200).url()}
                   alt={post.featuredImage.alt}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   priority
                 />
               </div>

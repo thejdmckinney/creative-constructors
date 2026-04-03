@@ -82,10 +82,10 @@ export default async function BlogPage() {
                   {post.featuredImage && (
                     <div className="relative h-48 w-full overflow-hidden bg-gray-200">
                       <Image
-                        src={urlFor(post.featuredImage.asset).width(800).height(400).url()}
+                        src={urlFor(post.featuredImage.asset).width(800).url()}
                         alt={post.featuredImage.alt}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-contain group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                   )}
