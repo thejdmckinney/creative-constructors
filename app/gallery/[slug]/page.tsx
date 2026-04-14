@@ -1,0 +1,369 @@
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { client, urlFor } from '@/sanity/lib/client'
+import { PROJECT_QUERY, PROJECT_SLUGS_QUERY } from '@/sanity/lib/queries'
+import { seoConfig } from '@/seo.config'
+import BeforeAfterSlider from '@/components/BeforeAfterSlider'
+import Image from 'next/image'
+import Link from 'next/link'
+import Breadcrumbs from '@/components/Breadcrumbs'
+
+type Project = {
+  _id: string
+  title: string
+  slug: { current: string }
+  beforeImage: {
+    asset: any
+    alt: string
+  }
+  afterImage: {
+    asset: any
+    alt: string
+  }
+  gallery?: Array<{
+    asset: any
+    alt?: string
+    caption?: string
+  }>
+  serviceType: string
+  transformationType?: string
+  location: string
+  completedDate: string
+  challenge: string
+  solution: string
+  result: string
+  testimonial?: {
+    quote: string
+    clientName: string
+  }
+  duration?: string
+  seo?: {
+    metaTitle?: string
+    metaDescription?: string
+  }
+}
+
+export async function generateStaticParams() {
+  const slugs = await client.fetch<string[]>(PROJECT_SLUGS_QUERY)
+  return slugs.map((slug) => ({ slug }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const project = await client.fetch<Project>(PROJECT_QUERY, { slug })
+
+  if (!project) {
+    return {
+      title: 'Project Not Found',
+    }
+  }
+
+  const title = project.seo?.metaTitle || `${project.title} | Project Gallery`
+  const description =
+    project.seo?.metaDescription ||
+    `${project.challenge} See the transformation in ${project.location}.`
+
+  const imageUrl = project.afterImage
+    ? urlFor(project.afterImage.asset).width(1200).height(630).url()
+    : undefined
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${seoConfig.baseUrl}/gallery/${slug}`,
+      images: imageUrl ? [imageUrl] : undefined,
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: imageUrl ? [imageUrl] : undefined,
+    },
+  }
+}
+
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const project = await client.fetch<Project>(PROJECT_QUERY, { slug })
+
+  if (!project) {
+    notFound()
+  }
+
+  const breadcrumbItems = [
+    { name: 'Gallery', path: '/gallery' },
+    { name: project.title, path: `/gallery/${slug}` },
+  ]
+
+  return (
+    <>
+      <Breadcrumbs items={breadcrumbItems} />
+
+      <article className="min-h-screen bg-gradient-to-b from-white to-gray-50 py-16">
+        <div className="container mx-auto px-4">
+          {/* Header */}
+          <header className="max-w-6xl mx-auto mb-12">
+            <div className="flex flex-wrap items-center gap-4 mb-4">
+              <span className="bg-orange text-white px-4 py-2 rounded-full text-sm font-semibold">
+                {project.serviceType}
+              </span>
+              {project.transformationType && (
+                <span className="bg-blue-50 text-royal-blue px-4 py-2 rounded-full text-sm font-semibold">
+                  {project.transformationType.replace(/-/g, ' ')}
+                </span>
+              )}
+            </div>
+
+            <h1 className="text-5xl md:text-6xl font-black font-barlow-condensed text-navy mb-6">
+              {project.title}
+            </h1>
+
+            <div className="flex flex-wrap gap-6 text-gray-600 text-lg">
+              <div className="flex items-center gap-2">
+                <svg
+                  className="w-5 h-5 text-orange"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                <span>{project.location}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg
+                  className="w-5 h-5 text-orange"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+                <span>
+                  {new Date(project.completedDate).toLocaleDateString('en-US', {
+                    month: 'long',
+                    year: 'numeric',
+                  })}
+                </span>
+              </div>
+              {project.duration && (
+                <div className="flex items-center gap-2">
+                  <svg
+                    className="w-5 h-5 text-orange"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>{project.duration}</span>
+                </div>
+              )}
+            </div>
+          </header>
+
+          {/* Before/After Slider */}
+          <div className="max-w-6xl mx-auto mb-16">
+            <div className="w-full h-[400px] md:h-[600px]">
+              <BeforeAfterSlider
+                beforeImage={urlFor(project.beforeImage.asset).width(1200).url()}
+                afterImage={urlFor(project.afterImage.asset).width(1200).url()}
+                beforeAlt={project.beforeImage.alt}
+                afterAlt={project.afterImage.alt}
+              />
+            </div>
+          </div>
+
+          {/* Project Story */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
+              <div className="grid md:grid-cols-3 gap-8">
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center">
+                      <span className="text-2xl">⚠️</span>
+                    </div>
+                    <h2 className="text-2xl font-bold font-barlow-condensed text-navy">
+                      The Challenge
+                    </h2>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed">{project.challenge}</p>
+                </div>
+
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center">
+                      <span className="text-2xl">🔧</span>
+                    </div>
+                    <h2 className="text-2xl font-bold font-barlow-condensed text-navy">
+                      The Solution
+                    </h2>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed">{project.solution}</p>
+                </div>
+
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center">
+                      <span className="text-2xl">✨</span>
+                    </div>
+                    <h2 className="text-2xl font-bold font-barlow-condensed text-navy">
+                      The Result
+                    </h2>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed">{project.result}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Gallery Images */}
+          {project.gallery && project.gallery.length > 0 && (
+            <div className="max-w-6xl mx-auto mb-16">
+              <h2 className="text-3xl font-bold font-barlow-condensed text-navy mb-8">
+                More Photos
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {project.gallery.map((image, index) => (
+                  <div
+                    key={index}
+                    className="relative aspect-square rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
+                  >
+                    <Image
+                      src={urlFor(image.asset).width(600).height(600).url()}
+                      alt={image.alt || `Project image ${index + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                    {image.caption && (
+                      <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white p-2 text-sm">
+                        {image.caption}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Testimonial */}
+          {project.testimonial && (
+            <div className="max-w-4xl mx-auto mb-16">
+              <div className="bg-navy text-white rounded-xl shadow-2xl p-8 md:p-12">
+                <svg
+                  className="w-12 h-12 text-orange mb-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <p className="text-xl md:text-2xl italic mb-6 leading-relaxed">
+                  "{project.testimonial.quote}"
+                </p>
+                <p className="text-orange font-bold">— {project.testimonial.clientName}</p>
+              </div>
+            </div>
+          )}
+
+          {/* CTA */}
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="bg-gradient-to-br from-orange to-orange/80 text-white rounded-xl shadow-2xl p-8 md:p-12">
+              <h2 className="text-3xl md:text-4xl font-black font-barlow-condensed mb-4">
+                Need Similar Work Done?
+              </h2>
+              <p className="text-xl mb-8 opacity-90">
+                We'd love to help transform your home too!
+              </p>
+              <Link
+                href="/contact"
+                className="inline-block bg-white text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors"
+              >
+                Get Your Free Quote
+              </Link>
+            </div>
+          </div>
+
+          {/* Back to Gallery */}
+          <div className="max-w-4xl mx-auto mt-12 text-center">
+            <Link
+              href="/gallery"
+              className="inline-flex items-center gap-2 text-royal-blue hover:text-navy font-semibold transition-colors"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              Back to Gallery
+            </Link>
+          </div>
+        </div>
+      </article>
+
+      {/* JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'ImageGallery',
+            name: project.title,
+            description: project.challenge,
+            image: urlFor(project.afterImage.asset).width(1200).url(),
+            datePublished: project.completedDate,
+            provider: {
+              '@type': 'Organization',
+              name: 'Creative Constructors LLC',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: project.location,
+                addressRegion: 'TX',
+              },
+            },
+          }),
+        }}
+      />
+    </>
+  )
+}
