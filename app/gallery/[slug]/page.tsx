@@ -210,39 +210,42 @@ export default async function ProjectPage({
           {/* Project Story */}
           <div className="max-w-4xl mx-auto mb-16">
             <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
-              <div className="grid md:grid-cols-3 gap-8">
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center">
-                      <span className="text-2xl">⚠️</span>
+              <h2 className="text-3xl font-bold font-barlow-condensed text-navy mb-8">
+                Project Story
+              </h2>
+              <div className="space-y-8">
+                <div className="border-l-4 border-red-500 pl-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-xl">⚠️</span>
                     </div>
-                    <h2 className="text-2xl font-bold font-barlow-condensed text-navy">
+                    <h3 className="text-xl font-bold font-barlow-condensed text-navy">
                       The Challenge
-                    </h2>
+                    </h3>
                   </div>
                   <p className="text-gray-700 leading-relaxed">{project.challenge}</p>
                 </div>
 
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center">
-                      <span className="text-2xl">🔧</span>
+                <div className="border-l-4 border-blue-500 pl-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-xl">🔧</span>
                     </div>
-                    <h2 className="text-2xl font-bold font-barlow-condensed text-navy">
+                    <h3 className="text-xl font-bold font-barlow-condensed text-navy">
                       The Solution
-                    </h2>
+                    </h3>
                   </div>
                   <p className="text-gray-700 leading-relaxed">{project.solution}</p>
                 </div>
 
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center">
-                      <span className="text-2xl">✨</span>
+                <div className="border-l-4 border-green-500 pl-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-xl">✨</span>
                     </div>
-                    <h2 className="text-2xl font-bold font-barlow-condensed text-navy">
+                    <h3 className="text-xl font-bold font-barlow-condensed text-navy">
                       The Result
-                    </h2>
+                    </h3>
                   </div>
                   <p className="text-gray-700 leading-relaxed">{project.result}</p>
                 </div>
