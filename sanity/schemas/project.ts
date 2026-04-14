@@ -141,6 +141,7 @@ export default defineType({
           { title: 'Assembly', value: 'assembly' },
           { title: 'Decks & Patios', value: 'decks-patios' },
           { title: 'Smart Home', value: 'smart-home' },
+          { title: 'Wall Art', value: 'wall-art' },
         ],
       },
       validation: (Rule) => Rule.required(),
