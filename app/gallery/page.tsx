@@ -29,11 +29,16 @@ type Project = {
   _id: string
   title: string
   slug: { current: string }
-  beforeImage: {
+  featuredImages?: Array<{
+    asset: any
+    alt: string
+    caption?: string
+  }>
+  beforeImage?: {
     asset: any
     alt: string
   }
-  afterImage: {
+  afterImage?: {
     asset: any
     alt: string
   }
@@ -57,7 +62,29 @@ export default async function GalleryPage() {
     client.fetch<Project[]>(ALL_PROJECTS_QUERY),
   ])
 
+  // Helper to get featured images (new format) or fallback to before/after (legacy)
+  const getFeaturedImages = (project: Project) => {
+    if (project.featuredImages && project.featuredImages.length >= 2) {
+      return project.featuredImages
+    }
+    // Fallback to legacy before/after
+    const images = []
+    if (project.beforeImage) images.push(project.beforeImage)
+    if (project.afterImage) images.push(project.afterImage)
+    return images
+  }
+
+  // Helper to get main display image
+  const getMainImage = (project: Project) => {
+    const featured = getFeaturedImages(project)
+    return featured[0] || project.afterImage || project.beforeImage
+  }
+
   const breadcrumbItems = [{ name: 'Gallery', path: '/gallery' }]
+
+  // Prepare hero images outside JSX
+  const heroImages = heroProject ? getFeaturedImages(heroProject) : []
+  const showHero = heroImages.length >= 2
 
   return (
     <>
@@ -65,7 +92,7 @@ export default async function GalleryPage() {
 
       <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
         {/* Hero Section with Interactive Slider */}
-        {heroProject && (
+        {showHero && heroProject && (
           <section className="relative bg-navy py-20">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
@@ -74,16 +101,16 @@ export default async function GalleryPage() {
                 </h1>
                 <p className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto">
                   Explore real transformations from real homes across the Dallas-Fort Worth area.
-                  Drag the slider to see the before and after.
+                  Drag the slider to compare images.
                 </p>
 
-                {/* Interactive Before/After Slider */}
+                {/* Interactive Slider with Featured Images */}
                 <div className="w-full h-[400px] md:h-[600px] mb-8">
                   <BeforeAfterSlider
-                    beforeImage={urlFor(heroProject.beforeImage.asset).width(1200).url()}
-                    afterImage={urlFor(heroProject.afterImage.asset).width(1200).url()}
-                    beforeAlt={heroProject.beforeImage.alt}
-                    afterAlt={heroProject.afterImage.alt}
+                    beforeImage={urlFor(heroImages[0].asset).width(1200).url()}
+                    afterImage={urlFor(heroImages[1].asset).width(1200).url()}
+                    beforeAlt={heroImages[0].alt}
+                    afterAlt={heroImages[1].alt}
                   />
                 </div>
 
@@ -139,18 +166,22 @@ export default async function GalleryPage() {
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-8">
-                  {featuredProjects.map((project) => (
+                  {featuredProjects.map((project) => {
+                    const projectImages = getFeaturedImages(project)
+                    if (projectImages.length < 2) return null
+
+                    return (
                     <Link
                       key={project._id}
                       href={`/gallery/${project.slug.current}`}
                       className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
                     >
-                      {/* Before/After Images */}
+                      {/* Featured Images Side by Side */}
                       <div className="grid grid-cols-2 h-64">
                         <div className="relative">
                           <Image
-                            src={urlFor(project.beforeImage.asset).width(400).height(400).url()}
-                            alt={project.beforeImage.alt}
+                            src={urlFor(projectImages[0].asset).width(400).height(400).url()}
+                            alt={projectImages[0].alt}
                             fill
                             className="object-cover"
                           />
@@ -160,8 +191,8 @@ export default async function GalleryPage() {
                         </div>
                         <div className="relative">
                           <Image
-                            src={urlFor(project.afterImage.asset).width(400).height(400).url()}
-                            alt={project.afterImage.alt}
+                            src={urlFor(projectImages[1].asset).width(400).height(400).url()}
+                            alt={projectImages[1].alt}
                             fill
                             className="object-cover"
                           />
@@ -212,7 +243,7 @@ export default async function GalleryPage() {
                         )}
                       </div>
                     </Link>
-                  ))}
+                  )})}
                 </div>
               </div>
             </div>
@@ -237,7 +268,10 @@ export default async function GalleryPage() {
                     // Create varied tile sizes for Bento box effect
                     const isLarge = index % 7 === 0
                     const isTall = index % 5 === 0
+                    const mainImage = getMainImage(project)
                     
+                    if (!mainImage) return null
+
                     return (
                       <Link
                         key={project._id}
@@ -248,8 +282,8 @@ export default async function GalleryPage() {
                       >
                         <div className={`relative ${isLarge ? 'h-96' : isTall ? 'h-80' : 'h-64'}`}>
                           <Image
-                            src={urlFor(project.afterImage.asset).width(600).url()}
-                            alt={project.afterImage.alt}
+                            src={urlFor(mainImage.asset).width(600).url()}
+                            alt={mainImage.alt}
                             fill
                             className="object-cover group-hover:scale-110 transition-transform duration-500"
                           />

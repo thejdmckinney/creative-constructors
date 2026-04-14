@@ -37,9 +37,39 @@ export default defineType({
       initialValue: false,
     }),
     defineField({
+      name: 'featuredImages',
+      title: 'Featured Images',
+      type: 'array',
+      description: 'Select 2-4 hero images to display at the top (drag to reorder)',
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alt Text',
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption (optional)',
+            },
+          ],
+        },
+      ],
+      validation: (Rule) => Rule.required().min(2).max(4),
+    }),
+    defineField({
       name: 'beforeImage',
-      title: 'Before Image',
+      title: 'Before Image (Legacy)',
       type: 'image',
+      description: 'DEPRECATED: Use Featured Images instead',
+      hidden: true,
       options: {
         hotspot: true,
       },
@@ -48,15 +78,15 @@ export default defineType({
           name: 'alt',
           type: 'string',
           title: 'Alt Text',
-          validation: (Rule) => Rule.required(),
         },
       ],
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'afterImage',
-      title: 'After Image',
+      title: 'After Image (Legacy)',
       type: 'image',
+      description: 'DEPRECATED: Use Featured Images instead',
+      hidden: true,
       options: {
         hotspot: true,
       },
@@ -65,10 +95,8 @@ export default defineType({
           name: 'alt',
           type: 'string',
           title: 'Alt Text',
-          validation: (Rule) => Rule.required(),
         },
       ],
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'gallery',

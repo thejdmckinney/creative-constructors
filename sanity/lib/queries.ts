@@ -57,6 +57,11 @@ export const HERO_PROJECT_QUERY = groq`*[_type == "project" && heroProject == tr
   _id,
   title,
   slug,
+  featuredImages[]{
+    asset,
+    alt,
+    caption
+  },
   beforeImage{
     asset,
     alt
@@ -78,6 +83,11 @@ export const FEATURED_PROJECTS_QUERY = groq`*[_type == "project" && featured == 
   _id,
   title,
   slug,
+  featuredImages[]{
+    asset,
+    alt,
+    caption
+  },
   beforeImage{
     asset,
     alt
@@ -101,6 +111,11 @@ export const ALL_PROJECTS_QUERY = groq`*[_type == "project"] | order(completedDa
   _id,
   title,
   slug,
+  featuredImages[]{
+    asset,
+    alt,
+    caption
+  },
   beforeImage{
     asset,
     alt
@@ -120,6 +135,11 @@ export const PROJECT_QUERY = groq`*[_type == "project" && slug.current == $slug]
   _id,
   title,
   slug,
+  featuredImages[]{
+    asset,
+    alt,
+    caption
+  },
   beforeImage{
     asset,
     alt

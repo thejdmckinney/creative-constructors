@@ -12,11 +12,15 @@ type Project = {
   _id: string
   title: string
   slug: { current: string }
-  beforeImage: {
+  featuredImages?: Array<{
+    asset: any
+    alt: string
+  }>
+  beforeImage?: {
     asset: any
     alt: string
   }
-  afterImage: {
+  afterImage?: {
     asset: any
     alt: string
   }
@@ -67,8 +71,10 @@ export async function generateMetadata({
     project.seo?.metaDescription ||
     `${project.challenge} See the transformation in ${project.location}.`
 
-  const imageUrl = project.afterImage
-    ? urlFor(project.afterImage.asset).width(1200).height(630).url()
+  // Use first featured image or fallback to afterImage
+  const metaImage = project.featuredImages?.[0] || project.afterImage
+  const imageUrl = metaImage
+    ? urlFor(metaImage.asset).width(1200).height(630).url()
     : undefined
 
   return {
@@ -101,6 +107,21 @@ export default async function ProjectPage({
   if (!project) {
     notFound()
   }
+
+  // Helper to get featured images (new format) or fallback to before/after (legacy)
+  const getFeaturedImages = () => {
+    if (project.featuredImages && project.featuredImages.length >= 2) {
+      return project.featuredImages
+    }
+    // Fallback to legacy before/after
+    const images = []
+    if (project.beforeImage) images.push(project.beforeImage)
+    if (project.afterImage) images.push(project.afterImage)
+    return images
+  }
+
+  const featuredImages = getFeaturedImages()
+  const hasSlider = featuredImages.length >= 2
 
   const breadcrumbItems = [
     { name: 'Gallery', path: '/gallery' },
@@ -195,17 +216,40 @@ export default async function ProjectPage({
             </div>
           </header>
 
-          {/* Before/After Slider */}
-          <div className="max-w-6xl mx-auto mb-16">
-            <div className="w-full h-[400px] md:h-[600px]">
-              <BeforeAfterSlider
-                beforeImage={urlFor(project.beforeImage.asset).width(1200).url()}
-                afterImage={urlFor(project.afterImage.asset).width(1200).url()}
-                beforeAlt={project.beforeImage.alt}
-                afterAlt={project.afterImage.alt}
-              />
+          {/* Featured Images Slider */}
+          {hasSlider && (
+            <div className="max-w-6xl mx-auto mb-16">
+              <div className="w-full h-[400px] md:h-[600px]">
+                <BeforeAfterSlider
+                  beforeImage={urlFor(featuredImages[0].asset).width(1200).url()}
+                  afterImage={urlFor(featuredImages[1].asset).width(1200).url()}
+                  beforeAlt={featuredImages[0].alt}
+                  afterAlt={featuredImages[1].alt}
+                />
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* Additional Featured Images (if more than 2) */}
+          {featuredImages.length > 2 && (
+            <div className="max-w-6xl mx-auto mb-16">
+              <h2 className="text-3xl font-bold font-barlow-condensed text-navy mb-6 text-center">
+                More Featured Images
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {featuredImages.slice(2).map((img, index) => (
+                  <div key={index} className="relative h-96 rounded-xl overflow-hidden shadow-lg">
+                    <Image
+                      src={urlFor(img.asset).width(800).url()}
+                      alt={img.alt}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Project Story */}
           <div className="max-w-4xl mx-auto mb-16">
@@ -353,7 +397,9 @@ export default async function ProjectPage({
             '@type': 'ImageGallery',
             name: project.title,
             description: project.challenge,
-            image: urlFor(project.afterImage.asset).width(1200).url(),
+            image: featuredImages.length > 0 
+              ? urlFor(featuredImages[0].asset).width(1200).url()
+              : undefined,
             datePublished: project.completedDate,
             provider: {
               '@type': 'Organization',
