@@ -61,12 +61,12 @@ export default function BeforeAfterSlider({
       }}
     >
       {/* After Image (Background) */}
-      <div className="relative w-full h-full">
+      <div className="relative w-full h-full bg-gray-100">
         <Image
           src={afterImage}
           alt={afterAlt}
           fill
-          className="object-cover"
+          className="object-contain"
           priority
           sizes="100vw"
         />
@@ -81,7 +81,7 @@ export default function BeforeAfterSlider({
           src={beforeImage}
           alt={beforeAlt}
           fill
-          className="object-cover"
+          className="object-contain"
           priority
           sizes="100vw"
         />
