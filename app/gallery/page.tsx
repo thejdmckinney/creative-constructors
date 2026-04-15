@@ -177,10 +177,10 @@ export default async function GalleryPage() {
                       className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
                     >
                       {/* Featured Images Side by Side */}
-                      <div className="grid grid-cols-2 h-64">
-                        <div className="relative">
+                      <div className="grid grid-cols-2 gap-0">
+                        <div className="relative aspect-[4/3]">
                           <Image
-                            src={urlFor(projectImages[0].asset).width(400).height(400).url()}
+                            src={urlFor(projectImages[0].asset).width(400).url()}
                             alt={projectImages[0].alt}
                             fill
                             className="object-cover"
@@ -189,9 +189,9 @@ export default async function GalleryPage() {
                             BEFORE
                           </div>
                         </div>
-                        <div className="relative">
+                        <div className="relative aspect-[4/3]">
                           <Image
-                            src={urlFor(projectImages[1].asset).width(400).height(400).url()}
+                            src={urlFor(projectImages[1].asset).width(400).url()}
                             alt={projectImages[1].alt}
                             fill
                             className="object-cover"
@@ -280,7 +280,7 @@ export default async function GalleryPage() {
                           isLarge ? 'md:col-span-2 md:row-span-2' : isTall ? 'md:row-span-2' : ''
                         }`}
                       >
-                        <div className={`relative ${isLarge ? 'h-96' : isTall ? 'h-80' : 'h-64'}`}>
+                        <div className={`relative ${isLarge ? 'aspect-square' : isTall ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}>
                           <Image
                             src={urlFor(mainImage.asset).width(600).url()}
                             alt={mainImage.alt}

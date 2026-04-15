@@ -238,7 +238,7 @@ export default async function ProjectPage({
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {featuredImages.slice(2).map((img, index) => (
-                  <div key={index} className="relative h-96 rounded-xl overflow-hidden shadow-lg">
+                  <div key={index} className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
                     <Image
                       src={urlFor(img.asset).width(800).url()}
                       alt={img.alt}
