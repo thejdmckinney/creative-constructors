@@ -216,16 +216,24 @@ export default async function ProjectPage({
             </div>
           </header>
 
-          {/* Featured Images Slider */}
+          {/* Featured Images */}
           {hasSlider && (
             <div className="max-w-6xl mx-auto mb-16">
-              <div className="w-full aspect-[4/3]">
-                <BeforeAfterSlider
-                  beforeImage={urlFor(featuredImages[0].asset).width(1200).url()}
-                  afterImage={urlFor(featuredImages[1].asset).width(1200).url()}
-                  beforeAlt={featuredImages[0].alt}
-                  afterAlt={featuredImages[1].alt}
-                />
+              <h2 className="text-3xl font-bold font-barlow-condensed text-navy mb-6 text-center">
+                Featured Images
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {featuredImages.slice(0, 2).map((img, index) => (
+                  <div key={index} className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
+                    <Image
+                      src={urlFor(img.asset).width(800).url()}
+                      alt={img.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-contain bg-gray-50"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -233,9 +241,6 @@ export default async function ProjectPage({
           {/* Additional Featured Images (if more than 2) */}
           {featuredImages.length > 2 && (
             <div className="max-w-6xl mx-auto mb-16">
-              <h2 className="text-3xl font-bold font-barlow-condensed text-navy mb-6 text-center">
-                More Featured Images
-              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {featuredImages.slice(2).map((img, index) => (
                   <div key={index} className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
@@ -244,7 +249,7 @@ export default async function ProjectPage({
                       alt={img.alt}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-contain"
+                      className="object-contain bg-gray-50"
                     />
                   </div>
                 ))}
