@@ -221,8 +221,8 @@ export default async function ProjectPage({
             <div className="max-w-6xl mx-auto mb-16">
               <div className="w-full h-[400px] md:h-[600px]">
                 <BeforeAfterSlider
-                  beforeImage={urlFor(featuredImages[0].asset).width(1200).url()}
-                  afterImage={urlFor(featuredImages[1].asset).width(1200).url()}
+                  beforeImage={urlFor(featuredImages[0].asset).url()}
+                  afterImage={urlFor(featuredImages[1].asset).url()}
                   beforeAlt={featuredImages[0].alt}
                   afterAlt={featuredImages[1].alt}
                 />
