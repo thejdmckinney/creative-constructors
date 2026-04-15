@@ -219,10 +219,10 @@ export default async function ProjectPage({
           {/* Featured Images Slider */}
           {hasSlider && (
             <div className="max-w-6xl mx-auto mb-16">
-              <div className="w-full aspect-[16/9]">
+              <div className="w-full aspect-[4/3]">
                 <BeforeAfterSlider
-                  beforeImage={urlFor(featuredImages[0].asset).fit('max').url()}
-                  afterImage={urlFor(featuredImages[1].asset).fit('max').url()}
+                  beforeImage={urlFor(featuredImages[0].asset).width(1200).url()}
+                  afterImage={urlFor(featuredImages[1].asset).width(1200).url()}
                   beforeAlt={featuredImages[0].alt}
                   afterAlt={featuredImages[1].alt}
                 />
