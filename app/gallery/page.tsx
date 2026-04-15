@@ -178,23 +178,25 @@ export default async function GalleryPage() {
                     >
                       {/* Featured Images Side by Side */}
                       <div className="grid grid-cols-2 gap-0">
-                        <div className="relative aspect-[4/3]">
+                        <div className="relative w-full">
                           <Image
                             src={urlFor(projectImages[0].asset).width(400).url()}
                             alt={projectImages[0].alt}
-                            fill
-                            className="object-cover"
+                            width={400}
+                            height={300}
+                            className="w-full h-auto"
                           />
                           <div className="absolute top-2 left-2 bg-black/70 text-white px-3 py-1 rounded text-xs font-bold">
                             BEFORE
                           </div>
                         </div>
-                        <div className="relative aspect-[4/3]">
+                        <div className="relative w-full">
                           <Image
                             src={urlFor(projectImages[1].asset).width(400).url()}
                             alt={projectImages[1].alt}
-                            fill
-                            className="object-cover"
+                            width={400}
+                            height={300}
+                            className="w-full h-auto"
                           />
                           <div className="absolute top-2 right-2 bg-orange text-white px-3 py-1 rounded text-xs font-bold">
                             AFTER
@@ -285,7 +287,8 @@ export default async function GalleryPage() {
                             src={urlFor(mainImage.asset).width(600).url()}
                             alt={mainImage.alt}
                             fill
-                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                            className="object-contain group-hover:scale-105 transition-transform duration-500"
                           />
                           {/* Gradient Overlay */}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

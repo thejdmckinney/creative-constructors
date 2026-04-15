@@ -243,7 +243,8 @@ export default async function ProjectPage({
                       src={urlFor(img.asset).width(800).url()}
                       alt={img.alt}
                       fill
-                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-contain"
                     />
                   </div>
                 ))}
@@ -310,10 +311,11 @@ export default async function ProjectPage({
                     className="relative aspect-square rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
                   >
                     <Image
-                      src={urlFor(image.asset).width(600).height(600).url()}
+                      src={urlFor(image.asset).width(600).url()}
                       alt={image.alt || `Project image ${index + 1}`}
                       fill
-                      className="object-cover"
+                      sizes="(max-width: 768px) 50vw, 33vw"
+                      className="object-contain"
                     />
                     {image.caption && (
                       <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white p-2 text-sm">
