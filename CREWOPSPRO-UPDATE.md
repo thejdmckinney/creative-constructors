@@ -64,9 +64,10 @@ const mutations = [
       title: projectData.title,
       slug: { _type: 'slug', current: generateSlug(projectData.title) },
       featuredImages: [
+        // ONLY 2-4 main hero images here
         {
           _type: 'image',
-          _key: generateKey(), // Generate unique key for each image
+          _key: generateKey(),
           asset: { _type: 'reference', _ref: image1Id },
           alt: 'First featured photo'
         },
@@ -81,8 +82,29 @@ const mutations = [
           _key: generateKey(),
           asset: { _type: 'reference', _ref: image3Id },
           alt: 'Third featured photo'
+        },
+        {
+          _type: 'image',
+          _key: generateKey(),
+          asset: { _type: 'reference', _ref: image4Id },
+          alt: 'Fourth featured photo'
         }
-        // Can add up to 4 total
+      ],
+      gallery: [
+        // ALL remaining project photos go here (no limit)
+        {
+          _type: 'image',
+          _key: generateKey(),
+          asset: { _type: 'reference', _ref: image5Id },
+          alt: 'Project photo 5'
+        },
+        {
+          _type: 'image',
+          _key: generateKey(),
+          asset: { _type: 'reference', _ref: image6Id },
+          alt: 'Project photo 6'
+        }
+        // ... add as many gallery images as needed
       ],
       serviceType: projectData.serviceType,
       location: projectData.location,
@@ -92,7 +114,6 @@ const mutations = [
       result: projectData.result,          // User-provided from CrewOpsPro UI
       featured: projectData.featured || false,
       heroProject: false,
-      gallery: projectData.gallery || [],
       testimonial: projectData.testimonial || null,
       duration: projectData.duration || null,
       transformationType: projectData.transformationType || null,
@@ -106,12 +127,28 @@ const mutations = [
 
 ### Photo Selection
 1. **Remove**: "Before Photo" / "After Photo" selectors
-2. **Add**: "Featured Photos" selector that allows:
-   - Selecting 2-4 photos from the project
-   - Reordering the photos (drag and drop)
+2. **Add TWO separate photo selectors**:
+
+   **A) Featured Photos (2-4 images - REQUIRED)**
+   - Label: "Featured Photos" or "Hero Images"
+   - Allows selecting exactly 2-4 photos
+   - Reordering via drag and drop
    - Setting alt text for each photo
-3. **Label**: First two photos as "Primary Images" (will appear in before/after slider)
-4. **Label**: Photos 3-4 as "Additional Featured" (will appear in grid below slider)
+   - These appear at the top of the project page in a grid
+   - VALIDATION: Minimum 2, Maximum 4
+
+   **B) Gallery Photos (unlimited - OPTIONAL)**
+   - Label: "Additional Gallery Photos" or "Full Project Gallery"
+   - Allows selecting unlimited additional photos
+   - Reordering via drag and drop
+   - Setting alt text for each photo
+   - These appear in the "More Photos" section below
+   - VALIDATION: No minimum, no maximum
+
+3. **Important Split**: 
+   - Featured Images (2-4) → `featuredImages` array in Sanity
+   - Gallery Images (unlimited) → `gallery` array in Sanity
+   - Do NOT combine them into one array!
 
 ### Project Story Fields (REQUIRED)
 Add these text input fields to the CrewOpsPro UI:
@@ -144,9 +181,14 @@ function generateKey(): string {
 ```
 
 ## Validation Rules
-- **Minimum**: 2 featured images required
-- **Maximum**: 4 featured images allowed
-- **Fields**: Each image needs `_type`, `_key`, `asset`, and `alt`
+- **Featured Images**: 
+  - Minimum: 2 images required
+  - Maximum: 4 images allowed
+  - Each image needs: `_type`, `_key`, `asset`, and `alt`
+- **Gallery Images**: 
+  - Minimum: 0 (optional)
+  - Maximum: Unlimited
+  - Each image needs: `_type`, `_key`, `asset`, and `alt`
 
 ## Backward Compatibility
 The website still supports old projects with `beforeImage`/`afterImage` via fallback logic. This means:
