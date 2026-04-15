@@ -177,14 +177,14 @@ export default async function GalleryPage() {
                       className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
                     >
                       {/* Featured Images Side by Side */}
-                      <div className="grid grid-cols-2 gap-0 h-80">
+                      <div className="grid grid-cols-2 gap-0 h-64">
                         <div className="relative">
                           <Image
-                            src={urlFor(projectImages[0].asset).url()}
+                            src={urlFor(projectImages[0].asset).width(400).url()}
                             alt={projectImages[0].alt}
                             fill
-                            sizes="(max-width: 768px) 50vw, 25vw"
-                            className="object-contain"
+                            sizes="50vw"
+                            className="object-cover"
                           />
                           <div className="absolute top-2 left-2 bg-black/70 text-white px-3 py-1 rounded text-xs font-bold">
                             BEFORE
@@ -192,11 +192,11 @@ export default async function GalleryPage() {
                         </div>
                         <div className="relative">
                           <Image
-                            src={urlFor(projectImages[1].asset).url()}
+                            src={urlFor(projectImages[1].asset).width(400).url()}
                             alt={projectImages[1].alt}
                             fill
-                            sizes="(max-width: 768px) 50vw, 25vw"
-                            className="object-contain"
+                            sizes="50vw"
+                            className="object-cover"
                           />
                           <div className="absolute top-2 right-2 bg-orange text-white px-3 py-1 rounded text-xs font-bold">
                             AFTER
