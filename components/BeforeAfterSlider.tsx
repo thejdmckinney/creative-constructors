@@ -66,7 +66,7 @@ export default function BeforeAfterSlider({
           src={afterImage}
           alt={afterAlt}
           fill
-          className="object-contain bg-black"
+          className="object-cover"
           priority
         />
       </div>
@@ -80,7 +80,7 @@ export default function BeforeAfterSlider({
           src={beforeImage}
           alt={beforeAlt}
           fill
-          className="object-contain bg-black"
+          className="object-cover"
           priority
         />
       </div>
