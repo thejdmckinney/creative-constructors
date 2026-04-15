@@ -48,6 +48,17 @@ export default function BeforeAfterSlider({
       onMouseLeave={handleInteractionEnd}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleInteractionEnd}
+      onMouseDown={(e) => {
+        // Allow clicking anywhere to reposition the slider immediately and begin dragging
+        const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect()
+        handleMove(e.clientX, rect)
+        handleInteractionStart()
+      }}
+      onTouchStart={(e) => {
+        const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect()
+        handleMove(e.touches[0].clientX, rect)
+        handleInteractionStart()
+      }}
     >
       {/* After Image (Background) */}
       <div className="relative w-full h-full">
@@ -55,7 +66,7 @@ export default function BeforeAfterSlider({
           src={afterImage}
           alt={afterAlt}
           fill
-          className="object-cover"
+          className="object-contain bg-black"
           priority
         />
       </div>
@@ -69,7 +80,7 @@ export default function BeforeAfterSlider({
           src={beforeImage}
           alt={beforeAlt}
           fill
-          className="object-cover"
+          className="object-contain bg-black"
           priority
         />
       </div>

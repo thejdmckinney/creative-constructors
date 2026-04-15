@@ -238,12 +238,12 @@ export default async function ProjectPage({
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {featuredImages.slice(2).map((img, index) => (
-                  <div key={index} className="relative h-96 rounded-xl overflow-hidden shadow-lg">
+                  <div key={index} className="relative h-96 rounded-xl overflow-hidden shadow-lg bg-black">
                     <Image
                       src={urlFor(img.asset).width(800).url()}
                       alt={img.alt}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                 ))}
@@ -313,7 +313,7 @@ export default async function ProjectPage({
                       src={urlFor(image.asset).width(600).height(600).url()}
                       alt={image.alt || `Project image ${index + 1}`}
                       fill
-                      className="object-cover"
+                      className="object-contain bg-black"
                     />
                     {image.caption && (
                       <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white p-2 text-sm">
