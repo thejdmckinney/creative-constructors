@@ -177,24 +177,24 @@ export default async function GalleryPage() {
                       className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
                     >
                       {/* Featured Images Side by Side */}
-                      <div className="grid grid-cols-2 h-64">
-                        <div className="relative">
+                      <div className="grid grid-cols-2 h-64 bg-black">
+                        <div className="relative bg-black">
                           <Image
                             src={urlFor(projectImages[0].asset).width(400).height(400).url()}
                             alt={projectImages[0].alt}
                             fill
-                            className="object-cover"
+                            className="object-contain"
                           />
                           <div className="absolute top-2 left-2 bg-black/70 text-white px-3 py-1 rounded text-xs font-bold">
                             BEFORE
                           </div>
                         </div>
-                        <div className="relative">
+                        <div className="relative bg-black">
                           <Image
                             src={urlFor(projectImages[1].asset).width(400).height(400).url()}
                             alt={projectImages[1].alt}
                             fill
-                            className="object-cover"
+                            className="object-contain"
                           />
                           <div className="absolute top-2 right-2 bg-orange text-white px-3 py-1 rounded text-xs font-bold">
                             AFTER
@@ -280,12 +280,12 @@ export default async function GalleryPage() {
                           isLarge ? 'md:col-span-2 md:row-span-2' : isTall ? 'md:row-span-2' : ''
                         }`}
                       >
-                        <div className={`relative ${isLarge ? 'h-96' : isTall ? 'h-80' : 'h-64'}`}>
+                        <div className={`relative bg-black ${isLarge ? 'h-96' : isTall ? 'h-80' : 'h-64'}`}>
                           <Image
                             src={urlFor(mainImage.asset).width(600).url()}
                             alt={mainImage.alt}
                             fill
-                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                            className="object-contain group-hover:scale-105 transition-transform duration-500"
                           />
                           {/* Gradient Overlay */}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
