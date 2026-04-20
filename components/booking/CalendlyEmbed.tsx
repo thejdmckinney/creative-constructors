@@ -24,10 +24,27 @@ export default function CalendlyEmbed({ bookingData, onScheduled, onBack }: Cale
     document.body.appendChild(script)
 
     // Listen for Calendly events
-    const handleMessage = (e: MessageEvent) => {
+    const handleMessage = async (e: MessageEvent) => {
       if (e.data.event && e.data.event.indexOf('calendly') === 0) {
         if (e.data.event === 'calendly.event_scheduled') {
-          onScheduled(e.data.payload)
+          const eventData = e.data.payload
+          
+          // Send booking notification email
+          try {
+            await fetch('/api/booking-notification', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                bookingData,
+                calendlyEvent: eventData,
+              }),
+            })
+          } catch (error) {
+            console.error('Error sending booking notification:', error)
+            // Continue anyway - booking is still valid
+          }
+          
+          onScheduled(eventData)
         }
       }
     }
@@ -38,7 +55,7 @@ export default function CalendlyEmbed({ bookingData, onScheduled, onBack }: Cale
       window.removeEventListener('message', handleMessage)
       document.body.removeChild(script)
     }
-  }, [onScheduled])
+  }, [onScheduled, bookingData])
 
   const calendlyUrl = bookingData.service?.calendlyUrl || ''
 
