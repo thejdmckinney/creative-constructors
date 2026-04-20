@@ -168,13 +168,13 @@ export default function Navigation() {
             </div>
           </div>
 
-          {/* Right Side - Request Service Button */}
+          {/* Right Side - Book Now Button */}
           <div className="hidden lg:flex items-center">
             <Link
-              href="/contact"
+              href="/book"
               className="bg-orange hover:bg-orange/90 text-white font-bold py-3 px-6 rounded-lg transition-colors whitespace-nowrap"
             >
-              Request Service
+              Book Now
             </Link>
           </div>
 
@@ -315,11 +315,11 @@ export default function Navigation() {
               Contact
             </Link>
             <Link
-              href="/contact"
+              href="/book"
               className="block mt-4 bg-orange hover:bg-orange/90 text-white font-bold py-3 px-6 rounded-lg transition-colors text-center"
               onClick={() => setIsMenuOpen(false)}
             >
-              Request Service
+              Book Now
             </Link>
           </div>
         )}

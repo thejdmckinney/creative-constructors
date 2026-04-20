@@ -132,10 +132,10 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/contact"
+                href="/book"
                 className="inline-block bg-orange hover:bg-orange/90 text-white font-bold py-4 px-8 rounded-lg transition-colors text-center"
               >
-                Get a Free Quote
+                Book Consultation
               </Link>
               <Link
                 href="/services"

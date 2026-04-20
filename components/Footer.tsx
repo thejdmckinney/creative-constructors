@@ -59,6 +59,22 @@ export default function Footer() {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/gallery"
+                  className="text-silver hover:text-orange transition-colors"
+                >
+                  Gallery
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/book"
+                  className="text-orange hover:text-orange/80 transition-colors font-bold"
+                >
+                  📅 Book Now
+                </Link>
+              </li>
             </ul>
           </div>
 
