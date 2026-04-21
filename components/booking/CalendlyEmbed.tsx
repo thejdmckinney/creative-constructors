@@ -136,7 +136,7 @@ export default function CalendlyEmbed({ bookingData, onScheduled, onBack }: Cale
       {/* Calendly Embed */}
       <div 
         ref={calendlyRef}
-        className="w-full"
+        className="w-full calendly-inline-widget"
         style={{ minHeight: '700px' }}
       />
 

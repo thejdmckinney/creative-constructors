@@ -13,8 +13,12 @@
 }
 
 /* Calendly iframe height fix */
-.calendly-inline-widget,
+.calendly-inline-widget {
+  min-height: 700px !important;
+  height: auto !important;
+}
+
 .calendly-inline-widget iframe {
   min-height: 700px !important;
-  height: 100% !important;
+  height: 700px !important;
 }
