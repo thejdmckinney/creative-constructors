@@ -189,6 +189,21 @@ export default function HomeShieldPage() {
         </div>
       </section>
 
+      {/* Home Shield Image */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-4xl">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            <Image
+              src="/the-home-shield.png"
+              alt="The Creative Constructors Home Shield"
+              width={1200}
+              height={600}
+              className="w-full h-auto"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Between Visits Benefit */}
       <section className="py-16 px-4 bg-gradient-to-r from-orange to-orange/90">
         <div className="container mx-auto max-w-4xl text-center">
