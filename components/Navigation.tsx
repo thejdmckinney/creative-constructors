@@ -117,6 +117,18 @@ export default function Navigation() {
               >
                 About
               </Link>
+
+              <Link
+                href="/gallery"
+                className={clsx(
+                  "font-medium transition-colors",
+                  isActive("/gallery")
+                    ? "text-orange"
+                    : "text-gray-700 hover:text-orange"
+                )}
+              >
+                Gallery
+              </Link>
             </div>
 
             {/* Logo in Center */}
@@ -133,18 +145,6 @@ export default function Navigation() {
 
             {/* Right Navigation */}
             <div className="flex items-center gap-6">
-              <Link
-                href="/gallery"
-                className={clsx(
-                  "font-medium transition-colors",
-                  isActive("/gallery")
-                    ? "text-orange"
-                    : "text-gray-700 hover:text-orange"
-                )}
-              >
-                Gallery
-              </Link>
-
               <Link
                 href="/blog"
                 className={clsx(
