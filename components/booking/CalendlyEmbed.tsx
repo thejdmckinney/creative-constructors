@@ -17,8 +17,15 @@ declare global {
 
 export default function CalendlyEmbed({ bookingData, onScheduled, onBack }: CalendlyEmbedProps) {
   const calendlyRef = useRef<HTMLDivElement>(null)
+  const calendlyUrl = bookingData.service?.calendlyUrl || ''
 
   useEffect(() => {
+    // Load Calendly CSS
+    const link = document.createElement('link')
+    link.href = 'https://assets.calendly.com/assets/external/widget.css'
+    link.rel = 'stylesheet'
+    document.head.appendChild(link)
+
     // Load Calendly widget script
     const script = document.createElement('script')
     script.src = 'https://assets.calendly.com/assets/external/widget.js'
@@ -78,10 +85,11 @@ export default function CalendlyEmbed({ bookingData, onScheduled, onBack }: Cale
       if (document.body.contains(script)) {
         document.body.removeChild(script)
       }
+      if (document.head.contains(link)) {
+        document.head.removeChild(link)
+      }
     }
-  }, [bookingData])
-
-  const calendlyUrl = bookingData.service?.calendlyUrl || ''
+  }, [bookingData, calendlyUrl, onScheduled])
 
   return (
     <div>
@@ -128,8 +136,8 @@ export default function CalendlyEmbed({ bookingData, onScheduled, onBack }: Cale
       {/* Calendly Embed */}
       <div 
         ref={calendlyRef}
-        className="w-full"
-        style={{ minHeight: '900px' }}
+        className="w-full overflow-visible"
+        style={{ minHeight: '1000px', height: 'auto' }}
       />
 
       {/* Emergency Note */}
