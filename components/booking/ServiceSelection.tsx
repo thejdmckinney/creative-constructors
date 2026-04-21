@@ -72,7 +72,7 @@ const services: ServiceType[] = [
     name: 'General Consultation',
     description: 'Not sure what you need? Let us discuss your project',
     icon: '💬',
-    calendlyUrl: process.env.NEXT_PUBLIC_CALENDLY_GENERAL_URL || '',
+    calendlyUrl: process.env.NEXT_PUBLIC_CALENDLY_CONSULTATION_URL || '',
   },
 ]
 
@@ -82,6 +82,14 @@ interface ServiceSelectionProps {
 }
 
 export default function ServiceSelection({ selectedService, onSelectService }: ServiceSelectionProps) {
+  const handleSelectService = (service: ServiceType) => {
+    if (!service.calendlyUrl) {
+      alert('This service is not yet configured. Please select another service or contact us directly at (817) 470-1889.')
+      return
+    }
+    onSelectService(service)
+  }
+
   return (
     <div>
       <h2 className="text-3xl md:text-4xl font-black font-barlow-condensed text-navy mb-4">
@@ -95,7 +103,7 @@ export default function ServiceSelection({ selectedService, onSelectService }: S
         {services.map((service) => (
           <button
             key={service.id}
-            onClick={() => onSelectService(service)}
+            onClick={() => handleSelectService(service)}
             className={`group relative p-6 rounded-xl border-2 transition-all text-left hover:shadow-lg ${
               service.isEmergency
                 ? 'border-red-500 bg-red-50 hover:bg-red-100'
