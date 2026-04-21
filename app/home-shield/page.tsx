@@ -189,6 +189,159 @@ export default function HomeShieldPage() {
         </div>
       </section>
 
+      {/* What's Included Every Visit */}
+      <section className="py-20 px-4 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-black font-barlow-condensed text-navy mb-4">
+              More Than Just Inspections
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Every quarterly visit includes professional maintenance tasks and on-the-spot small repairs—real value you can count on.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {/* Small Repairs Included */}
+            <div className="bg-gradient-to-br from-orange/5 to-white rounded-xl shadow-lg p-8 border-2 border-orange/20">
+              <div className="w-16 h-16 bg-orange/10 rounded-full flex items-center justify-center mb-6">
+                <span className="text-4xl">🔧</span>
+              </div>
+              <h3 className="text-2xl font-bold text-navy mb-4">Small Repairs Included</h3>
+              <p className="text-gray-600 mb-4">Fixed on the spot during your visit:</p>
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Outlet & switch replacements</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Minor leak repairs</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Toilet adjustments & flapper fixes</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Clogged drain line clearing</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Loose fixture tightening</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Door & cabinet adjustments</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Caulking touchups</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Quarterly Maintenance */}
+            <div className="bg-gradient-to-br from-orange/5 to-white rounded-xl shadow-lg p-8 border-2 border-orange/20">
+              <div className="w-16 h-16 bg-orange/10 rounded-full flex items-center justify-center mb-6">
+                <span className="text-4xl">🛠️</span>
+              </div>
+              <h3 className="text-2xl font-bold text-navy mb-4">Quarterly Maintenance</h3>
+              <p className="text-gray-600 mb-4">Done every single visit:</p>
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>HVAC filter replacement (provided by us)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Smoke & CO detector battery replacement</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Condensate line clearing & treatment</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Garbage disposal cleaning</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Showerhead & faucet aerator cleaning</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Weather stripping inspection</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Exterior caulking inspection</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Member Perks */}
+            <div className="bg-gradient-to-br from-orange/5 to-white rounded-xl shadow-lg p-8 border-2 border-orange/20">
+              <div className="w-16 h-16 bg-orange/10 rounded-full flex items-center justify-center mb-6">
+                <span className="text-4xl">⭐</span>
+              </div>
+              <h3 className="text-2xl font-bold text-navy mb-4">Exclusive Member Perks</h3>
+              <p className="text-gray-600 mb-4">Additional benefits included:</p>
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>15% discount on all additional repairs</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Preferred scheduling (choose your recurring time)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Digital maintenance history & records</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Annual home maintenance calendar</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Seasonal preventive care reminders</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span>Year-end comprehensive home assessment</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Value Proposition */}
+          <div className="bg-gradient-to-r from-navy to-royal-blue rounded-2xl p-10 text-center text-white">
+            <h3 className="text-3xl font-black font-barlow-condensed mb-4">
+              That's Over $150 in Labor & Maintenance Value Every Visit
+            </h3>
+            <p className="text-xl text-gray-200 mb-6">
+              Plus the peace of mind knowing your home is being watched over by a professional who genuinely cares.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-sm">
+              <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+                💰 Predictable monthly cost
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+                🛡️ Catch problems early
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+                ⚡ No surprise repairs
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+                📞 Direct access to Jeremy
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Home Shield Image */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto max-w-4xl">
@@ -313,11 +466,23 @@ export default function HomeShieldPage() {
               <ul className="space-y-4 mb-8">
                 <li className="flex items-start gap-3">
                   <span className="text-orange text-xl font-bold">✓</span>
-                  <span className="text-gray-700">4 quarterly inspections</span>
+                  <span className="text-gray-700">4 comprehensive quarterly visits</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-orange text-xl font-bold">✓</span>
-                  <span className="text-gray-700">Direct access to Jeremy</span>
+                  <span className="text-gray-700">Small repairs fixed on the spot</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-orange text-xl font-bold">✓</span>
+                  <span className="text-gray-700">HVAC filters & detector batteries replaced</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-orange text-xl font-bold">✓</span>
+                  <span className="text-gray-700">Preventive maintenance tasks</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-orange text-xl font-bold">✓</span>
+                  <span className="text-gray-700">Direct access to Jeremy 24/7</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-orange text-xl font-bold">✓</span>
@@ -326,6 +491,10 @@ export default function HomeShieldPage() {
                 <li className="flex items-start gap-3">
                   <span className="text-orange text-xl font-bold">✓</span>
                   <span className="text-gray-700">Priority scheduling</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-orange text-xl font-bold">✓</span>
+                  <span className="text-gray-700">15% off all additional repairs</span>
                 </li>
               </ul>
 
@@ -360,11 +529,23 @@ export default function HomeShieldPage() {
               <ul className="space-y-4 mb-8">
                 <li className="flex items-start gap-3">
                   <span className="text-white text-xl font-bold">✓</span>
-                  <span className="text-white">4 quarterly inspections</span>
+                  <span className="text-white">4 comprehensive quarterly visits</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-white text-xl font-bold">✓</span>
-                  <span className="text-white">Direct access to Jeremy</span>
+                  <span className="text-white">Small repairs fixed on the spot</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-white text-xl font-bold">✓</span>
+                  <span className="text-white">HVAC filters & detector batteries replaced</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-white text-xl font-bold">✓</span>
+                  <span className="text-white">Preventive maintenance tasks</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-white text-xl font-bold">✓</span>
+                  <span className="text-white">Direct access to Jeremy 24/7</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-white text-xl font-bold">✓</span>
@@ -373,6 +554,10 @@ export default function HomeShieldPage() {
                 <li className="flex items-start gap-3">
                   <span className="text-white text-xl font-bold">✓</span>
                   <span className="text-white">Priority scheduling</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-white text-xl font-bold">✓</span>
+                  <span className="text-white">15% off all additional repairs</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-white text-xl font-bold">✓</span>
