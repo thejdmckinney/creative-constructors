@@ -395,7 +395,7 @@ export default function PlumbingPage() {
       </section>
 
       {/* Related Services - Internal Linking */}
-      <RelatedServices category="plumbing" />
+      <RelatedServices category="repair" />
     </>
   );
 }
