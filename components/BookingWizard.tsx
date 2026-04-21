@@ -100,7 +100,7 @@ export default function BookingWizard() {
       )}
 
       {/* Step Content */}
-      <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+      <div className={`bg-white rounded-2xl shadow-xl p-8 md:p-12 ${currentStep === 'calendar' ? 'min-h-screen' : ''}`}>
         {currentStep === 'service' && (
           <ServiceSelection
             selectedService={bookingData.service}

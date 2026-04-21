@@ -115,8 +115,9 @@ export default function CalendlyEmbed({ bookingData, onScheduled, onBack }: Cale
 
       {/* Calendly Embed */}
       <div 
-        className="calendly-inline-widget min-h-[700px] rounded-lg overflow-hidden"
+        className="calendly-inline-widget w-full"
         data-url={embedUrl}
+        style={{ minHeight: '700px', height: '100%' }}
       />
 
       {/* Emergency Note */}
