@@ -35,6 +35,27 @@ const serviceCategories = {
     "Garage door openers",
     "TV mounts",
   ],
+  Plumbing: [
+    "Leak repair",
+    "Drain cleaning",
+    "Water heater installation",
+    "Water heater repair",
+    "Toilet repair & replacement",
+    "Faucet installation & repair",
+    "Sump pump installation",
+    "Emergency plumbing",
+    "Repiping",
+    "Plumbing inspections",
+    "Gas line services",
+    "Garbage disposal installation",
+    "Water filtration systems",
+    "Shower & tub installation",
+    "Pipe repair",
+    "Sewer line services",
+    "Backflow prevention",
+    "Water pressure issues",
+    "Frozen pipe repair",
+  ],
   Repair: [
     "Chain link fences",
     "Awning repair",
@@ -146,11 +167,11 @@ const serviceCategories = {
 
 const services = [
   {
-    title: "Electrical Services",
+    title: "Emergency Services",
     description:
-      "Professional electrical installation, repair, and maintenance for residential and commercial properties. From panel upgrades to lighting installations.",
-    href: "/services/electrical",
-    icon: "⚡",
+      "24/7 emergency response for urgent home repairs. Fast, reliable service when you need it most - burst pipes, electrical hazards, HVAC failures, and more.",
+    href: "/services/emergency",
+    icon: "🚨",
   },
   {
     title: "Plumbing Services",
@@ -158,6 +179,20 @@ const services = [
       "Expert plumbing solutions including repairs, installations, and maintenance. We handle everything from leaky faucets to complete system overhauls.",
     href: "/services/plumbing",
     icon: "🔧",
+  },
+  {
+    title: "Electrical Services",
+    description:
+      "Professional electrical installation, repair, and maintenance for residential and commercial properties. From panel upgrades to lighting installations.",
+    href: "/services/electrical",
+    icon: "⚡",
+  },
+  {
+    title: "Smart Home Installation",
+    description:
+      "Modernize your home with smart technology. From automated lighting and thermostats to security systems and voice control integration.",
+    href: "/services/smart-home",
+    icon: "🏠",
   },
   {
     title: "HVAC Services",
@@ -172,13 +207,6 @@ const services = [
       "Custom carpentry and woodworking services for your home or business. From built-ins to trim work, we bring your vision to life.",
     href: "/services/carpentry",
     icon: "🔨",
-  },
-  {
-    title: "Smart Home Installation",
-    description:
-      "Modernize your home with smart technology. From automated lighting and thermostats to security systems and voice control integration.",
-    href: "/services/smart-home",
-    icon: "🏠",
   },
   {
     title: "Decks & Patios",

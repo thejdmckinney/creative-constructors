@@ -7,7 +7,10 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
 const services = [
+  { name: "Emergency Services", href: "/services/emergency" },
+  { name: "Plumbing", href: "/services/plumbing" },
   { name: "Electrical", href: "/services/electrical" },
+  { name: "Smart Home", href: "/services/smart-home" },
   { name: "Installation", href: "/services/installation" },
   { name: "Repair", href: "/services/repair" },
   { name: "Maintenance", href: "/services/maintenance" },
