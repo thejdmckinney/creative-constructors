@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { BookingData } from '../BookingWizard'
 
 interface CalendlyEmbedProps {
@@ -16,11 +16,33 @@ declare global {
 }
 
 export default function CalendlyEmbed({ bookingData, onScheduled, onBack }: CalendlyEmbedProps) {
+  const calendlyRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     // Load Calendly widget script
     const script = document.createElement('script')
     script.src = 'https://assets.calendly.com/assets/external/widget.js'
     script.async = true
+    
+    script.onload = () => {
+      // Initialize Calendly widget once script is loaded
+      if (window.Calendly && calendlyRef.current) {
+        window.Calendly.initInlineWidget({
+          url: calendlyUrl,
+          parentElement: calendlyRef.current,
+          prefill: {
+            customAnswers: {
+              a1: bookingData.description || '',
+              a2: `Property: ${bookingData.propertyType || 'Not specified'}`,
+              a3: `Urgency: ${bookingData.urgency || 'Not specified'}`,
+              a4: `Contact: ${bookingData.contactMethod || 'Not specified'}`,
+            }
+          },
+          utm: {}
+        })
+      }
+    }
+    
     document.body.appendChild(script)
 
     // Listen for Calendly events
@@ -53,23 +75,13 @@ export default function CalendlyEmbed({ bookingData, onScheduled, onBack }: Cale
 
     return () => {
       window.removeEventListener('message', handleMessage)
-      document.body.removeChild(script)
+      if (document.body.contains(script)) {
+        document.body.removeChild(script)
+      }
     }
-  }, [onScheduled, bookingData])
+  }, [bookingData])
 
   const calendlyUrl = bookingData.service?.calendlyUrl || ''
-
-  // Build prefill parameters from booking data
-  const prefillParams = new URLSearchParams({
-    name: '',
-    email: '',
-    a1: bookingData.description || '',
-    a2: `Property: ${bookingData.propertyType || 'Not specified'}`,
-    a3: `Urgency: ${bookingData.urgency || 'Not specified'}`,
-    a4: `Contact: ${bookingData.contactMethod || 'Not specified'}`,
-  })
-
-  const embedUrl = `${calendlyUrl}?${prefillParams.toString()}`
 
   return (
     <div>
@@ -115,9 +127,9 @@ export default function CalendlyEmbed({ bookingData, onScheduled, onBack }: Cale
 
       {/* Calendly Embed */}
       <div 
-        className="calendly-inline-widget w-full"
-        data-url={embedUrl}
-        style={{ minHeight: '700px', height: '100%' }}
+        ref={calendlyRef}
+        className="w-full"
+        style={{ minHeight: '900px' }}
       />
 
       {/* Emergency Note */}
