@@ -38,7 +38,28 @@ export default function BookingConfirmation({ bookingData, onReset }: BookingCon
               </svg>
               <div>
                 <div className="font-semibold text-navy">Date & Time</div>
-                <div className="text-gray-600">{new Date(event.startTime).toLocaleString()}</div>
+                <div className="text-gray-600">
+                  {(() => {
+                    try {
+                      // Calendly payload may have event_start_time or startTime
+                      const timeString = (event as any).event_start_time || event.startTime
+                      if (timeString) {
+                        return new Date(timeString).toLocaleString('en-US', {
+                          weekday: 'long',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                          hour: 'numeric',
+                          minute: '2-digit',
+                          timeZoneName: 'short'
+                        })
+                      }
+                      return 'Check your email for appointment details'
+                    } catch {
+                      return 'Check your email for appointment details'
+                    }
+                  })()}
+                </div>
               </div>
             </div>
             <div className="flex items-start">
