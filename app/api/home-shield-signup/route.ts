@@ -22,25 +22,35 @@ export async function POST(request: NextRequest) {
 
     // Send to CrewOpsPro
     try {
+      const crewOpsPayload = {
+        org_slug: 'creative-constructors',
+        name: name,
+        email: email,
+        phone: phone,
+        service_type: 'Home Shield Subscription',
+        notes: `Home Shield Sign-up\n\nPlan: ${planDetails.period} (${planDetails.price})\nAddress: ${address}\n\nQuarterly visits include:\n- Q1: Electrical Safety Walk\n- Q2: Plumbing Inspection\n- Q3: HVAC Assessment\n- Q4: Crawlspace & Attic Check\n\nBenefits:\n- Direct access to Jeremy between visits\n- Written home health reports with photos\n- Priority scheduling for repairs`,
+        lead_source: 'home-shield-landing'
+      };
+
+      console.log('Sending to CrewOpsPro:', JSON.stringify(crewOpsPayload, null, 2));
+
       const crewOpsResponse = await fetch(
         'https://runxlgbvzgsyximttdjv.supabase.co/functions/v1/public-lead-intake',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            org_slug: 'creative-constructors',
-            name: name,
-            email: email,
-            phone: phone,
-            service_type: 'Home Shield Subscription',
-            notes: `Home Shield Sign-up\n\nPlan: ${planDetails.period} (${planDetails.price})\nAddress: ${address}\n\nQuarterly visits include:\n- Q1: Electrical Safety Walk\n- Q2: Plumbing Inspection\n- Q3: HVAC Assessment\n- Q4: Crawlspace & Attic Check\n\nBenefits:\n- Direct access to Jeremy between visits\n- Written home health reports with photos\n- Priority scheduling for repairs`,
-            lead_source: 'home-shield-landing'
-          })
+          body: JSON.stringify(crewOpsPayload)
         }
       );
 
+      console.log('CrewOpsPro response status:', crewOpsResponse.status);
+
       if (!crewOpsResponse.ok) {
-        console.error('CrewOpsPro API error:', await crewOpsResponse.text());
+        const errorText = await crewOpsResponse.text();
+        console.error('CrewOpsPro API error:', errorText);
+      } else {
+        const responseData = await crewOpsResponse.json();
+        console.log('CrewOpsPro success:', responseData);
       }
     } catch (crewOpsError) {
       console.error('Error sending to CrewOpsPro:', crewOpsError);
