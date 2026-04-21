@@ -158,6 +158,21 @@ export default function Navigation() {
               </Link>
 
               <Link
+                href="/home-shield"
+                className={clsx(
+                  "font-medium transition-colors relative group",
+                  isActive("/home-shield")
+                    ? "text-orange"
+                    : "text-gray-700 hover:text-orange"
+                )}
+              >
+                🛡️ Home Shield
+                <span className="absolute -top-1 -right-2 bg-orange text-white text-xs font-bold px-1.5 py-0.5 rounded-full group-hover:scale-110 transition-transform">
+                  NEW
+                </span>
+              </Link>
+
+              <Link
                 href="/contact"
                 className={clsx(
                   "font-medium transition-colors",
@@ -306,6 +321,19 @@ export default function Navigation() {
               onClick={() => setIsMenuOpen(false)}
             >
               Blog
+            </Link>
+            <Link
+              href="/home-shield"
+              className={clsx(
+                "block py-2 font-medium relative inline-block",
+                isActive("/home-shield") ? "text-orange" : "text-gray-700"
+              )}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              🛡️ Home Shield{" "}
+              <span className="bg-orange text-white text-xs font-bold px-2 py-0.5 rounded-full ml-2">
+                NEW
+              </span>
             </Link>
             <Link
               href="/contact"

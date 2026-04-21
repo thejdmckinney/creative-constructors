@@ -21,14 +21,27 @@ export default function HomeShieldPage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // TODO: Add your form submission logic here (email, database, etc.)
-    console.log('Form submitted:', { ...formData, plan: selectedPlan });
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    setIsSubmitting(false);
-    setSubmitSuccess(true);
+    try {
+      const response = await fetch('/api/home-shield-signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          plan: selectedPlan
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit sign-up');
+      }
+
+      setSubmitSuccess(true);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting your sign-up. Please try again or call (817) 470-1889 directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const spotsTaken = 3;
