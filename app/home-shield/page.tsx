@@ -456,7 +456,7 @@ export default function HomeShieldPage() {
                 {/* Address */}
                 <div>
                   <label htmlFor="address" className="block text-sm font-bold text-navy mb-2">
-                    Home Address *
+                    Full Home Address (Street, City, State, Zip) *
                   </label>
                   <input
                     type="text"
