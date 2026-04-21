@@ -1,211 +1,281 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { seoConfig } from "@/seo.config";
-
-const serviceArea = "Dallas-Fort Worth Metroplex";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import RelatedServices from "@/components/RelatedServices";
+import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: `Smart Home Installation Services in ${serviceArea} | ${seoConfig.business.name}`,
-  description: `Professional smart home installation services in ${serviceArea}. From automated lighting and thermostats to security systems and voice control integration. Expert installation by licensed technicians.`,
+  title: `Smart Home Installation & Automation in Dallas-Fort Worth | ${seoConfig.business.name}`,
+  description: `Transform your home with smart home technology. Expert installation of smart thermostats, lighting, locks, cameras, and home automation systems in Dallas-Fort Worth. Call ${seoConfig.business.phone}`,
+  keywords: [
+    "smart home Dallas",
+    "home automation Fort Worth",
+    "smart thermostat installation",
+    "smart lighting Dallas",
+    "smart lock installation",
+    "home security cameras Dallas",
+    "voice control home",
+    "smart home integration",
+  ],
   alternates: {
-    canonical: `${seoConfig.baseUrl}/services/smart-home`,
+    canonical: "/services/smart-home",
   },
   openGraph: {
-    title: `Smart Home Installation Services | ${seoConfig.business.name}`,
-    description: `Modernize your home with professional smart home technology installation in ${serviceArea}.`,
-    url: `${seoConfig.baseUrl}/services/smart-home`,
-    siteName: seoConfig.business.name,
-    locale: "en_US",
-    type: "website",
+    title: `Smart Home Installation & Automation | ${seoConfig.siteName}`,
+    description:
+      "Transform your home with smart technology. Professional installation of smart home devices and automation systems in Dallas-Fort Worth.",
+    url: "/services/smart-home",
   },
 };
 
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Services", path: "/services" },
+  { name: "Smart Home", path: "/services/smart-home" },
+]);
+
+const faqSchema = generateFAQSchema([
+  {
+    question: "What smart home devices can you install?",
+    answer: "We install a wide range of smart home devices including smart thermostats (Nest, Ecobee), smart lighting systems, smart locks, video doorbells, security cameras, smart switches and outlets, and whole-home automation systems."
+  },
+  {
+    question: "Do I need special wiring for smart home devices?",
+    answer: "Most smart home devices work with existing wiring. Some devices like smart thermostats may require a C-wire, which we can install if needed. We'll assess your home's wiring and recommend the best solutions."
+  },
+  {
+    question: "Can you integrate different smart home brands?",
+    answer: "Yes! We specialize in integrating various smart home systems to work together seamlessly. Whether you have Amazon Alexa, Google Home, Apple HomeKit, or multiple platforms, we can create a unified smart home experience."
+  },
+  {
+    question: "How much does smart home installation cost?",
+    answer: "Costs vary depending on the devices and complexity. Simple installations like smart thermostats start around $200-300 including the device. Whole-home automation systems vary widely. Contact us for a custom quote based on your needs."
+  },
+  {
+    question: "Will you teach me how to use my smart home system?",
+    answer: "Absolutely! We provide hands-on training after installation to ensure you're comfortable using all features. We'll show you how to control devices via apps, voice commands, and automation routines."
+  },
+]);
+
+
 export default function SmartHomePage() {
-  const services = [
-    {
-      title: "Smart Lighting",
-      description: "Automated lighting control with dimming, scheduling, and voice commands. Create the perfect ambiance for any occasion.",
-      icon: "💡",
-    },
-    {
-      title: "Smart Thermostats",
-      description: "Energy-efficient climate control that learns your preferences and optimizes your heating and cooling automatically.",
-      icon: "🌡️",
-    },
-    {
-      title: "Security Systems",
-      description: "Advanced security with smart locks, doorbell cameras, motion sensors, and 24/7 monitoring capabilities.",
-      icon: "🔒",
-    },
-    {
-      title: "Voice Control Integration",
-      description: "Seamless integration with Amazon Alexa, Google Assistant, and Apple HomeKit for hands-free home control.",
-      icon: "🎙️",
-    },
-    {
-      title: "Smart Plugs & Switches",
-      description: "Convert existing appliances and fixtures to smart devices with programmable plugs and switches.",
-      icon: "🔌",
-    },
-    {
-      title: "Home Automation Hubs",
-      description: "Centralized control systems that connect all your smart devices for unified home automation.",
-      icon: "🎛️",
-    },
-    {
-      title: "Video Surveillance",
-      description: "High-definition security cameras with remote viewing, motion detection, and cloud storage options.",
-      icon: "📹",
-    },
-    {
-      title: "Smart Garage Doors",
-      description: "Remote garage door control and monitoring from anywhere with real-time notifications.",
-      icon: "🚪",
-    },
-    {
-      title: "Whole-Home Integration",
-      description: "Complete smart home systems that connect lighting, security, climate, and entertainment seamlessly.",
-      icon: "🏠",
-    },
-  ];
-
-  const features = [
-    {
-      title: "Expert Installation",
-      description: "Our certified technicians ensure proper installation and configuration of all smart home devices for optimal performance and security.",
-    },
-    {
-      title: "System Design",
-      description: "We design custom smart home solutions tailored to your lifestyle, budget, and existing home infrastructure.",
-    },
-    {
-      title: "Training & Support",
-      description: "Comprehensive training on your new smart home system, plus ongoing support to help you get the most from your investment.",
-    },
-    {
-      title: "Future-Proof Technology",
-      description: "We install scalable systems that grow with your needs and integrate with emerging smart home technologies.",
-    },
-  ];
-
   return (
-    <main className="flex-grow">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      
+      <Breadcrumbs items={[
+        { name: "Services", path: "/services" },
+        { name: "Smart Home", path: "/services/smart-home" },
+      ]} />
+      
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-navy to-royal-blue text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Smart Home Installation Services
+      <section className="bg-navy text-white py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="max-w-3xl">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              Smart Home Installation
             </h1>
-            <p className="text-xl mb-8 text-gray-100">
-              Transform your house into an intelligent home with cutting-edge automation technology. 
-              Professional installation by licensed technicians in the {serviceArea}.
+            <p className="text-xl text-silver">
+              Transform your home with cutting-edge smart technology. Professional
+              installation and integration of smart home devices and automation systems
+              throughout the Dallas-Fort Worth area.
             </p>
-            <Link
-              href="/contact"
-              className="inline-block bg-orange hover:bg-orange/90 text-white font-bold py-4 px-8 rounded-lg transition-colors text-lg"
-            >
-              Get a Free Consultation
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4 text-center">
-              Our Smart Home Services
-            </h2>
-            <p className="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto">
-              From single device installation to complete home automation systems, we provide 
-              comprehensive smart home solutions that enhance comfort, security, and efficiency.
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.map((service, index) => (
-                <div
-                  key={index}
-                  className="bg-white border-2 border-silver hover:border-royal-blue rounded-lg p-6 transition-all hover:shadow-lg group"
-                >
-                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
-                    {service.icon}
+      {/* Content Section */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-8 items-start mb-8">
+            {/* Image */}
+            <div className="rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="/cc-smart-home-tech.png"
+                alt="Creative Constructors technician installing smart home devices"
+                width={600}
+                height={400}
+                className="w-full h-auto"
+              />
+            </div>
+
+            {/* Text Content */}
+            <div>
+              <h2 className="text-3xl font-bold mb-4 text-navy">
+                Your Home, Smarter
+              </h2>
+              <p className="text-gray-700 mb-6">
+                Experience the convenience, security, and energy savings of a smart home.
+                Our certified technicians specialize in installing and integrating the
+                latest smart home technology to create a seamless, automated living
+                experience tailored to your lifestyle.
+              </p>
+              <p className="text-gray-700 mb-6">
+                From voice-controlled lighting and climate control to advanced security
+                systems and whole-home automation, we make smart living simple and accessible.
+              </p>
+              <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-orange">
+                <h3 className="font-bold text-navy mb-2">Benefits of Smart Home Technology:</h3>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li>✓ Save 10-30% on energy costs with smart thermostats</li>
+                  <li>✓ Enhanced security with real-time monitoring</li>
+                  <li>✓ Control your home from anywhere via smartphone</li>
+                  <li>✓ Increase property value and appeal</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Services Grid */}
+          <div className="mt-16 mb-16">
+            <h3 className="text-3xl font-bold mb-8 text-navy text-center">
+              Smart Home Services We Offer
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-orange">
+                <div className="text-4xl mb-3">🌡️</div>
+                <h4 className="text-xl font-bold mb-2 text-navy">Smart Thermostats</h4>
+                <p className="text-gray-600 text-sm">
+                  Nest, Ecobee, Honeywell installation with learning capabilities and remote control.
+                </p>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-orange">
+                <div className="text-4xl mb-3">💡</div>
+                <h4 className="text-xl font-bold mb-2 text-navy">Smart Lighting</h4>
+                <p className="text-gray-600 text-sm">
+                  Automated lighting systems with Philips Hue, Lutron, and other smart bulbs and switches.
+                </p>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-orange">
+                <div className="text-4xl mb-3">🔐</div>
+                <h4 className="text-xl font-bold mb-2 text-navy">Smart Locks</h4>
+                <p className="text-gray-600 text-sm">
+                  Keyless entry systems with smartphone control, temporary access codes, and auto-locking.
+                </p>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-orange">
+                <div className="text-4xl mb-3">📹</div>
+                <h4 className="text-xl font-bold mb-2 text-navy">Security Cameras</h4>
+                <p className="text-gray-600 text-sm">
+                  Indoor and outdoor smart cameras with cloud storage, motion detection, and mobile alerts.
+                </p>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-orange">
+                <div className="text-4xl mb-3">🔔</div>
+                <h4 className="text-xl font-bold mb-2 text-navy">Video Doorbells</h4>
+                <p className="text-gray-600 text-sm">
+                  Ring, Nest Hello, and Arlo doorbell installation with two-way audio and video recording.
+                </p>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-orange">
+                <div className="text-4xl mb-3">🔌</div>
+                <h4 className="text-xl font-bold mb-2 text-navy">Smart Outlets</h4>
+                <p className="text-gray-600 text-sm">
+                  Smart plugs and outlets for controlling any device remotely with scheduling capabilities.
+                </p>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-orange">
+                <div className="text-4xl mb-3">🎤</div>
+                <h4 className="text-xl font-bold mb-2 text-navy">Voice Control</h4>
+                <p className="text-gray-600 text-sm">
+                  Integration with Alexa, Google Assistant, and Siri for hands-free home control.
+                </p>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-orange">
+                <div className="text-4xl mb-3">🏠</div>
+                <h4 className="text-xl font-bold mb-2 text-navy">Whole-Home Automation</h4>
+                <p className="text-gray-600 text-sm">
+                  Complete smart home systems with centralized control and custom automation routines.
+                </p>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-orange">
+                <div className="text-4xl mb-3">🚪</div>
+                <h4 className="text-xl font-bold mb-2 text-navy">Smart Garage Doors</h4>
+                <p className="text-gray-600 text-sm">
+                  Smart garage door openers with remote access and activity notifications.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Why Choose Us */}
+          <div className="bg-gray-50 -mx-4 px-4 py-12 md:py-16">
+            <div className="max-w-4xl mx-auto">
+              <h3 className="text-3xl font-bold mb-10 text-navy text-center">
+                Why Choose Creative Constructors for Smart Home?
+              </h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-orange rounded-lg flex items-center justify-center text-white text-2xl font-bold">
+                      🎓
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-royal-blue transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600">
-                    {service.description}
-                  </p>
+                  <div>
+                    <h4 className="text-lg font-bold mb-2 text-navy">Certified Technicians</h4>
+                    <p className="text-gray-600">
+                      Our team is trained and certified in the latest smart home technologies and brands.
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Why Choose Us */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-12 text-center">
-              Why Choose Creative Constructors for Smart Home Installation?
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {features.map((feature, index) => (
-                <div key={index} className="bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="text-2xl font-bold text-royal-blue mb-4">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {feature.description}
-                  </p>
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-orange rounded-lg flex items-center justify-center text-white text-2xl font-bold">
+                      🔗
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold mb-2 text-navy">Seamless Integration</h4>
+                    <p className="text-gray-600">
+                      We integrate all your devices to work together perfectly, regardless of brand.
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Benefits Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-12 text-center">
-              Benefits of a Smart Home
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-royal-blue rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
-                  ⚡
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-orange rounded-lg flex items-center justify-center text-white text-2xl font-bold">
+                      �
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold mb-2 text-navy">Training Included</h4>
+                    <p className="text-gray-600">
+                      We teach you how to use everything and provide ongoing support when needed.
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-navy mb-3">Energy Savings</h3>
-                <p className="text-gray-600">
-                  Smart thermostats and lighting can reduce energy bills by up to 30% through automated optimization.
-                </p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-royal-blue rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
-                  🛡️
+
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-orange rounded-lg flex items-center justify-center text-white text-2xl font-bold">
+                      ⚡
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold mb-2 text-navy">Professional Installation</h4>
+                    <p className="text-gray-600">
+                      Clean, professional installation with proper wiring and configuration every time.
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-navy mb-3">Enhanced Security</h3>
-                <p className="text-gray-600">
-                  Monitor and control your home from anywhere with advanced security systems and real-time alerts.
-                </p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-royal-blue rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
-                  ✨
-                </div>
-                <h3 className="text-xl font-bold text-navy mb-3">Convenience</h3>
-                <p className="text-gray-600">
-                  Control lighting, temperature, locks, and more with voice commands or from your smartphone.
-                </p>
               </div>
             </div>
           </div>
@@ -213,33 +283,31 @@ export default function SmartHomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-navy to-royal-blue text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Modernize Your Home?
-            </h2>
-            <p className="text-xl mb-8 text-gray-100">
-              Contact us today for a free consultation and discover how smart home technology 
-              can transform your daily life.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="inline-block bg-orange hover:bg-orange/90 text-white font-bold py-4 px-8 rounded-lg transition-colors text-lg"
-              >
-                Schedule Consultation
-              </Link>
-              <a
-                href={`tel:${seoConfig.business.phone}`}
-                className="inline-block bg-white hover:bg-gray-100 text-navy font-bold py-4 px-8 rounded-lg transition-colors text-lg"
-              >
-                Call {seoConfig.business.phone}
-              </a>
-            </div>
+      <section className="py-16 px-4 bg-royal-blue text-white">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-4xl font-bold mb-6">Ready to Upgrade Your Home?</h2>
+          <p className="text-xl mb-8">
+            Get a free smart home consultation and discover what's possible
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/book"
+              className="inline-block bg-orange hover:bg-orange/90 text-white font-bold py-4 px-8 rounded-lg transition-colors"
+            >
+              Book Consultation
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-block bg-white hover:bg-gray-100 text-royal-blue font-bold py-4 px-8 rounded-lg transition-colors"
+            >
+              Contact Us
+            </Link>
           </div>
         </div>
       </section>
-    </main>
+
+      {/* Related Services */}
+      <RelatedServices category="installation" />
+    </>
   );
 }
