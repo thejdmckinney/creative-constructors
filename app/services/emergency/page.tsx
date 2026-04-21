@@ -124,7 +124,7 @@ export default function EmergencyPage() {
             {/* Image */}
             <div className="rounded-lg overflow-hidden shadow-lg">
               <Image
-                src="/cc-emergency-response.png"
+                src="/emergency-services.png"
                 alt="Creative Constructors emergency response team"
                 width={600}
                 height={400}
