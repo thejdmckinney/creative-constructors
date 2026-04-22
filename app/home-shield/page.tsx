@@ -35,7 +35,14 @@ export default function HomeShieldPage() {
         throw new Error('Failed to submit sign-up');
       }
 
-      setSubmitSuccess(true);
+      const data = await response.json();
+      
+      // Redirect to Stripe payment
+      if (data.stripePaymentUrl) {
+        window.location.href = data.stripePaymentUrl;
+      } else {
+        setSubmitSuccess(true);
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('There was an error submitting your sign-up. Please try again or call (817) 470-1889 directly.');
@@ -783,13 +790,17 @@ export default function HomeShieldPage() {
                       Processing...
                     </span>
                   ) : (
-                    `Join Home Shield - ${selectedPlan === 'monthly' ? '$249/month' : '$2,688/year'}`
+                    <span className="flex items-center justify-center gap-2">
+                      Continue to Payment
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </span>
                   )}
                 </button>
 
                 <p className="text-center text-sm text-gray-600">
-                  By submitting, you agree to receive communications from Creative Constructors LLC. 
-                  No payment required today—Jeremy will call to finalize details.
+                  You'll be redirected to secure Stripe checkout to complete your {selectedPlan === 'monthly' ? '$249/month' : '$2,688/year'} payment.
                 </p>
               </div>
             </form>

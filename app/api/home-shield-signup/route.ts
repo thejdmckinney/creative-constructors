@@ -17,8 +17,8 @@ export async function POST(request: NextRequest) {
     }
 
     const planDetails = plan === 'annual' 
-      ? { price: '$2,688/year', period: 'Annual (Save $288)' }
-      : { price: '$249/month', period: 'Monthly' };
+      ? { price: '$2,688/year', period: 'Annual (Save $288)', stripeLink: 'https://buy.stripe.com/cNi3cueHv9tQ8nE1pjgEg01' }
+      : { price: '$249/month', period: 'Monthly', stripeLink: 'https://buy.stripe.com/00w7sK0QF8pMbzQ6JDgEg00' };
 
     // Send to CrewOpsPro
     try {
@@ -128,7 +128,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ 
       success: true, 
-      message: "Home Shield sign-up received successfully" 
+      message: "Home Shield sign-up received successfully",
+      stripePaymentUrl: planDetails.stripeLink
     });
   } catch (error) {
     console.error("Error processing Home Shield sign-up:", error);
