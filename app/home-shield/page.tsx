@@ -312,6 +312,10 @@ export default function HomeShieldPage() {
                   <span className="text-orange font-bold mt-1">✓</span>
                   <span>Year-end comprehensive home assessment</span>
                 </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange font-bold mt-1">✓</span>
+                  <span className="font-bold">1 FREE Emergency Service Call per year (annual members)</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -558,6 +562,10 @@ export default function HomeShieldPage() {
                 <li className="flex items-start gap-3">
                   <span className="text-white text-xl font-bold">✓</span>
                   <span className="text-white">15% off all additional repairs</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-white text-xl font-bold">✓</span>
+                  <span className="text-white font-bold">1 FREE Emergency Service Call</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-white text-xl font-bold">✓</span>
