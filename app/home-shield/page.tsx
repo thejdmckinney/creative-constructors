@@ -51,9 +51,6 @@ export default function HomeShieldPage() {
     }
   };
 
-  const spotsTaken = 3;
-  const totalSpots = 10;
-
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -592,26 +589,17 @@ export default function HomeShieldPage() {
         </div>
       </section>
 
-      {/* Scarcity Bar */}
-      <section className="py-6 px-4 bg-red-600 text-white">
+      {/* Quality Commitment Banner */}
+      <section className="py-8 px-4 bg-gradient-to-r from-navy to-royal-blue text-white">
         <div className="container mx-auto max-w-4xl">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
             <div className="flex items-center gap-3">
-              <span className="text-3xl animate-pulse">🔥</span>
+              <span className="text-4xl">�️</span>
               <div>
-                <div className="font-bold text-lg">Limited Availability</div>
-                <div className="text-red-100">Only {totalSpots} spots available. Currently {spotsTaken} taken.</div>
-              </div>
-            </div>
-            <div className="flex-shrink-0">
-              <div className="bg-white/20 rounded-full h-3 w-64">
-                <div 
-                  className="bg-yellow-400 h-3 rounded-full transition-all"
-                  style={{ width: `${(spotsTaken / totalSpots) * 100}%` }}
-                ></div>
-              </div>
-              <div className="text-center text-sm mt-1 font-bold">
-                {totalSpots - spotsTaken} spots remaining
+                <div className="font-bold text-xl mb-1">Accepting New Members Now</div>
+                <div className="text-blue-100">
+                  Membership limited to ensure quality personal service from Jeremy
+                </div>
               </div>
             </div>
           </div>
