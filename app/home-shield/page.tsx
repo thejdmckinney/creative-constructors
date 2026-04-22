@@ -347,7 +347,7 @@ export default function HomeShieldPage() {
         <div className="container mx-auto max-w-4xl">
           <div className="relative rounded-2xl overflow-hidden shadow-2xl">
             <Image
-              src="/the-home-shield.png"
+              src="/the-home-shield-.png"
               alt="The Creative Constructors Home Shield"
               width={1200}
               height={600}
