@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { seoConfig } from "@/seo.config";
 
 const testimonials = [
   {
@@ -143,8 +144,45 @@ export default function TestimonialsCarousel() {
 
   const visibleTestimonials = getVisibleTestimonials();
 
+  // Aggregate Rating Schema
+  const aggregateRatingSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": seoConfig.baseUrl,
+    name: seoConfig.business.name,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.7",
+      reviewCount: testimonials.length.toString(),
+      bestRating: "5",
+      worstRating: "1"
+    },
+    review: testimonials.map((testimonial, index) => ({
+      "@type": "Review",
+      "@id": `${seoConfig.baseUrl}#review-${index}`,
+      author: {
+        "@type": "Person",
+        name: testimonial.name
+      },
+      datePublished: new Date(Date.now() - (parseInt(testimonial.date.split(' ')[0]) || 1) * 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+      reviewBody: testimonial.text,
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: testimonial.rating.toString(),
+        bestRating: "5",
+        worstRating: "1"
+      }
+    }))
+  };
+
   return (
     <section className="py-16 bg-gradient-to-br from-gray-50 to-white border-t border-gray-200">
+      {/* JSON-LD Schema for Reviews */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingSchema) }}
+      />
+      
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}

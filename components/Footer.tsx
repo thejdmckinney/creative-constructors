@@ -69,6 +69,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/warranty"
+                  className="text-silver hover:text-orange transition-colors"
+                >
+                  Warranty
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/book"
                   className="text-orange hover:text-orange/80 transition-colors font-bold"
                 >
@@ -138,25 +146,30 @@ export default function Footer() {
             <h3 className="font-bold text-lg mb-4">Contact Us</h3>
             <ul className="space-y-2 text-silver">
               <li>
-                {/* TODO: Add actual phone number */}
                 <a
                   href={`tel:${seoConfig.business.phone}`}
                   className="hover:text-orange transition-colors"
                 >
-                  {seoConfig.business.phone}
+                  📞 {seoConfig.business.phone}
                 </a>
               </li>
               <li>
-                {/* TODO: Add actual email */}
                 <a
                   href={`mailto:${seoConfig.business.email}`}
                   className="hover:text-orange transition-colors"
                 >
-                  {seoConfig.business.email}
+                  ✉️ {seoConfig.business.email}
                 </a>
               </li>
               <li className="pt-2">
+                <p className="text-sm font-semibold text-white mb-1">📍 Office Location:</p>
                 <p className="text-sm">
+                  {seoConfig.business.address.streetAddress}<br />
+                  {seoConfig.business.address.addressLocality}, {seoConfig.business.address.addressRegion} {seoConfig.business.address.postalCode}
+                </p>
+              </li>
+              <li className="pt-2">
+                <p className="text-sm font-semibold text-orange">
                   Serving the Dallas-Fort Worth Metroplex
                 </p>
               </li>
