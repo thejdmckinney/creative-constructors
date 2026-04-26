@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="bg-navy text-white">
       <div className="container mx-auto max-w-7xl px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-5 gap-8">
           {/* Logo and Tagline */}
           <div className="md:col-span-1">
             <Image
@@ -136,6 +136,69 @@ export default function Footer() {
                   className="text-silver hover:text-orange transition-colors"
                 >
                   Decks & Patios
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Service Areas */}
+          <div>
+            <h3 className="font-bold text-lg mb-4">Service Areas</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/service-areas"
+                  className="text-silver hover:text-orange transition-colors"
+                >
+                  All Service Areas
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/service-areas/fort-worth"
+                  className="text-silver hover:text-orange transition-colors"
+                >
+                  Fort Worth
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/service-areas/dallas"
+                  className="text-silver hover:text-orange transition-colors"
+                >
+                  Dallas
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/service-areas/arlington"
+                  className="text-silver hover:text-orange transition-colors"
+                >
+                  Arlington
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/service-areas/plano"
+                  className="text-silver hover:text-orange transition-colors"
+                >
+                  Plano
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/service-areas/garland"
+                  className="text-silver hover:text-orange transition-colors"
+                >
+                  Garland
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/service-areas/richardson"
+                  className="text-silver hover:text-orange transition-colors"
+                >
+                  Richardson
                 </Link>
               </li>
             </ul>
