@@ -158,7 +158,7 @@ export default function Footer() {
                   href="/service-areas/university-park"
                   className="text-orange hover:text-orange/80 transition-colors font-semibold"
                 >
-                  👑 University Park
+                  University Park
                 </Link>
               </li>
               <li>
@@ -166,7 +166,7 @@ export default function Footer() {
                   href="/service-areas/highland-park"
                   className="text-orange hover:text-orange/80 transition-colors font-semibold"
                 >
-                  👑 Highland Park
+                  Highland Park
                 </Link>
               </li>
               <li>
