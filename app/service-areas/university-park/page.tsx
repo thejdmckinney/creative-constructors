@@ -24,14 +24,14 @@ export const metadata: Metadata = {
 
 export default function UniversityParkPage() {
   const services = [
-    { name: "Emergency Services", icon: "🚨", href: "/services/emergency" },
+    { name: "Emergency Services", icon: "⚠", href: "/services/emergency" },
     { name: "Electrical", icon: "⚡", href: "/services/electrical" },
-    { name: "Plumbing", icon: "🚰", href: "/services/plumbing" },
-    { name: "HVAC", icon: "❄️", href: "/services/hvac" },
-    { name: "Smart Home", icon: "🏠", href: "/services/smart-home" },
-    { name: "Carpentry", icon: "🪵", href: "/services/carpentry" },
-    { name: "Painting", icon: "🎨", href: "/services/painting" },
-    { name: "Flooring", icon: "🔲", href: "/services/flooring" },
+    { name: "Plumbing", icon: "�", href: "/services/plumbing" },
+    { name: "HVAC", icon: "🌡", href: "/services/hvac" },
+    { name: "Smart Home", icon: "🔌", href: "/services/smart-home" },
+    { name: "Carpentry", icon: "🔨", href: "/services/carpentry" },
+    { name: "Painting", icon: "🖌", href: "/services/painting" },
+    { name: "Flooring", icon: "◼", href: "/services/flooring" },
   ];
 
   const premiumFeatures = [
