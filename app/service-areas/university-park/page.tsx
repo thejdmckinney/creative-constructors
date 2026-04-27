@@ -69,7 +69,7 @@ export default function UniversityParkPage() {
             Premier Handyman Services for University Park's Finest Homes
           </h1>
           <p className="text-xl text-gray-300 mb-4 max-w-3xl leading-relaxed">
-            Trusted by discerning homeowners in University Park for over a decade. We understand that your home isn't just valuable—it's irreplaceable. Our commitment to exceptional craftsmanship and white-glove service has made us the preferred choice for UP residents who demand excellence.
+            Trusted by discerning homeowners in University Park. We understand that your home isn't just valuable—it's irreplaceable. Our commitment to exceptional craftsmanship and white-glove service has made us the preferred choice for UP residents who demand excellence.
           </p>
           <p className="text-lg text-gray-400 mb-8 max-w-3xl italic">
             "90% of our business comes from University Park and Highland Park homeowners who trust us with their most valued asset."
@@ -153,7 +153,7 @@ export default function UniversityParkPage() {
               Trusted by University Park's Finest
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              For years, University Park homeowners have trusted Creative Constructors with everything from routine maintenance to complex renovations. We understand the unique needs of historic and luxury homes, and we treat every property with the care and respect it deserves.
+              University Park homeowners trust Creative Constructors with everything from routine maintenance to complex renovations. We understand the unique needs of historic and luxury homes, and we treat every property with the care and respect it deserves.
             </p>
           </div>
           
@@ -185,7 +185,7 @@ export default function UniversityParkPage() {
                 <span className="text-orange text-2xl mr-4 flex-shrink-0">✓</span>
                 <div>
                   <h4 className="font-bold mb-2">Long-Term Partnership</h4>
-                  <p className="text-gray-300 text-sm">Many clients have trusted us for 5+ years with all their home needs</p>
+                  <p className="text-gray-300 text-sm">Building lasting relationships with homeowners who trust us with all their needs</p>
                 </div>
               </div>
             </div>

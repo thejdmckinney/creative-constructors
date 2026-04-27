@@ -69,7 +69,7 @@ export default function HighlandParkPage() {
             Elite Handyman Services for Highland Park's Prestigious Estates
           </h1>
           <p className="text-xl text-gray-300 mb-4 max-w-3xl leading-relaxed">
-            For over a decade, Highland Park's most discerning homeowners have trusted Creative Constructors with their exceptional properties. We understand that in Highland Park, excellence isn't optional—it's expected. Our unwavering commitment to master craftsmanship and impeccable service has made us the preferred choice for homes that demand perfection.
+            Highland Park's most discerning homeowners trust Creative Constructors with their exceptional properties. We understand that in Highland Park, excellence isn't optional—it's expected. Our unwavering commitment to master craftsmanship and impeccable service has made us the preferred choice for homes that demand perfection.
           </p>
           <p className="text-lg text-gray-400 mb-8 max-w-3xl italic">
             "Highland Park and University Park represent 90% of our business—homeowners who know quality when they see it."
@@ -184,8 +184,8 @@ export default function HighlandParkPage() {
               <div className="flex items-start">
                 <span className="text-orange text-2xl mr-4 flex-shrink-0">✓</span>
                 <div>
-                  <h4 className="font-bold mb-2">Decade-Long Relationships</h4>
-                  <p className="text-gray-300 text-sm">Many Highland Park clients have trusted us for 10+ years</p>
+                  <h4 className="font-bold mb-2">Long-Term Relationships</h4>
+                  <p className="text-gray-300 text-sm">Building lasting partnerships with Highland Park homeowners</p>
                 </div>
               </div>
             </div>
