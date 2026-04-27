@@ -22,11 +22,27 @@ export const metadata: Metadata = {
 export default function ServiceAreasPage() {
   const serviceAreas = [
     {
+      name: "University Park",
+      slug: "university-park",
+      description: "Premier services for University Park's finest homes",
+      neighborhoods: 9,
+      icon: "🏛️",
+      premium: true,
+    },
+    {
+      name: "Highland Park",
+      slug: "highland-park",
+      description: "Elite services for Highland Park's prestigious estates",
+      neighborhoods: 12,
+      icon: "👑",
+      premium: true,
+    },
+    {
       name: "Fort Worth",
       slug: "fort-worth",
       description: "Serving Fort Worth and the greater Tarrant County area",
       neighborhoods: 12,
-      icon: "🏛️",
+      icon: "�",
     },
     {
       name: "Dallas",
@@ -110,8 +126,19 @@ export default function ServiceAreasPage() {
               <Link
                 key={area.slug}
                 href={`/service-areas/${area.slug}`}
-                className="group bg-white border-2 border-gray-200 hover:border-orange rounded-xl p-8 transition-all hover:shadow-xl"
+                className={`group bg-white border-2 ${
+                  area.premium 
+                    ? 'border-orange bg-gradient-to-br from-orange/5 to-white' 
+                    : 'border-gray-200 hover:border-orange'
+                } rounded-xl p-8 transition-all hover:shadow-xl ${
+                  area.premium ? 'shadow-lg' : ''
+                }`}
               >
+                {area.premium && (
+                  <div className="inline-block bg-orange text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                    PREMIUM AREA
+                  </div>
+                )}
                 <div className="text-5xl mb-4">{area.icon}</div>
                 <h3 className="text-2xl font-black font-barlow-condensed text-navy group-hover:text-orange mb-2 transition-colors">
                   {area.name}
@@ -119,7 +146,7 @@ export default function ServiceAreasPage() {
                 <p className="text-gray-600 mb-4">{area.description}</p>
                 <div className="flex items-center text-sm text-gray-500 mb-4">
                   <span className="mr-2">📍</span>
-                  <span>{area.neighborhoods}+ neighborhoods served</span>
+                  <span>{area.neighborhoods}+ {area.premium ? 'streets' : 'neighborhoods'} served</span>
                 </div>
                 <div className="flex items-center text-orange font-bold group-hover:translate-x-2 transition-transform">
                   View Services <span className="ml-2">→</span>
@@ -138,7 +165,7 @@ export default function ServiceAreasPage() {
           </h2>
           <div className="prose prose-lg max-w-none">
             <p className="text-gray-600 text-center mb-8">
-              Creative Constructors has built a reputation for reliable, professional handyman services throughout the Dallas-Fort Worth metroplex. We serve homeowners in Fort Worth, Dallas, Arlington, Plano, Garland, Richardson, and surrounding communities with a full range of home repair and improvement services.
+              Creative Constructors has built a reputation for reliable, professional handyman services throughout the Dallas-Fort Worth metroplex. We proudly serve homeowners in University Park, Highland Park, Fort Worth, Dallas, Arlington, Plano, Garland, Richardson, and surrounding communities with a full range of home repair and improvement services.
             </p>
             <div className="bg-white rounded-xl p-8 shadow-md">
               <h3 className="text-2xl font-bold text-navy mb-6 text-center">Our Service Commitment</h3>

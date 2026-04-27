@@ -155,6 +155,22 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/service-areas/university-park"
+                  className="text-orange hover:text-orange/80 transition-colors font-semibold"
+                >
+                  👑 University Park
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/service-areas/highland-park"
+                  className="text-orange hover:text-orange/80 transition-colors font-semibold"
+                >
+                  👑 Highland Park
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/service-areas/fort-worth"
                   className="text-silver hover:text-orange transition-colors"
                 >
