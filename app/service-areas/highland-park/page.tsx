@@ -227,6 +227,60 @@ export default function HighlandParkPage() {
         </div>
       </section>
 
+      {/* FAQ Section - Highland Park Specific */}
+      <section className="py-20 px-4 bg-white">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-4xl md:text-5xl font-black font-barlow-condensed text-navy mb-4 text-center">
+            Frequently Asked Questions - Highland Park
+          </h2>
+          <p className="text-gray-600 text-center mb-12">
+            What Highland Park homeowners want to know
+          </p>
+          <div className="space-y-6">
+            <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-orange">
+              <h3 className="text-xl font-bold text-navy mb-3">
+                Q: Do you specialize in Highland Park's historic architecture?
+              </h3>
+              <p className="text-gray-700">
+                Yes. Highland Park has some of the most beautiful historic estates in Texas—Georgian Revivals, Colonial homes, Spanish Colonials from the 1920s-1940s. We understand period architecture, work with vintage materials, and know how to modernize systems while preserving architectural integrity. From plaster walls to original hardwoods, we treat these homes with the reverence they deserve.
+              </p>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-orange">
+              <h3 className="text-xl font-bold text-navy mb-3">
+                Q: Can you work with my architect or designer on projects?
+              </h3>
+              <p className="text-gray-700">
+                Absolutely. We regularly collaborate with Highland Park's top architects, interior designers, and contractors. We understand design specifications, can execute precise custom work, and communicate professionally with your entire project team. Many designers in the area refer us to their clients.
+              </p>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-orange">
+              <h3 className="text-xl font-bold text-navy mb-3">
+                Q: What if I need work done on a weekend or evening?
+              </h3>
+              <p className="text-gray-700">
+                We accommodate Highland Park clients' schedules. Whether you need discreet service while hosting events, weekend availability, or prefer certain times when staff is present, we work around your needs. Many of our clients prefer us to work when they're traveling—we're trusted with keys and alarm codes.
+              </p>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-orange">
+              <h3 className="text-xl font-bold text-navy mb-3">
+                Q: Do you handle both small repairs and major projects?
+              </h3>
+              <p className="text-gray-700">
+                Yes to both. We're equally comfortable hanging a museum-quality piece of art, troubleshooting a smart home system, or coordinating a major renovation. No job is too small for our attention, and we have the expertise for complex projects that require master-level craftsmanship.
+              </p>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-orange">
+              <h3 className="text-xl font-bold text-navy mb-3">
+                Q: How do you protect my home during service visits?
+              </h3>
+              <p className="text-gray-700">
+                We treat your estate like our own. Floor protection, dust barriers, careful material handling, and meticulous cleanup are standard. We understand you have valuable furnishings, artwork, and finishes—everything is protected. You'll often find the work area cleaner than when we arrived.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Home Shield Premium */}
       <section className="py-20 px-4 bg-gradient-to-br from-royal-blue to-navy text-white">
         <div className="container mx-auto max-w-4xl text-center">

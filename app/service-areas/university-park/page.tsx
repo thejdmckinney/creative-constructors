@@ -221,6 +221,60 @@ export default function UniversityParkPage() {
         </div>
       </section>
 
+      {/* FAQ Section - University Park Specific */}
+      <section className="py-20 px-4 bg-white">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-4xl md:text-5xl font-black font-barlow-condensed text-navy mb-4 text-center">
+            Common Questions from University Park Homeowners
+          </h2>
+          <p className="text-gray-600 text-center mb-12">
+            Answers to questions we hear most from UP residents
+          </p>
+          <div className="space-y-6">
+            <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-orange">
+              <h3 className="text-xl font-bold text-navy mb-3">
+                Q: Do you work on historic homes in University Park?
+              </h3>
+              <p className="text-gray-700">
+                Yes! Many of our University Park clients have historic homes built in the 1920s-1940s. We understand the unique challenges of vintage architecture, period-appropriate repairs, and maintaining the character of historic properties while upgrading systems to modern standards.
+              </p>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-orange">
+              <h3 className="text-xl font-bold text-navy mb-3">
+                Q: Can you handle high-end finishes and custom millwork?
+              </h3>
+              <p className="text-gray-700">
+                Absolutely. We have extensive experience working with luxury materials, custom cabinetry, designer fixtures, and high-end finishes. We understand that in University Park homes, attention to detail isn't optional—we treat every surface and finish with the utmost care.
+              </p>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-orange">
+              <h3 className="text-xl font-bold text-navy mb-3">
+                Q: What's your typical response time for University Park calls?
+              </h3>
+              <p className="text-gray-700">
+                We prioritize our University Park clients with same-day service when available, and typically respond within 24 hours for non-emergency requests. For Home Shield members, you receive priority scheduling with guaranteed quarterly visits plus emergency response.
+              </p>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-orange">
+              <h3 className="text-xl font-bold text-navy mb-3">
+                Q: Do you respect privacy and discretion?
+              </h3>
+              <p className="text-gray-700">
+                Privacy is paramount. All our technicians are background-checked and bonded. We're discreet, professional, and understand the importance of respecting your home and privacy. Many of our long-term clients appreciate our no-drama, quiet professionalism.
+              </p>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-orange">
+              <h3 className="text-xl font-bold text-navy mb-3">
+                Q: What makes you different from other handyman services?
+              </h3>
+              <p className="text-gray-700">
+                University Park represents 90% of our business—it's not just another service area for us. We know the neighborhood, understand the homes, and have built lasting relationships with families here. You're not getting a rotating crew of strangers; you're getting consistent, quality service from professionals who know your property.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Home Shield Mention - Premium Maintenance */}
       <section className="py-20 px-4 bg-gradient-to-br from-royal-blue to-navy text-white">
         <div className="container mx-auto max-w-4xl text-center">

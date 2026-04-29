@@ -370,6 +370,59 @@ export default function PlumbingPage() {
         </div>
       </section>
 
+      {/* Service Areas Section */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl md:text-4xl font-black font-barlow-condensed text-navy mb-4 text-center">
+            Expert Plumbing Services Throughout DFW
+          </h2>
+          <p className="text-gray-600 text-center mb-8">
+            24/7 emergency service in these cities and surrounding areas
+          </p>
+          <div className="grid md:grid-cols-4 gap-4 mb-8">
+            <Link href="/service-areas/university-park" className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all text-center group border-2 border-orange/20 hover:border-orange">
+              <div className="text-3xl mb-2">🏛️</div>
+              <h3 className="font-bold text-navy group-hover:text-orange transition-colors">University Park</h3>
+              <p className="text-sm text-gray-600 mt-1">Premium Service</p>
+            </Link>
+            <Link href="/service-areas/highland-park" className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all text-center group border-2 border-orange/20 hover:border-orange">
+              <div className="text-3xl mb-2">👑</div>
+              <h3 className="font-bold text-navy group-hover:text-orange transition-colors">Highland Park</h3>
+              <p className="text-sm text-gray-600 mt-1">Elite Service</p>
+            </Link>
+            <Link href="/service-areas/fort-worth" className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all text-center group">
+              <div className="text-3xl mb-2">🏢</div>
+              <h3 className="font-bold text-navy group-hover:text-orange transition-colors">Fort Worth</h3>
+            </Link>
+            <Link href="/service-areas/dallas" className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all text-center group">
+              <div className="text-3xl mb-2">🌆</div>
+              <h3 className="font-bold text-navy group-hover:text-orange transition-colors">Dallas</h3>
+            </Link>
+            <Link href="/service-areas/arlington" className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all text-center group">
+              <div className="text-3xl mb-2">⚾</div>
+              <h3 className="font-bold text-navy group-hover:text-orange transition-colors">Arlington</h3>
+            </Link>
+            <Link href="/service-areas/plano" className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all text-center group">
+              <div className="text-3xl mb-2">🏘️</div>
+              <h3 className="font-bold text-navy group-hover:text-orange transition-colors">Plano</h3>
+            </Link>
+            <Link href="/service-areas/garland" className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all text-center group">
+              <div className="text-3xl mb-2">🏠</div>
+              <h3 className="font-bold text-navy group-hover:text-orange transition-colors">Garland</h3>
+            </Link>
+            <Link href="/service-areas/richardson" className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all text-center group">
+              <div className="text-3xl mb-2">🔧</div>
+              <h3 className="font-bold text-navy group-hover:text-orange transition-colors">Richardson</h3>
+            </Link>
+          </div>
+          <div className="text-center">
+            <Link href="/service-areas" className="text-orange hover:text-orange/80 font-bold">
+              View All Service Areas →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 px-4 bg-royal-blue text-white">
         <div className="container mx-auto max-w-4xl text-center">
