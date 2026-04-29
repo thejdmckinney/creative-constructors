@@ -158,6 +158,18 @@ export default function Navigation() {
               </Link>
 
               <Link
+                href="/interior-designers"
+                className={clsx(
+                  "font-medium transition-colors",
+                  isActive("/interior-designers")
+                    ? "text-orange"
+                    : "text-gray-700 hover:text-orange"
+                )}
+              >
+                🎨 For Designers
+              </Link>
+
+              <Link
                 href="/home-shield"
                 className={clsx(
                   "font-medium transition-colors",
@@ -318,6 +330,16 @@ export default function Navigation() {
               onClick={() => setIsMenuOpen(false)}
             >
               Blog
+            </Link>
+            <Link
+              href="/interior-designers"
+              className={clsx(
+                "block py-2 font-medium",
+                isActive("/interior-designers") ? "text-orange" : "text-gray-700"
+              )}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              🎨 For Designers
             </Link>
             <Link
               href="/home-shield"
