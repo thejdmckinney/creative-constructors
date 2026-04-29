@@ -160,16 +160,13 @@ export default function Navigation() {
               <Link
                 href="/home-shield"
                 className={clsx(
-                  "font-medium transition-colors relative group inline-flex items-center gap-1",
+                  "font-medium transition-colors",
                   isActive("/home-shield")
                     ? "text-orange"
                     : "text-gray-700 hover:text-orange"
                 )}
               >
-                <span>🛡️ Home Shield</span>
-                <span className="bg-orange text-white text-xs font-bold px-1.5 py-0.5 rounded-full group-hover:scale-110 transition-transform">
-                  NEW
-                </span>
+                🛡️ Home Shield
               </Link>
 
               <Link
