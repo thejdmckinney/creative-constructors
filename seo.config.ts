@@ -19,10 +19,10 @@ export const seoConfig = {
     name: "Creative Constructors LLC",
     legalName: "Creative Constructors LLC",
     address: {
-      streetAddress: "4601 Elm Ridge Dr",
-      addressLocality: "Garland",
+      streetAddress: "3500 Oaklawn Ave. #460",
+      addressLocality: "Dallas",
       addressRegion: "TX",
-      postalCode: "75044",
+      postalCode: "75218",
       addressCountry: "US",
     },
     phone: "+1-817-470-1889",
