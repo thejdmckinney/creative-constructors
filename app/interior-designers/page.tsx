@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import DesignerContactForm from "@/components/DesignerContactForm";
 
 export const metadata: Metadata = {
   title: "Installation Services for Interior Designers | Creative Constructors",
@@ -320,32 +321,32 @@ export default function InteriorDesignersPage() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-20 px-4 bg-orange">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl md:text-5xl font-black font-barlow-condensed text-white mb-4">
-            Ready to Partner Together?
-          </h2>
-          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-            Let's discuss how we can support your design projects with professional, reliable installation services
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      {/* Contact Form Section */}
+      <section className="py-20 px-4 bg-white">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-black font-barlow-condensed text-navy mb-4">
+              Let's Work Together
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Tell us about your project needs and let's discuss how we can support your design vision
+            </p>
+          </div>
+          <div className="bg-gray-50 rounded-2xl p-8 md:p-12 shadow-xl">
+            <DesignerContactForm />
+          </div>
+          <div className="text-center mt-8">
+            <p className="text-gray-600 mb-4">Prefer to talk? Give us a call!</p>
             <a
               href="tel:817-470-1889"
-              className="bg-white hover:bg-gray-100 text-navy font-bold py-5 px-10 rounded-lg transition-colors text-lg shadow-xl"
+              className="inline-block bg-orange hover:bg-orange/90 text-white font-bold py-4 px-8 rounded-lg transition-colors text-lg"
             >
-              📞 Call (817) 470-1889
+              � (817) 470-1889
             </a>
-            <Link
-              href="/contact"
-              className="bg-navy hover:bg-royal-blue text-white font-bold py-5 px-10 rounded-lg transition-colors text-lg shadow-xl"
-            >
-              📧 Send Us a Message
-            </Link>
+            <p className="text-sm text-gray-500 mt-6">
+              Serving interior designers throughout Dallas-Fort Worth • Licensed & Insured • Trade-Friendly
+            </p>
           </div>
-          <p className="text-white/80 mt-8 text-sm">
-            Serving interior designers throughout Dallas-Fort Worth • Licensed & Insured • Trade-Friendly
-          </p>
         </div>
       </section>
     </main>
