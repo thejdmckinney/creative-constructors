@@ -36,22 +36,22 @@ export default function UniversityParkPage() {
 
   const premiumFeatures = [
     {
-      icon: "👔",
+      icon: "✓",
       title: "White-Glove Service",
       description: "Professional, respectful service that honors your home and schedule"
     },
     {
-      icon: "🏆",
+      icon: "★",
       title: "Master Craftsmanship",
       description: "Expert attention to detail for homes that demand excellence"
     },
     {
-      icon: "🔒",
+      icon: "◆",
       title: "Discretion & Trust",
       description: "Background-checked, bonded, and trusted by UP's finest families"
     },
     {
-      icon: "⚡",
+      icon: "●",
       title: "Same-Day Response",
       description: "Priority scheduling for University Park homeowners"
     },

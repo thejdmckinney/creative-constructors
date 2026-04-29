@@ -36,22 +36,22 @@ export default function HighlandParkPage() {
 
   const premiumFeatures = [
     {
-      icon: "💎",
+      icon: "◆",
       title: "Estate-Level Service",
       description: "Exceptional care and attention befitting Highland Park's finest properties"
     },
     {
-      icon: "🎯",
+      icon: "★",
       title: "Precision Craftsmanship",
       description: "Master-level expertise for homes where every detail matters"
     },
     {
-      icon: "🔐",
+      icon: "■",
       title: "Privacy & Discretion",
       description: "Trusted, vetted professionals who respect your privacy and security"
     },
     {
-      icon: "⚡",
+      icon: "●",
       title: "Priority Service",
       description: "VIP scheduling and same-day response for Highland Park homeowners"
     },
