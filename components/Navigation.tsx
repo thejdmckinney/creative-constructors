@@ -160,13 +160,20 @@ export default function Navigation() {
               <Link
                 href="/interior-designers"
                 className={clsx(
-                  "font-medium transition-colors",
+                  "font-medium transition-colors flex items-center gap-2",
                   isActive("/interior-designers")
                     ? "text-orange"
                     : "text-gray-700 hover:text-orange"
                 )}
               >
-                🎨 For Designers
+                <Image
+                  src="/interior-designer-icon.png"
+                  alt=""
+                  width={20}
+                  height={20}
+                  className="w-5 h-5"
+                />
+                For Designers
               </Link>
 
               <Link
@@ -334,12 +341,19 @@ export default function Navigation() {
             <Link
               href="/interior-designers"
               className={clsx(
-                "block py-2 font-medium",
+                "block py-2 font-medium flex items-center gap-2",
                 isActive("/interior-designers") ? "text-orange" : "text-gray-700"
               )}
               onClick={() => setIsMenuOpen(false)}
             >
-              🎨 For Designers
+              <Image
+                src="/interior-designer-icon.png"
+                alt=""
+                width={20}
+                height={20}
+                className="w-5 h-5"
+              />
+              For Designers
             </Link>
             <Link
               href="/home-shield"
