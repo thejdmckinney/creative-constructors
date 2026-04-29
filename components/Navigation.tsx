@@ -166,12 +166,12 @@ export default function Navigation() {
                     : "text-gray-700 hover:text-orange"
                 )}
               >
-                <Image
+                <img
                   src="/interior-designer-icon.png"
                   alt=""
                   width={20}
                   height={20}
-                  className="w-5 h-5"
+                  className="w-5 h-5 object-contain"
                 />
                 For Designers
               </Link>
@@ -346,12 +346,12 @@ export default function Navigation() {
               )}
               onClick={() => setIsMenuOpen(false)}
             >
-              <Image
+              <img
                 src="/interior-designer-icon.png"
                 alt=""
                 width={20}
                 height={20}
-                className="w-5 h-5"
+                className="w-5 h-5 object-contain"
               />
               For Designers
             </Link>
