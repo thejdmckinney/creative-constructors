@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY || "re_placeholder");
 
 export async function POST(request: Request) {
   try {
@@ -14,19 +16,10 @@ export async function POST(request: Request) {
       message,
     } = body;
 
-    // Create a transporter using Gmail
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
-    // Email to business owner
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
+    // Send email using Resend
+    const emailResult = await resend.emails.send({
+      from: "Creative Constructors <onboarding@resend.dev>",
+      to: process.env.EMAIL_USER || "contact@creativeconstructors.com",
       subject: `🎨 New Interior Designer Inquiry from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -89,9 +82,7 @@ export async function POST(request: Request) {
           </div>
         </div>
       `,
-    };
-
-    await transporter.sendMail(mailOptions);
+    });
 
     return NextResponse.json(
       { message: "Email sent successfully" },
