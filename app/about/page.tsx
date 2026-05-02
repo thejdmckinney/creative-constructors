@@ -75,6 +75,7 @@ export default function AboutPage() {
                     width={600}
                     height={400}
                     className="w-full h-auto object-cover"
+                    unoptimized
                   />
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-navy mb-2">
@@ -95,6 +96,7 @@ export default function AboutPage() {
                     width={600}
                     height={400}
                     className="w-full h-auto object-cover"
+                    unoptimized
                   />
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-navy mb-2">
