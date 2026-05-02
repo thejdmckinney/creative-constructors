@@ -166,6 +166,46 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Craftsmanship Showcase */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold mb-6 text-navy">
+                Hands-On Craftsmanship You Can Trust
+              </h2>
+              <p className="text-lg text-gray-700 mb-4">
+                At Creative Constructors, every project gets personal attention from experienced professionals. 
+                We don't just manage projects—we roll up our sleeves and do the work ourselves.
+              </p>
+              <p className="text-lg text-gray-700 mb-6">
+                From precision metalwork to custom fabrication, we bring years of hands-on experience and 
+                attention to detail to every job. When you hire us, you're getting skilled craftsmen who take 
+                pride in their work.
+              </p>
+              <Link
+                href="/about"
+                className="inline-block bg-orange hover:bg-orange/90 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+              >
+                Learn More About Us
+              </Link>
+            </div>
+            <div className="order-first md:order-last">
+              <div className="rounded-lg overflow-hidden shadow-xl">
+                <Image
+                  src="/pic-of-me.png"
+                  alt="Jeremy McKinney cutting angle iron - professional craftsmanship at Creative Constructors"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto object-cover"
+                  unoptimized
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Services Grid */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
