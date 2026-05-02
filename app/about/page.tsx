@@ -66,14 +66,14 @@ export default function AboutPage() {
                 home with the same care and attention we give our own.
               </p>
               
-              <div className="grid md:grid-cols-2 gap-8 mb-8">
+              <div className="max-w-2xl mx-auto">
                 {/* Photo with Ashley */}
                 <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
                   <Image
                     src="/me-and-ash.png"
                     alt="Jeremy and Ashley McKinney"
-                    width={600}
-                    height={400}
+                    width={800}
+                    height={500}
                     className="w-full h-auto object-cover"
                     unoptimized
                   />
@@ -84,27 +84,6 @@ export default function AboutPage() {
                     <p className="text-gray-700">
                       Partners in business and life, Jeremy and Ashley work together to ensure 
                       every client receives exceptional service and care.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Family Photo */}
-                <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-                  <Image
-                    src="/family-pic.png"
-                    alt="The McKinney Family - Jeremy, Ashley, Jole, Amerikiss, and Gage"
-                    width={600}
-                    height={400}
-                    className="w-full h-auto object-cover"
-                    unoptimized
-                  />
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-navy mb-2">
-                      The McKinney Family
-                    </h3>
-                    <p className="text-gray-700">
-                      Jeremy, Ashley, and their three children—Jole, Amerikiss, and Gage—are the 
-                      heart of Creative Constructors. We're building a better future, one home at a time.
                     </p>
                   </div>
                 </div>
