@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { seoConfig } from "@/seo.config";
 
 export const metadata: Metadata = {
@@ -51,6 +52,61 @@ export default function AboutPage() {
                 delivering outstanding results and treating every customer's home as if
                 it were our own.
               </p>
+            </div>
+
+            {/* Family Section */}
+            <div>
+              <h2 className="text-3xl font-bold mb-6 text-navy">
+                Family-Owned & Operated
+              </h2>
+              <p className="text-gray-700 text-lg mb-8">
+                Creative Constructors is a family business at its core. We understand the importance of 
+                home because we're building something meaningful for our own family too. When you work 
+                with us, you're not just getting a contractor—you're getting someone who treats your 
+                home with the same care and attention we give our own.
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
+                {/* Photo with Ashley */}
+                <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+                  <Image
+                    src="/me-and-ash.png"
+                    alt="Jeremy and Ashley McKinney"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-navy mb-2">
+                      Jeremy & Ashley
+                    </h3>
+                    <p className="text-gray-700">
+                      Partners in business and life, Jeremy and Ashley work together to ensure 
+                      every client receives exceptional service and care.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Family Photo */}
+                <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+                  <Image
+                    src="/family-pic.png"
+                    alt="The McKinney Family - Jeremy, Ashley, Jole, Amerikiss, and Gage"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-navy mb-2">
+                      The McKinney Family
+                    </h3>
+                    <p className="text-gray-700">
+                      Jeremy, Ashley, and their three children—Jole, Amerikiss, and Gage—are the 
+                      heart of Creative Constructors. We're building a better future, one home at a time.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* TODO: Add values and differentiators */}
