@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import ServiceAreaMap from "@/components/ServiceAreaMap";
 
 export const metadata: Metadata = {
   title: "Service Areas | Dallas-Fort Worth Handyman Services | Creative Constructors",
-  description: "Professional handyman services across Dallas-Fort Worth metroplex. Serving Fort Worth, Dallas, Arlington, Plano, Garland, Richardson & surrounding areas. Licensed & insured.",
+  description: "Professional handyman services across North Texas. Serving Dallas, Plano, Allen, McKinney, Garland, Richardson, Rockwall, Rowlett, Sachse, Wylie, Mesquite & more. Licensed & insured.",
   keywords: [
     "DFW handyman",
-    "Dallas Fort Worth handyman",
-    "handyman near me",
+    "Dallas handyman",
     "North Texas handyman",
-    "metroplex home repair",
-    "DFW home services",
+    "Plano handyman",
+    "McKinney handyman",
+    "home repair services",
+    "handyman services near me",
   ],
   openGraph: {
     title: "Service Areas | Dallas-Fort Worth Handyman Services",
-    description: "Professional handyman services across the Dallas-Fort Worth metroplex. Licensed & insured.",
+    description: "Professional handyman services across North Texas. Licensed & insured.",
     url: "/service-areas",
   },
 };
@@ -27,58 +29,91 @@ export default function ServiceAreasPage() {
       slug: "university-park",
       description: "Premier services for University Park's finest homes",
       neighborhoods: 9,
-      icon: "🏛️",
-      premium: true,
+      image: "/University-park.png",
     },
     {
       name: "Highland Park",
       slug: "highland-park",
       description: "Elite services for Highland Park's prestigious estates",
       neighborhoods: 12,
-      icon: "👑",
-      premium: true,
-    },
-    {
-      name: "Fort Worth",
-      slug: "fort-worth",
-      description: "Serving Fort Worth and the greater Tarrant County area",
-      neighborhoods: 12,
-      icon: "�",
+      image: "/Highland-park.png",
     },
     {
       name: "Dallas",
       slug: "dallas",
       description: "Professional services throughout Dallas County",
       neighborhoods: 12,
-      icon: "🌆",
-    },
-    {
-      name: "Arlington",
-      slug: "arlington",
-      description: "Trusted handyman services in Arlington",
-      neighborhoods: 12,
-      icon: "⚾",
+      image: "/Dallas.png",
     },
     {
       name: "Plano",
       slug: "plano",
       description: "Expert home repair services in Plano",
       neighborhoods: 12,
-      icon: "🏘️",
+      image: "/Plano.png",
+    },
+    {
+      name: "Allen",
+      slug: "allen",
+      description: "Trusted handyman services in Allen",
+      neighborhoods: 12,
+      image: "/Allen.jpg",
+    },
+    {
+      name: "McKinney",
+      slug: "mckinney",
+      description: "Quality home services in McKinney",
+      neighborhoods: 12,
+      image: "/Mckinney.jpg",
     },
     {
       name: "Garland",
       slug: "garland",
       description: "Reliable handyman services in Garland",
       neighborhoods: 12,
-      icon: "🏠",
+      image: "/Garland.png",
     },
     {
       name: "Richardson",
       slug: "richardson",
       description: "Quality home services in Richardson",
       neighborhoods: 12,
-      icon: "🔧",
+      image: "/Richardson.png",
+    },
+    {
+      name: "Rockwall",
+      slug: "rockwall",
+      description: "Expert handyman services in Rockwall",
+      neighborhoods: 12,
+      image: "/Rockwall.png",
+    },
+    {
+      name: "Rowlett",
+      slug: "rowlett",
+      description: "Professional services in Rowlett",
+      neighborhoods: 12,
+      image: "/Rowlett.png",
+    },
+    {
+      name: "Sachse",
+      slug: "sachse",
+      description: "Trusted home repair in Sachse",
+      neighborhoods: 12,
+      image: "/Sachse.png",
+    },
+    {
+      name: "Wylie",
+      slug: "wylie",
+      description: "Quality handyman services in Wylie",
+      neighborhoods: 12,
+      image: "/Wylie.png",
+    },
+    {
+      name: "Mesquite",
+      slug: "mesquite",
+      description: "Reliable services in Mesquite",
+      neighborhoods: 12,
+      image: "/Mesquite.png",
     },
   ];
 
@@ -133,30 +168,28 @@ export default function ServiceAreasPage() {
               <Link
                 key={area.slug}
                 href={`/service-areas/${area.slug}`}
-                className={`group bg-white border-2 ${
-                  area.premium 
-                    ? 'border-orange bg-gradient-to-br from-orange/5 to-white' 
-                    : 'border-gray-200 hover:border-orange'
-                } rounded-xl p-8 transition-all hover:shadow-xl ${
-                  area.premium ? 'shadow-lg' : ''
-                }`}
+                className={`group bg-white border-2 border-gray-200 hover:border-orange rounded-xl overflow-hidden transition-all hover:shadow-xl`}
               >
-                {area.premium && (
-                  <div className="inline-block bg-orange text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
-                    PREMIUM AREA
-                  </div>
-                )}
-                <div className="text-5xl mb-4">{area.icon}</div>
-                <h3 className="text-2xl font-black font-barlow-condensed text-navy group-hover:text-orange mb-2 transition-colors">
-                  {area.name}
-                </h3>
-                <p className="text-gray-600 mb-4">{area.description}</p>
-                <div className="flex items-center text-sm text-gray-500 mb-4">
-                  <span className="mr-2">📍</span>
-                  <span>{area.neighborhoods}+ {area.premium ? 'streets' : 'neighborhoods'} served</span>
+                <div className="relative w-full h-48 bg-gray-200">
+                  <Image
+                    src={area.image}
+                    alt={area.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-                <div className="flex items-center text-orange font-bold group-hover:translate-x-2 transition-transform">
-                  View Services <span className="ml-2">→</span>
+                <div className="p-6">
+                  <h3 className="text-2xl font-black font-barlow-condensed text-navy group-hover:text-orange mb-2 transition-colors">
+                    {area.name}
+                  </h3>
+                  <p className="text-gray-600 mb-4">{area.description}</p>
+                  <div className="flex items-center text-sm text-gray-500 mb-4">
+                    <span className="mr-2">📍</span>
+                    <span>{area.neighborhoods}+ neighborhoods served</span>
+                  </div>
+                  <div className="flex items-center text-orange font-bold group-hover:translate-x-2 transition-transform">
+                    View Services <span className="ml-2">→</span>
+                  </div>
                 </div>
               </Link>
             ))}
@@ -172,7 +205,7 @@ export default function ServiceAreasPage() {
           </h2>
           <div className="prose prose-lg max-w-none">
             <p className="text-gray-600 text-center mb-8">
-              Creative Constructors has built a reputation for reliable, professional handyman services throughout the Dallas-Fort Worth metroplex. We proudly serve homeowners in University Park, Highland Park, Fort Worth, Dallas, Arlington, Plano, Garland, Richardson, and surrounding communities with a full range of home repair and improvement services.
+              Creative Constructors has built a reputation for reliable, professional handyman services throughout North Texas. We proudly serve homeowners in University Park, Highland Park, Dallas, Plano, Allen, McKinney, Garland, Richardson, Rockwall, Rowlett, Sachse, Wylie, and Mesquite with a full range of home repair and improvement services.
             </p>
             <div className="bg-white rounded-xl p-8 shadow-md">
               <h3 className="text-2xl font-bold text-navy mb-6 text-center">Our Service Commitment</h3>
