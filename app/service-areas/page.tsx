@@ -170,11 +170,12 @@ export default function ServiceAreasPage() {
                 href={`/service-areas/${area.slug}`}
                 className={`group bg-white border-2 border-gray-200 hover:border-orange rounded-xl overflow-hidden transition-all hover:shadow-xl`}
               >
-                <div className="relative w-full h-48 bg-gray-200">
+                <div className="relative w-full h-48 bg-gray-200 flex-shrink-0">
                   <Image
                     src={area.image}
                     alt={area.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
