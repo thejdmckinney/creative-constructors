@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ServiceAreaMap from "@/components/ServiceAreaMap";
 
 export const metadata: Metadata = {
   title: "Service Areas | Dallas-Fort Worth Handyman Services | Creative Constructors",
@@ -121,6 +122,12 @@ export default function ServiceAreasPage() {
           <p className="text-xl text-gray-600 mb-12 text-center max-w-3xl mx-auto">
             Select your city to learn more about our services in your area
           </p>
+
+          {/* Map Section */}
+          <div className="mb-12 rounded-xl overflow-hidden shadow-lg">
+            <ServiceAreaMap accessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN || ''} height="500px" />
+          </div>
+
           <div className="grid md:grid-cols-3 gap-8">
             {serviceAreas.map((area) => (
               <Link
