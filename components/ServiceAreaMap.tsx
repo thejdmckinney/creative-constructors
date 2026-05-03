@@ -12,6 +12,7 @@ export default function ServiceAreaMap({ accessToken, height = '500px' }: Servic
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<any>(null);
   const [mapInitialized, setMapInitialized] = useState(false);
+  const [mapError, setMapError] = useState<string | null>(null);
 
   useEffect(() => {
     // Only run in browser
@@ -45,6 +46,7 @@ export default function ServiceAreaMap({ accessToken, height = '500px' }: Servic
         map.current.on('load', () => {
           console.log('Map loaded successfully');
           setMapInitialized(true);
+          setMapError(null);
 
           // Add sources and layers
           map.current.addSource('service-areas', {
@@ -289,9 +291,11 @@ export default function ServiceAreaMap({ accessToken, height = '500px' }: Servic
 
         map.current.on('error', (error: any) => {
           console.error('Mapbox error:', error);
+          setMapError(String(error && error.error && error.error.message ? error.error.message : error));
         });
       } catch (error) {
         console.error('Error initializing map:', error);
+        setMapError(String(error));
       }
     });
 
@@ -305,6 +309,15 @@ export default function ServiceAreaMap({ accessToken, height = '500px' }: Servic
   return (
     <div className="w-full" style={{ height, minHeight: '400px' }}>
       <div ref={mapContainer} className="w-full h-full" />
+      {mapError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/60 text-white p-6">
+          <div className="max-w-lg text-center">
+            <h3 className="text-xl font-bold mb-2">Map Failed to Load</h3>
+            <p className="text-sm mb-4">{mapError}</p>
+            <p className="text-xs">Check your browser console and network requests for details.</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
