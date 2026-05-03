@@ -14,7 +14,17 @@ export default function ServiceAreaMap({ accessToken, height = '500px' }: Servic
   const map = useRef<mapboxgl.Map | null>(null);
 
   useEffect(() => {
-    if (!mapContainer.current || !accessToken) return;
+    if (!mapContainer.current) {
+      console.error('Map container ref is not attached');
+      return;
+    }
+    
+    if (!accessToken) {
+      console.error('Mapbox access token is missing or empty');
+      return;
+    }
+
+    console.log('Initializing Mapbox with token:', accessToken.substring(0, 10) + '...');
 
     try {
       mapboxgl.accessToken = accessToken;
@@ -26,7 +36,10 @@ export default function ServiceAreaMap({ accessToken, height = '500px' }: Servic
         zoom: 9.5,
       });
 
+      console.log('Map created successfully');
+
       const handleMapLoad = () => {
+        console.log('Map load event fired');
         if (!map.current) return;
 
         const sourceData = {
@@ -101,5 +114,5 @@ export default function ServiceAreaMap({ accessToken, height = '500px' }: Servic
     };
   }, [accessToken]);
 
-  return <div ref={mapContainer} className="w-full" style={{ height }} />;
+  return <div ref={mapContainer} className="w-full mapboxgl-container" style={{ height, minHeight: '400px' }} />;
 }

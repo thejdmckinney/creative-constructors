@@ -170,15 +170,17 @@ export default function ServiceAreasPage() {
                 href={`/service-areas/${area.slug}`}
                 className={`group bg-white border-2 border-gray-200 hover:border-orange rounded-xl overflow-hidden transition-all hover:shadow-xl flex flex-col`}
               >
-                <div className="relative w-full h-64 bg-gray-200 flex-shrink-0 overflow-hidden">
-                  <Image
-                    src={area.image}
-                    alt={area.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    priority={false}
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                <div className="flex items-center justify-center w-full py-8 bg-gradient-to-br from-gray-50 to-gray-100 flex-shrink-0">
+                  <div className="relative w-40 h-40 flex-shrink-0">
+                    <Image
+                      src={area.image}
+                      alt={area.name}
+                      fill
+                      sizes="(max-width: 768px) 160px, 160px"
+                      priority={false}
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
                 <div className="p-6 flex-grow flex flex-col">
                   <h3 className="text-2xl font-black font-barlow-condensed text-navy group-hover:text-orange mb-2 transition-colors">
