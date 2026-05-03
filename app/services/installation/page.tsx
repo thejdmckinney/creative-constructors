@@ -489,6 +489,33 @@ export default function InstallationPage() {
                   </div>
                 ))}
               </div>
+
+              {/* Roman Shades Highlight */}
+              <div className="mt-12 bg-gradient-to-r from-orange/10 to-orange/5 border-2 border-orange rounded-2xl p-8 shadow-xl">
+                <div className="flex flex-col md:flex-row items-center gap-6">
+                  <div className="flex-shrink-0">
+                    <div className="w-20 h-20 bg-orange rounded-full flex items-center justify-center text-4xl">
+                      🪟
+                    </div>
+                  </div>
+                  <div className="flex-1 text-center md:text-left">
+                    <h3 className="text-2xl md:text-3xl font-bold text-navy mb-3">
+                      Specializing in Roman Shade Installation
+                    </h3>
+                    <p className="text-gray-700 text-lg mb-4">
+                      Getting a lot of roman shade installation requests? We're experts at installing all types 
+                      of roman shades—flat, hobbled, waterfall, relaxed, and motorized. Perfect measurements, 
+                      secure mounting, and smooth operation guaranteed.
+                    </p>
+                    <Link
+                      href="/services/installation/roman-shades"
+                      className="inline-block bg-orange hover:bg-orange/90 text-white font-bold py-3 px-8 rounded-lg transition-colors"
+                    >
+                      Learn More About Roman Shade Installation →
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
