@@ -1,5 +1,8 @@
 'use client';
 
+import { useEffect } from 'react';
+import Script from 'next/script';
+
 export default function NewsletterSignupForm() {
   return (
     <div className="bg-white border-2 border-navy rounded-xl p-8 shadow-lg">
@@ -11,16 +14,17 @@ export default function NewsletterSignupForm() {
           Practical home maintenance tips, DIY guides, and contractor insights straight to your inbox every week.
         </p>
         
-        {/* PASTE HUBSPOT EMBED CODE HERE */}
-        <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-          <p className="text-gray-500 text-sm font-mono">
-            ⚠️ HubSpot signup form will be embedded here
-          </p>
-          <p className="text-gray-400 text-xs mt-2">
-            Replace this placeholder with your HubSpot form embed code
-          </p>
-        </div>
-        {/* END HUBSPOT EMBED CODE */}
+        {/* HubSpot Form */}
+        <Script 
+          src="https://js-na2.hsforms.net/forms/embed/244310039.js" 
+          strategy="lazyOnload"
+        />
+        <div 
+          className="hs-form-frame" 
+          data-region="na2" 
+          data-form-id="89f12dbf-2a33-4f4e-a584-fc8e236487c7" 
+          data-portal-id="244310039"
+        />
       </div>
     </div>
   );
