@@ -108,47 +108,6 @@ export default function ElectricalPage() {
         </div>
       </section>
 
-      <div className="prose prose-lg max-w-none">
-        <h3 className="text-2xl font-bold mb-3 text-navy">Circuit Locator &amp; Panel Labeling</h3>
-        <p className="text-gray-700 mb-4">
-          Not sure which breaker controls an outlet, light, or appliance? Many homeowners never label their electrical panel — which leads to guesswork, delays, and increased risk during repairs or emergencies. Our circuit locator and panel labeling service removes the mystery: we trace circuits, label each breaker, and give you a clear, durable panel map (plus a photo or digital copy for safekeeping).
-        </p>
-
-        <h4 className="text-lg font-bold mb-2 text-navy">Why get your panel labeled?</h4>
-        <ul className="list-disc pl-6 mb-4 text-gray-700">
-          <li>Faster future repairs — technicians know exactly which breaker to flip</li>
-          <li>Improved safety during DIY work or emergencies</li>
-          <li>Accurate documentation for home buyers or contractors</li>
-          <li>Eliminates guesswork from multi-family or remodeled panels</li>
-        </ul>
-
-        <h4 className="text-lg font-bold mb-2 text-navy">Our Process</h4>
-        <ol className="list-decimal pl-6 mb-4 text-gray-700">
-          <li>We bring professional circuit tracer equipment to precisely identify which breaker feeds which circuits/outlets.</li>
-          <li>Confirm circuit destinations by testing lights, outlets, and fixtures while toggling breakers in a controlled manner.</li>
-          <li>Label each breaker with a durable, easy-to-read marker and create a clear panel map.</li>
-          <li>Provide a photo and digital copy of the panel map for your records.</li>
-        </ol>
-
-        <p className="text-gray-700 mb-6">
-          This is especially helpful after renovations, panel upgrades, or when dealing with older homes where wiring changes were made without proper documentation.
-        </p>
-
-        <div className="bg-white p-6 rounded-lg shadow-md border-2 border-orange/10">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
-              <p className="text-lg font-bold text-navy mb-1">Schedule Circuit Tracing &amp; Panel Labeling</p>
-              <p className="text-gray-600 text-sm">Fast, accurate, and documented — get peace of mind and quicker future service calls.</p>
-            </div>
-            <div>
-              <Link href="/contact" className="inline-block bg-orange hover:bg-orange/90 text-white font-bold py-3 px-6 rounded-lg transition-colors">
-                Book Now
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Content Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
@@ -265,16 +224,14 @@ export default function ElectricalPage() {
                 </p>
               </div>
 
-              {/* New Service Card: Circuit Locator & Panel Labeling */}
-              <Link href="/services/electrical/circuit-locator" className="block">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-orange">
-                  <div className="text-4xl mb-3">🧭</div>
-                  <h4 className="text-xl font-bold mb-2 text-navy">Circuit Locator &amp; Panel Labeling</h4>
-                  <p className="text-gray-600 text-sm">
-                    Professional circuit tracing and panel labeling — we find which breaker controls what, label your panel, and provide a clear map for future reference.
-                  </p>
-                </div>
-              </Link>
+              {/* Service Card 10 */}
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-orange">
+                <div className="text-4xl mb-3">🧭</div>
+                <h4 className="text-xl font-bold mb-2 text-navy">Circuit Locator &amp; Panel Labeling</h4>
+                <p className="text-gray-600 text-sm">
+                  Professional circuit tracing and panel labeling to identify which breaker controls what in your home.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -353,6 +310,85 @@ export default function ElectricalPage() {
                       Proudly serving the entire Dallas-Fort Worth metroplex.
                     </p>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Circuit Locator & Panel Labeling Section */}
+          <div className="mt-16 mb-16">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-gray-100">
+              <div className="bg-navy text-white py-8 px-6 text-center">
+                <div className="text-5xl mb-4">🧭</div>
+                <h3 className="text-3xl font-bold mb-3">Circuit Locator &amp; Panel Labeling</h3>
+                <p className="text-lg text-gray-200 max-w-2xl mx-auto">
+                  Not sure which breaker controls what? We'll trace every circuit, label your panel, and give you a documented map for future reference.
+                </p>
+              </div>
+
+              <div className="p-8">
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h4 className="text-xl font-bold mb-4 text-navy flex items-center gap-2">
+                      <span className="text-orange text-2xl">✓</span>
+                      Why Get Your Panel Labeled?
+                    </h4>
+                    <ul className="space-y-3 text-gray-700">
+                      <li className="flex items-start gap-2">
+                        <span className="text-orange mt-1">•</span>
+                        <span>Faster repairs — no more guessing which breaker to flip</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-orange mt-1">•</span>
+                        <span>Improved safety during DIY work or emergencies</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-orange mt-1">•</span>
+                        <span>Clear documentation for home buyers or contractors</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-orange mt-1">•</span>
+                        <span>Eliminates confusion in remodeled homes</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h4 className="text-xl font-bold mb-4 text-navy flex items-center gap-2">
+                      <span className="text-orange text-2xl">🔧</span>
+                      What's Included
+                    </h4>
+                    <ul className="space-y-3 text-gray-700">
+                      <li className="flex items-start gap-2">
+                        <span className="text-orange mt-1">•</span>
+                        <span>Professional circuit tracer equipment</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-orange mt-1">•</span>
+                        <span>Durable, legible breaker labels</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-orange mt-1">•</span>
+                        <span>Photo and digital copy of panel map</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-orange mt-1">•</span>
+                        <span>Notes on any wiring issues found</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="text-center bg-gray-50 py-6 rounded-lg">
+                  <p className="text-gray-700 mb-4 text-lg">
+                    Perfect for homeowners, contractors, and property managers who need a clear understanding of their electrical system.
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="inline-block bg-orange hover:bg-orange/90 text-white font-bold py-3 px-8 rounded-lg transition-colors shadow-md"
+                  >
+                    Schedule Circuit Locating Service
+                  </Link>
                 </div>
               </div>
             </div>
