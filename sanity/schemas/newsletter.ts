@@ -31,6 +31,24 @@ export default defineType({
       description: 'Auto-generated from title - used in the URL',
     }),
     defineField({
+      name: 'featuredImage',
+      title: 'Featured Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative Text',
+          description: 'Important for SEO and accessibility',
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+      description: 'Main image shown at the top of the newsletter',
+    }),
+    defineField({
       name: 'publishedAt',
       title: 'Published At',
       type: 'datetime',
@@ -46,12 +64,12 @@ export default defineType({
       description: 'Short 1-2 sentence description for the index page card',
     }),
     defineField({
-      name: 'body',
-      title: 'Body (HTML)',
-      type: 'text',
+      name: 'content',
+      title: 'Content',
+      type: 'array',
+      of: [{ type: 'block' }],
       validation: (Rule) => Rule.required(),
-      description: 'The full newsletter content in HTML format',
-      rows: 20,
+      description: 'The full newsletter content with rich text formatting',
     }),
   ],
   preview: {

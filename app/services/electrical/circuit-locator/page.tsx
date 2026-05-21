@@ -145,7 +145,10 @@ export default function CircuitLocatorPage() {
                 <h4 className="font-bold">Will you provide a map I can keep?</h4>
                 <p className="text-gray-700 mb-3">Yes — you'll receive a photo/digital copy and we provide a downloadable template you can print or keep digitally.</p>
 
-                <a href="/panel-map-template.svg" download className="inline-block bg-navy text-white px-4 py-2 rounded-md font-bold">Download Panel Map Template</a>
+                <div className="mt-4 text-center">
+                  <img src="/panel-map-template.svg" alt="Panel map template preview" className="w-full max-w-sm mx-auto rounded-md border" />
+                  <a href="/panel-map-template.svg" download className="inline-block bg-navy text-white px-4 py-2 rounded-md font-bold mt-3 mx-auto">Download Panel Map Template</a>
+                </div>
               </div>
             </div>
           </div>

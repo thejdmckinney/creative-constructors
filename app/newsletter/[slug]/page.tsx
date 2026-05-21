@@ -4,6 +4,14 @@ import { notFound } from "next/navigation";
 import { client } from "@/sanity/lib/client";
 import { NEWSLETTER_QUERY, NEWSLETTER_SLUGS_QUERY } from "@/sanity/lib/queries";
 import NewsletterSignupForm from "@/components/NewsletterSignupForm";
+import { PortableText } from '@portabletext/react';
+import imageUrlBuilder from '@sanity/image-url';
+
+const builder = imageUrlBuilder(client);
+
+function urlFor(source: any) {
+  return builder.image(source);
+}
 
 interface Newsletter {
   _id: string;
@@ -14,7 +22,14 @@ interface Newsletter {
   };
   excerpt: string;
   publishedAt: string;
-  body: string;
+  featuredImage?: {
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+    alt: string;
+  };
+  content: any[];
 }
 
 // Generate static params for all newsletters
@@ -110,35 +125,53 @@ export default async function NewsletterIssuePage({
       {/* Newsletter Content */}
       <section className="py-12 px-4">
         <div className="container mx-auto max-w-4xl">
-          <article className="bg-white rounded-xl shadow-lg p-8 md:p-12">
-            {/* Newsletter Body - Rendered as HTML */}
-            <div
-              className="newsletter-content prose prose-lg max-w-none
-                prose-headings:font-barlow-condensed 
-                prose-headings:font-black 
-                prose-headings:text-navy
-                prose-h1:text-4xl
-                prose-h2:text-3xl
-                prose-h3:text-2xl
-                prose-p:text-gray-700
-                prose-p:leading-relaxed
-                prose-a:text-orange
-                prose-a:no-underline
-                prose-a:font-bold
-                hover:prose-a:underline
-                prose-strong:text-navy
-                prose-ul:text-gray-700
-                prose-ol:text-gray-700
-                prose-li:marker:text-orange
-                prose-blockquote:border-l-4
-                prose-blockquote:border-orange
-                prose-blockquote:bg-gray-50
-                prose-blockquote:py-2
-                prose-blockquote:px-4
-                prose-img:rounded-lg
-                prose-img:shadow-md"
-              dangerouslySetInnerHTML={{ __html: newsletter.body }}
-            />
+          <article className="bg-white rounded-xl shadow-lg overflow-hidden">
+            {/* Featured Image */}
+            {newsletter.featuredImage && (
+              <div className="w-full aspect-[21/9] relative overflow-hidden">
+                <img
+                  src={urlFor(newsletter.featuredImage.asset)
+                    .width(1200)
+                    .height(514)
+                    .quality(90)
+                    .url()}
+                  alt={newsletter.featuredImage.alt}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            
+            {/* Newsletter Body - Rendered with PortableText */}
+            <div className="p-8 md:p-12">
+              <div
+                className="newsletter-content prose prose-lg max-w-none
+                  prose-headings:font-barlow-condensed 
+                  prose-headings:font-black 
+                  prose-headings:text-navy
+                  prose-h1:text-4xl
+                  prose-h2:text-3xl
+                  prose-h3:text-2xl
+                  prose-p:text-gray-700
+                  prose-p:leading-relaxed
+                  prose-a:text-orange
+                  prose-a:no-underline
+                  prose-a:font-bold
+                  hover:prose-a:underline
+                  prose-strong:text-navy
+                  prose-ul:text-gray-700
+                  prose-ol:text-gray-700
+                  prose-li:marker:text-orange
+                  prose-blockquote:border-l-4
+                  prose-blockquote:border-orange
+                  prose-blockquote:bg-gray-50
+                  prose-blockquote:py-2
+                  prose-blockquote:px-4
+                  prose-img:rounded-lg
+                  prose-img:shadow-md"
+              >
+                <PortableText value={newsletter.content} />
+              </div>
+            </div>
           </article>
 
           {/* Signup CTA */}

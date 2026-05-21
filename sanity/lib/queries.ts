@@ -179,7 +179,11 @@ export const NEWSLETTERS_QUERY = groq`*[_type == "newsletter" && defined(slug.cu
   title,
   slug,
   excerpt,
-  publishedAt
+  publishedAt,
+  featuredImage{
+    asset,
+    alt
+  }
 }`
 
 // Get a single newsletter by slug
@@ -190,7 +194,11 @@ export const NEWSLETTER_QUERY = groq`*[_type == "newsletter" && slug.current == 
   slug,
   excerpt,
   publishedAt,
-  body
+  featuredImage{
+    asset,
+    alt
+  },
+  content
 }`
 
 // Get newsletter slugs for static generation

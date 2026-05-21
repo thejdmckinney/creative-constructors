@@ -3,6 +3,13 @@ import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { NEWSLETTERS_QUERY } from "@/sanity/lib/queries";
 import NewsletterSignupForm from "@/components/NewsletterSignupForm";
+import imageUrlBuilder from '@sanity/image-url';
+
+const builder = imageUrlBuilder(client);
+
+function urlFor(source: any) {
+  return builder.image(source);
+}
 
 export const metadata: Metadata = {
   title: "The Home Watch Newsletter | Weekly Home Maintenance Tips | Creative Constructors",
@@ -31,6 +38,13 @@ interface Newsletter {
   };
   excerpt: string;
   publishedAt: string;
+  featuredImage?: {
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+    alt: string;
+  };
 }
 
 async function getNewsletters(): Promise<Newsletter[]> {
@@ -92,31 +106,46 @@ export default async function NewsletterPage() {
                 <Link
                   key={newsletter._id}
                   href={`/newsletter/${newsletter.slug.current}`}
-                  className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 border-2 border-transparent hover:border-orange"
+                  className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden border-2 border-transparent hover:border-orange"
                 >
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="inline-block bg-navy text-white font-bold text-sm px-3 py-1 rounded-full">
-                          Issue #{String(newsletter.issueNumber).padStart(3, '0')}
-                        </span>
-                        <span className="text-gray-500 text-sm">
-                          {new Date(newsletter.publishedAt).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                          })}
-                        </span>
+                  <div className="flex flex-col md:flex-row gap-0">
+                    {newsletter.featuredImage && (
+                      <div className="md:w-80 h-48 md:h-auto relative overflow-hidden flex-shrink-0">
+                        <img
+                          src={urlFor(newsletter.featuredImage.asset)
+                            .width(320)
+                            .height(240)
+                            .quality(85)
+                            .url()}
+                          alt={newsletter.featuredImage.alt}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
                       </div>
-                      <h3 className="text-2xl font-black font-barlow-condensed text-navy group-hover:text-orange transition-colors mb-2">
-                        {newsletter.title}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        {newsletter.excerpt}
-                      </p>
-                    </div>
-                    <div className="flex items-center text-orange font-bold group-hover:translate-x-2 transition-transform whitespace-nowrap">
-                      Read Issue <span className="ml-2">→</span>
+                    )}
+                    <div className="flex-1 p-6 flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="inline-block bg-navy text-white font-bold text-sm px-3 py-1 rounded-full">
+                            Issue #{String(newsletter.issueNumber).padStart(3, '0')}
+                          </span>
+                          <span className="text-gray-500 text-sm">
+                            {new Date(newsletter.publishedAt).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                            })}
+                          </span>
+                        </div>
+                        <h3 className="text-2xl font-black font-barlow-condensed text-navy group-hover:text-orange transition-colors mb-2">
+                          {newsletter.title}
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed">
+                          {newsletter.excerpt}
+                        </p>
+                      </div>
+                      <div className="flex items-center text-orange font-bold group-hover:translate-x-2 transition-transform mt-4">
+                        Read Issue <span className="ml-2">→</span>
+                      </div>
                     </div>
                   </div>
                 </Link>
