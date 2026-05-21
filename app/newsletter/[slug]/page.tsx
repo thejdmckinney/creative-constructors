@@ -128,15 +128,14 @@ export default async function NewsletterIssuePage({
           <article className="bg-white rounded-xl shadow-lg overflow-hidden">
             {/* Featured Image */}
             {newsletter.featuredImage && (
-              <div className="w-full aspect-[21/9] relative overflow-hidden">
+              <div className="w-full bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
                   src={urlFor(newsletter.featuredImage.asset)
                     .width(1200)
-                    .height(514)
                     .quality(90)
                     .url()}
                   alt={newsletter.featuredImage.alt}
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto object-contain max-h-[600px]"
                 />
               </div>
             )}
