@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { generateServiceSchema } from '@/lib/structuredData'
 
 // Metadata moved to layout.tsx or use next/head for client components
 
@@ -217,11 +218,21 @@ const services = [
   },
 ];
 
+const serviceSchema = generateServiceSchema({
+  serviceName: 'Home & Construction Services',
+  description: 'Full suite of home services including plumbing, electrical, HVAC, painting, carpentry, flooring, and more across Dallas-Fort Worth.',
+  serviceUrl: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://creative-constructors.com'}/services`,
+})
+
 export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState<keyof typeof serviceCategories>("Installation");
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       {/* Hero Section */}
       <section className="bg-navy text-white py-16 px-4">
         <div className="container mx-auto max-w-6xl">

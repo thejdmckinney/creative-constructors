@@ -4,6 +4,7 @@ import { seoConfig } from "@/seo.config";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import RelatedServices from "@/components/RelatedServices";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
+import { generateServiceSchema } from '@/lib/structuredData'
 
 const serviceArea = "Dallas-Fort Worth Metroplex";
 
@@ -99,6 +100,12 @@ const paintingServices = [
     popular: false,
   },
 ];
+
+const serviceSchema = generateServiceSchema({
+  serviceName: 'Painting Services',
+  description: 'Interior and exterior painting, cabinet painting, and deck staining services across Dallas-Fort Worth.',
+  serviceUrl: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://creative-constructors.com'}/services/painting`,
+})
 
 const paintingProcess = [
   {

@@ -168,3 +168,31 @@ export const PROJECT_QUERY = groq`*[_type == "project" && slug.current == $slug]
 // Get project slugs for static generation
 export const PROJECT_SLUGS_QUERY = groq`*[_type == "project" && defined(slug.current)][].slug.current`
 
+// ===========================
+// NEWSLETTER QUERIES
+// ===========================
+
+// Get all published newsletters
+export const NEWSLETTERS_QUERY = groq`*[_type == "newsletter" && defined(slug.current)] | order(publishedAt desc) {
+  _id,
+  issueNumber,
+  title,
+  slug,
+  excerpt,
+  publishedAt
+}`
+
+// Get a single newsletter by slug
+export const NEWSLETTER_QUERY = groq`*[_type == "newsletter" && slug.current == $slug][0] {
+  _id,
+  issueNumber,
+  title,
+  slug,
+  excerpt,
+  publishedAt,
+  body
+}`
+
+// Get newsletter slugs for static generation
+export const NEWSLETTER_SLUGS_QUERY = groq`*[_type == "newsletter" && defined(slug.current)][].slug.current`
+

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { seoConfig } from "@/seo.config";
 
 export const metadata: Metadata = {
@@ -62,12 +63,23 @@ export default function HighlandParkPage() {
       {/* Hero Section - Ultra Premium */}
       <section className="bg-gradient-to-br from-navy via-royal-blue to-navy text-white py-24 px-4">
         <div className="container mx-auto max-w-5xl">
-          <div className="inline-block bg-orange/20 backdrop-blur-sm border border-orange/30 rounded-full px-6 py-2 mb-6">
-            <span className="text-orange font-bold">👑 Proudly Serving Highland Park</span>
+          <div className="flex items-center gap-6 mb-6">
+            <Image
+              src="/Highland-park.png"
+              alt="Highland Park"
+              width={140}
+              height={140}
+              className="object-contain"
+            />
+            <div>
+              <div className="inline-block bg-orange/20 backdrop-blur-sm border border-orange/30 rounded-full px-6 py-2 mb-4">
+                <span className="text-orange font-bold">👑 Proudly Serving Highland Park</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-black font-barlow-condensed leading-tight">
+                Elite Handyman Services for Highland Park's Prestigious Estates
+              </h1>
+            </div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-black font-barlow-condensed mb-6 leading-tight">
-            Elite Handyman Services for Highland Park's Prestigious Estates
-          </h1>
           <p className="text-xl text-gray-300 mb-4 max-w-3xl leading-relaxed">
             Highland Park's most discerning homeowners trust Creative Constructors with their exceptional properties. We understand that in Highland Park, excellence isn't optional—it's expected. Our unwavering commitment to master craftsmanship and impeccable service has made us the preferred choice for homes that demand perfection.
           </p>

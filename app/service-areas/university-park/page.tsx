@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { seoConfig } from "@/seo.config";
 
 export const metadata: Metadata = {
@@ -62,12 +63,23 @@ export default function UniversityParkPage() {
       {/* Hero Section - Premium Feel */}
       <section className="bg-gradient-to-br from-navy via-royal-blue to-navy text-white py-24 px-4">
         <div className="container mx-auto max-w-5xl">
-          <div className="inline-block bg-orange/20 backdrop-blur-sm border border-orange/30 rounded-full px-6 py-2 mb-6">
-            <span className="text-orange font-bold">🏛️ Proudly Serving University Park</span>
+          <div className="flex items-center gap-6 mb-6">
+            <Image
+              src="/University-park.png"
+              alt="University Park"
+              width={140}
+              height={140}
+              className="object-contain"
+            />
+            <div>
+              <div className="inline-block bg-orange/20 backdrop-blur-sm border border-orange/30 rounded-full px-6 py-2 mb-4">
+                <span className="text-orange font-bold">🏛️ Proudly Serving University Park</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-black font-barlow-condensed leading-tight">
+                Premier Handyman Services for University Park's Finest Homes
+              </h1>
+            </div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-black font-barlow-condensed mb-6 leading-tight">
-            Premier Handyman Services for University Park's Finest Homes
-          </h1>
           <p className="text-xl text-gray-300 mb-4 max-w-3xl leading-relaxed">
             Trusted by discerning homeowners in University Park. We understand that your home isn't just valuable—it's irreplaceable. Our commitment to exceptional craftsmanship and white-glove service has made us the preferred choice for UP residents who demand excellence.
           </p>

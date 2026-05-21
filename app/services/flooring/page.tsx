@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { seoConfig } from "@/seo.config";
+import { generateServiceSchema } from '@/lib/structuredData'
 
 export const metadata: Metadata = {
   title: "Flooring Services",
@@ -18,8 +19,17 @@ export const metadata: Metadata = {
 };
 
 export default function FlooringPage() {
+  const serviceSchema = generateServiceSchema({
+    serviceName: 'Flooring Services',
+    description: 'Hardwood, laminate, tile, and vinyl flooring installation and restoration across Dallas-Fort Worth.',
+    serviceUrl: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://creative-constructors.com'}/services/flooring`,
+  })
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <section className="bg-navy text-white py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="max-w-3xl">

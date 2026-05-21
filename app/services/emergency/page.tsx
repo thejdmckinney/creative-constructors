@@ -5,6 +5,7 @@ import { seoConfig } from "@/seo.config";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import RelatedServices from "@/components/RelatedServices";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
+import { generateServiceSchema } from '@/lib/structuredData'
 
 export const metadata: Metadata = {
   title: `24/7 Emergency Home Repair Services in Dallas-Fort Worth | ${seoConfig.business.name}`,
@@ -59,6 +60,11 @@ const faqSchema = generateFAQSchema([
 ]);
 
 export default function EmergencyPage() {
+  const serviceSchema = generateServiceSchema({
+    serviceName: 'Emergency Home Repair',
+    description: '24/7 emergency home repair services for plumbing, electrical, HVAC, and urgent repairs across Dallas-Fort Worth.',
+    serviceUrl: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://creative-constructors.com'}/services/emergency`,
+  })
   return (
     <>
       <script
@@ -68,6 +74,10 @@ export default function EmergencyPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       
       <Breadcrumbs items={[

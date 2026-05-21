@@ -4,6 +4,7 @@ import { seoConfig } from "@/seo.config";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import RelatedServices from "@/components/RelatedServices";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
+import { generateServiceSchema } from '@/lib/structuredData'
 
 const serviceArea = "Dallas-Fort Worth Metroplex";
 
@@ -653,3 +654,8 @@ export default function RepairPage() {
     </>
   );
 }
+const serviceSchema = generateServiceSchema({
+  serviceName: 'Repair Services',
+  description: 'General home repair services including drywall, doors, windows, fences, and more across Dallas-Fort Worth.',
+  serviceUrl: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://creative-constructors.com'}/services/repair`,
+})

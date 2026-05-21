@@ -5,6 +5,7 @@ import { seoConfig } from "@/seo.config";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import RelatedServices from "@/components/RelatedServices";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
+import { generateServiceSchema } from '@/lib/structuredData'
 
 export const metadata: Metadata = {
   title: `Licensed Electrical Services in Dallas-Fort Worth | ${seoConfig.business.name}`,
@@ -17,6 +18,10 @@ export const metadata: Metadata = {
     "commercial electrician Dallas",
     "electrical repair Dallas",
     "electrical installation",
+    "circuit locator",
+    "panel labeling",
+    "circuit tracing",
+    "electrical panel labeling",
   ],
   alternates: {
     canonical: "/services/electrical",
@@ -55,7 +60,17 @@ const faqSchema = generateFAQSchema([
     question: "Do you provide warranties on electrical work?",
     answer: "Yes, all our electrical work comes with a workmanship warranty. Specific warranty terms depend on the type of service, but we guarantee our work and will address any issues that arise."
   },
+  {
+    question: "Do you offer circuit locating and panel labeling?",
+    answer: "Yes. We provide professional circuit locating (circuit tracing) and panel labeling to identify which breaker controls which areas or outlets in your home. This includes labeling each breaker, providing a clear panel map, and delivering a digital/photo record for your reference. It's a great way to speed future repairs and improve household safety."
+  },
 ]);
+
+const serviceSchema = generateServiceSchema({
+  serviceName: 'Electrical Services',
+  description: 'Licensed electrical services including installation, repair, panel work, and troubleshooting across Dallas-Fort Worth.',
+  serviceUrl: `${seoConfig.baseUrl}/services/electrical`,
+})
 
 export default function ElectricalPage() {
   return (
@@ -68,12 +83,16 @@ export default function ElectricalPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+
       <Breadcrumbs items={[
         { name: "Services", path: "/services" },
         { name: "Electrical Services", path: "/services/electrical" },
       ]} />
-      
+
       {/* Hero Section */}
       <section className="bg-navy text-white py-16 px-4">
         <div className="container mx-auto max-w-6xl">
@@ -88,6 +107,47 @@ export default function ElectricalPage() {
           </div>
         </div>
       </section>
+
+      <div className="prose prose-lg max-w-none">
+        <h3 className="text-2xl font-bold mb-3 text-navy">Circuit Locator &amp; Panel Labeling</h3>
+        <p className="text-gray-700 mb-4">
+          Not sure which breaker controls an outlet, light, or appliance? Many homeowners never label their electrical panel — which leads to guesswork, delays, and increased risk during repairs or emergencies. Our circuit locator and panel labeling service removes the mystery: we trace circuits, label each breaker, and give you a clear, durable panel map (plus a photo or digital copy for safekeeping).
+        </p>
+
+        <h4 className="text-lg font-bold mb-2 text-navy">Why get your panel labeled?</h4>
+        <ul className="list-disc pl-6 mb-4 text-gray-700">
+          <li>Faster future repairs — technicians know exactly which breaker to flip</li>
+          <li>Improved safety during DIY work or emergencies</li>
+          <li>Accurate documentation for home buyers or contractors</li>
+          <li>Eliminates guesswork from multi-family or remodeled panels</li>
+        </ul>
+
+        <h4 className="text-lg font-bold mb-2 text-navy">Our Process</h4>
+        <ol className="list-decimal pl-6 mb-4 text-gray-700">
+          <li>We bring professional circuit tracer equipment to precisely identify which breaker feeds which circuits/outlets.</li>
+          <li>Confirm circuit destinations by testing lights, outlets, and fixtures while toggling breakers in a controlled manner.</li>
+          <li>Label each breaker with a durable, easy-to-read marker and create a clear panel map.</li>
+          <li>Provide a photo and digital copy of the panel map for your records.</li>
+        </ol>
+
+        <p className="text-gray-700 mb-6">
+          This is especially helpful after renovations, panel upgrades, or when dealing with older homes where wiring changes were made without proper documentation.
+        </p>
+
+        <div className="bg-white p-6 rounded-lg shadow-md border-2 border-orange/10">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <p className="text-lg font-bold text-navy mb-1">Schedule Circuit Tracing &amp; Panel Labeling</p>
+              <p className="text-gray-600 text-sm">Fast, accurate, and documented — get peace of mind and quicker future service calls.</p>
+            </div>
+            <div>
+              <Link href="/contact" className="inline-block bg-orange hover:bg-orange/90 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                Book Now
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Content Section */}
       <section className="py-16 px-4">
@@ -204,6 +264,17 @@ export default function ElectricalPage() {
                   Expert breaker replacement and repair to keep your electrical system running smoothly.
                 </p>
               </div>
+
+              {/* New Service Card: Circuit Locator & Panel Labeling */}
+              <Link href="/services/electrical/circuit-locator" className="block">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-orange">
+                  <div className="text-4xl mb-3">🧭</div>
+                  <h4 className="text-xl font-bold mb-2 text-navy">Circuit Locator &amp; Panel Labeling</h4>
+                  <p className="text-gray-600 text-sm">
+                    Professional circuit tracing and panel labeling — we find which breaker controls what, label your panel, and provide a clear map for future reference.
+                  </p>
+                </div>
+              </Link>
             </div>
           </div>
 

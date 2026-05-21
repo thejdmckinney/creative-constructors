@@ -4,6 +4,7 @@ import { seoConfig } from "@/seo.config";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import RelatedServices from "@/components/RelatedServices";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
+import { generateServiceSchema } from '@/lib/structuredData'
 
 const serviceArea = "Dallas-Fort Worth Metroplex";
 
@@ -167,6 +168,12 @@ const maintenancePlans = [
   },
 ];
 
+const serviceSchema = generateServiceSchema({
+  serviceName: 'Home Maintenance Services',
+  description: 'Preventive and general home maintenance services including HVAC, plumbing, carpentry, deck care, and more in the Dallas-Fort Worth area.',
+  serviceUrl: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://creative-constructors.com'}/services/maintenance`,
+})
+
 const whyMaintenance = [
   {
     stat: "80%",
@@ -319,6 +326,10 @@ export default function MaintenancePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       
       <main className="flex-grow">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { seoConfig } from "@/seo.config";
 
 export const metadata: Metadata = {
@@ -53,9 +54,18 @@ export default function ArlingtonPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-navy via-royal-blue to-navy text-white py-20 px-4">
         <div className="container mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl md:text-6xl font-black font-barlow-condensed mb-6">
-            Arlington's Trusted Handyman Service
-          </h1>
+          <div className="flex items-center justify-center gap-6 mb-6">
+            <Image
+              src="/Arlington.png"
+              alt="Arlington"
+              width={120}
+              height={120}
+              className="object-contain"
+            />
+            <h1 className="text-4xl md:text-6xl font-black font-barlow-condensed">
+              Arlington's Trusted Handyman Service
+            </h1>
+          </div>
           <p className="text-xl md:text-2xl text-silver mb-8">
             Professional Home Services Throughout Arlington, TX
           </p>

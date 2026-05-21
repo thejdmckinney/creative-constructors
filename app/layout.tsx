@@ -5,6 +5,7 @@ import { seoConfig } from "@/seo.config";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
+import StructuredData from "@/components/StructuredData";
 
 const barlow = Barlow({
   weight: ["400", "500", "600", "700"],
@@ -75,6 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${barlow.variable} ${barlowCondensed.variable}`}>
       <body className="font-barlow">
+        <StructuredData />
         <Navigation />
         <main>{children}</main>
         <TestimonialsCarousel />

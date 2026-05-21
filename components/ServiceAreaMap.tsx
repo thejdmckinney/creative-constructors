@@ -4,11 +4,13 @@ import { useEffect, useRef, useState } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 interface ServiceAreaMapProps {
-  accessToken: string;
+  accessToken?: string;
   height?: string;
 }
 
 export default function ServiceAreaMap({ accessToken, height = '500px' }: ServiceAreaMapProps) {
+  // Access the environment variable directly in the client component
+  const token = accessToken || process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '';
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<any>(null);
   const [mapInitialized, setMapInitialized] = useState(false);
@@ -20,21 +22,25 @@ export default function ServiceAreaMap({ accessToken, height = '500px' }: Servic
     
     if (!mapContainer.current) {
       console.error('Map container not found');
+      setMapError('Map container not found');
       return;
     }
 
-    if (!accessToken) {
-      console.error('Mapbox token missing');
+    if (!token) {
+      console.error('Mapbox token missing or empty');
+      setMapError('Mapbox access token is missing. Please check your environment variables.');
       return;
     }
+
+    console.log('Initializing map with token length:', token.length);
 
     // Dynamically import mapbox-gl here to ensure it's only loaded on client
     import('mapbox-gl').then((mbx) => {
       const mapboxgl = mbx.default;
 
       try {
-        mapboxgl.accessToken = accessToken;
-        console.log('Creating map with token:', accessToken.substring(0, 15) + '...');
+        mapboxgl.accessToken = token;
+        console.log('Creating map with token:', token.substring(0, 15) + '...');
 
         map.current = new mapboxgl.Map({
           container: mapContainer.current!,
@@ -48,7 +54,7 @@ export default function ServiceAreaMap({ accessToken, height = '500px' }: Servic
           setMapInitialized(true);
           setMapError(null);
 
-          // Add sources and layers
+          // Add sources with marker points instead of overlapping polygons
           map.current.addSource('service-areas', {
             type: 'geojson',
             data: {
@@ -58,235 +64,223 @@ export default function ServiceAreaMap({ accessToken, height = '500px' }: Servic
                   type: 'Feature',
                   id: 0,
                   geometry: {
-                    type: 'Polygon',
-                    coordinates: [[
-                      [-96.825, 32.835],
-                      [-96.8, 32.835],
-                      [-96.8, 32.815],
-                      [-96.825, 32.815],
-                      [-96.825, 32.835],
-                    ]],
+                    type: 'Point',
+                    coordinates: [-96.8005, 32.8500],
                   },
-                  properties: { name: 'University Park' },
+                  properties: { name: 'University Park', isPremium: true },
                 },
                 {
                   type: 'Feature',
                   id: 1,
                   geometry: {
-                    type: 'Polygon',
-                    coordinates: [[
-                      [-96.81, 32.835],
-                      [-96.785, 32.835],
-                      [-96.785, 32.815],
-                      [-96.81, 32.815],
-                      [-96.81, 32.835],
-                    ]],
+                    type: 'Point',
+                    coordinates: [-96.7895, 32.8334],
                   },
-                  properties: { name: 'Highland Park' },
+                  properties: { name: 'Highland Park', isPremium: true },
                 },
                 {
                   type: 'Feature',
                   id: 2,
                   geometry: {
-                    type: 'Polygon',
-                    coordinates: [[
-                      [-96.9, 32.9],
-                      [-96.6, 32.9],
-                      [-96.6, 32.6],
-                      [-96.9, 32.6],
-                      [-96.9, 32.9],
-                    ]],
+                    type: 'Point',
+                    coordinates: [-96.7970, 32.7767],
                   },
-                  properties: { name: 'Dallas' },
+                  properties: { name: 'Dallas', isPremium: false },
                 },
                 {
                   type: 'Feature',
                   id: 3,
                   geometry: {
-                    type: 'Polygon',
-                    coordinates: [[
-                      [-96.85, 33.05],
-                      [-96.55, 33.05],
-                      [-96.55, 32.75],
-                      [-96.85, 32.75],
-                      [-96.85, 33.05],
-                    ]],
+                    type: 'Point',
+                    coordinates: [-96.6989, 33.0198],
                   },
-                  properties: { name: 'Plano' },
+                  properties: { name: 'Plano', isPremium: false },
                 },
                 {
                   type: 'Feature',
                   id: 4,
                   geometry: {
-                    type: 'Polygon',
-                    coordinates: [[
-                      [-96.68, 33.15],
-                      [-96.54, 33.15],
-                      [-96.54, 32.95],
-                      [-96.68, 32.95],
-                      [-96.68, 33.15],
-                    ]],
+                    type: 'Point',
+                    coordinates: [-96.6705, 33.1031],
                   },
-                  properties: { name: 'Allen' },
+                  properties: { name: 'Allen', isPremium: false },
                 },
                 {
                   type: 'Feature',
                   id: 5,
                   geometry: {
-                    type: 'Polygon',
-                    coordinates: [[
-                      [-96.65, 33.25],
-                      [-96.45, 33.25],
-                      [-96.45, 33.0],
-                      [-96.65, 33.0],
-                      [-96.65, 33.25],
-                    ]],
+                    type: 'Point',
+                    coordinates: [-96.6154, 33.1972],
                   },
-                  properties: { name: 'McKinney' },
+                  properties: { name: 'McKinney', isPremium: false },
                 },
                 {
                   type: 'Feature',
                   id: 6,
                   geometry: {
-                    type: 'Polygon',
-                    coordinates: [[
-                      [-96.75, 32.9],
-                      [-96.5, 32.9],
-                      [-96.5, 32.7],
-                      [-96.75, 32.7],
-                      [-96.75, 32.9],
-                    ]],
+                    type: 'Point',
+                    coordinates: [-96.6389, 32.9126],
                   },
-                  properties: { name: 'Garland' },
+                  properties: { name: 'Garland', isPremium: false },
                 },
                 {
                   type: 'Feature',
                   id: 7,
                   geometry: {
-                    type: 'Polygon',
-                    coordinates: [[
-                      [-96.75, 32.95],
-                      [-96.55, 32.95],
-                      [-96.55, 32.8],
-                      [-96.75, 32.8],
-                      [-96.75, 32.95],
-                    ]],
+                    type: 'Point',
+                    coordinates: [-96.7299, 32.9483],
                   },
-                  properties: { name: 'Richardson' },
+                  properties: { name: 'Richardson', isPremium: false },
                 },
                 {
                   type: 'Feature',
                   id: 8,
                   geometry: {
-                    type: 'Polygon',
-                    coordinates: [[
-                      [-96.45, 32.95],
-                      [-96.25, 32.95],
-                      [-96.25, 32.8],
-                      [-96.45, 32.8],
-                      [-96.45, 32.95],
-                    ]],
+                    type: 'Point',
+                    coordinates: [-96.4599, 32.9312],
                   },
-                  properties: { name: 'Rockwall' },
+                  properties: { name: 'Rockwall', isPremium: false },
                 },
                 {
                   type: 'Feature',
                   id: 9,
                   geometry: {
-                    type: 'Polygon',
-                    coordinates: [[
-                      [-96.55, 32.9],
-                      [-96.4, 32.9],
-                      [-96.4, 32.75],
-                      [-96.55, 32.75],
-                      [-96.55, 32.9],
-                    ]],
+                    type: 'Point',
+                    coordinates: [-96.5639, 32.9029],
                   },
-                  properties: { name: 'Rowlett' },
+                  properties: { name: 'Rowlett', isPremium: false },
                 },
                 {
                   type: 'Feature',
                   id: 10,
                   geometry: {
-                    type: 'Polygon',
-                    coordinates: [[
-                      [-96.6, 33.05],
-                      [-96.45, 33.05],
-                      [-96.45, 32.9],
-                      [-96.6, 32.9],
-                      [-96.6, 33.05],
-                    ]],
+                    type: 'Point',
+                    coordinates: [-96.5489, 32.9765],
                   },
-                  properties: { name: 'Sachse' },
+                  properties: { name: 'Sachse', isPremium: false },
                 },
                 {
                   type: 'Feature',
                   id: 11,
                   geometry: {
-                    type: 'Polygon',
-                    coordinates: [[
-                      [-96.55, 33.0],
-                      [-96.35, 33.0],
-                      [-96.35, 32.85],
-                      [-96.55, 32.85],
-                      [-96.55, 33.0],
-                    ]],
+                    type: 'Point',
+                    coordinates: [-96.5389, 33.0151],
                   },
-                  properties: { name: 'Wylie' },
+                  properties: { name: 'Wylie', isPremium: false },
                 },
                 {
                   type: 'Feature',
                   id: 12,
                   geometry: {
-                    type: 'Polygon',
-                    coordinates: [[
-                      [-96.5, 32.75],
-                      [-96.3, 32.75],
-                      [-96.3, 32.55],
-                      [-96.5, 32.55],
-                      [-96.5, 32.75],
-                    ]],
+                    type: 'Point',
+                    coordinates: [-96.5991, 32.7668],
                   },
-                  properties: { name: 'Mesquite' },
+                  properties: { name: 'Mesquite', isPremium: false },
                 },
               ],
             },
           });
 
+          // Add circle markers for each service area
           map.current.addLayer({
-            id: 'service-areas-layer',
-            type: 'fill',
+            id: 'service-areas-circles',
+            type: 'circle',
             source: 'service-areas',
             paint: {
-              'fill-color': '#2E5090',
-              'fill-opacity': 0.4,
+              'circle-radius': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                8, 8,
+                10, 16,
+                12, 24
+              ],
+              'circle-color': [
+                'case',
+                ['get', 'isPremium'],
+                '#FF8C42',
+                '#2E5090'
+              ],
+              'circle-opacity': 0.7,
+              'circle-stroke-width': 3,
+              'circle-stroke-color': '#FFFFFF',
+              'circle-stroke-opacity': 0.9,
             },
           });
 
-          map.current.addLayer({
-            id: 'service-areas-outline',
-            type: 'line',
-            source: 'service-areas',
-            paint: {
-              'line-color': '#FFFFFF',
-              'line-width': 2,
-            },
-          });
-
+          // Add label layer with better styling
           map.current.addLayer({
             id: 'service-areas-label',
             type: 'symbol',
             source: 'service-areas',
             layout: {
               'text-field': ['get', 'name'],
-              'text-size': 12,
+              'text-font': ['DIN Pro Bold', 'Arial Unicode MS Bold'],
+              'text-size': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                8, 10,
+                10, 14,
+                12, 16
+              ],
+              'text-offset': [0, 2.5],
+              'text-anchor': 'top',
             },
             paint: {
-              'text-color': '#FFFFFF',
-              'text-halo-color': '#000000',
-              'text-halo-width': 1,
+              'text-color': '#2E5090',
+              'text-halo-color': '#FFFFFF',
+              'text-halo-width': 2,
+              'text-halo-blur': 0.5,
             },
           });
+
+          // Add hover effect
+          let hoveredStateId: string | number | null = null;
+
+          map.current.on('mouseenter', 'service-areas-circles', () => {
+            map.current.getCanvas().style.cursor = 'pointer';
+          });
+
+          map.current.on('mouseleave', 'service-areas-circles', () => {
+            map.current.getCanvas().style.cursor = '';
+          });
+
+          map.current.on('mousemove', 'service-areas-circles', (e: any) => {
+            if (e.features.length > 0) {
+              if (hoveredStateId !== null) {
+                map.current.setFeatureState(
+                  { source: 'service-areas', id: hoveredStateId },
+                  { hover: false }
+                );
+              }
+              hoveredStateId = e.features[0].id;
+              map.current.setFeatureState(
+                { source: 'service-areas', id: hoveredStateId },
+                { hover: true }
+              );
+            }
+          });
+
+          map.current.on('mouseleave', 'service-areas-circles', () => {
+            if (hoveredStateId !== null) {
+              map.current.setFeatureState(
+                { source: 'service-areas', id: hoveredStateId },
+                { hover: false }
+              );
+            }
+            hoveredStateId = null;
+          });
+
+          // Update circle size on hover
+          map.current.setPaintProperty('service-areas-circles', 'circle-radius', [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            8, ['case', ['boolean', ['feature-state', 'hover'], false], 12, 8],
+            10, ['case', ['boolean', ['feature-state', 'hover'], false], 20, 16],
+            12, ['case', ['boolean', ['feature-state', 'hover'], false], 30, 24]
+          ]);
         });
 
         map.current.on('error', (error: any) => {
@@ -304,7 +298,7 @@ export default function ServiceAreaMap({ accessToken, height = '500px' }: Servic
         map.current.remove();
       }
     };
-  }, [accessToken]);
+  }, [token]);
 
   return (
     <div className="w-full" style={{ height, minHeight: '400px' }}>

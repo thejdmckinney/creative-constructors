@@ -5,6 +5,7 @@ import { seoConfig } from "@/seo.config";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import RelatedServices from "@/components/RelatedServices";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
+import { generateServiceSchema } from '@/lib/structuredData'
 
 const serviceArea = "Dallas-Fort Worth Metroplex";
 
@@ -128,6 +129,12 @@ const installationServices = [
     icon: "📺",
   },
 ];
+
+const serviceSchema = generateServiceSchema({
+  serviceName: 'Installation Services',
+  description: 'Professional installation services across Dallas-Fort Worth for appliances, lighting, doors, windows, and more.',
+  serviceUrl: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://creative-constructors.com'}/services/installation`,
+})
 
 const whyChooseUs = [
   {
@@ -259,6 +266,10 @@ export default function InstallationPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       
       <main className="flex-grow">

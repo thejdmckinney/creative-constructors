@@ -160,7 +160,7 @@ export default function ServiceAreasPage() {
 
           {/* Map Section */}
           <div className="mb-12 rounded-xl overflow-hidden shadow-lg">
-            <ServiceAreaMap accessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN || ''} height="500px" />
+            <ServiceAreaMap height="500px" />
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">

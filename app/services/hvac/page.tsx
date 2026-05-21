@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { seoConfig } from "@/seo.config";
+import { generateServiceSchema } from '@/lib/structuredData'
 
 export const metadata: Metadata = {
   title: "HVAC Services",
@@ -18,8 +19,17 @@ export const metadata: Metadata = {
 };
 
 export default function HvacPage() {
+  const serviceSchema = generateServiceSchema({
+    serviceName: 'HVAC Services',
+    description: 'HVAC installation, repair, and maintenance services including air conditioning and heating systems in Dallas-Fort Worth.',
+    serviceUrl: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://creative-constructors.com'}/services/hvac`,
+  })
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <section className="bg-navy text-white py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="max-w-3xl">

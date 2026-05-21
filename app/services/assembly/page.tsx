@@ -4,6 +4,7 @@ import { seoConfig } from "@/seo.config";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import RelatedServices from "@/components/RelatedServices";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
+import { generateServiceSchema } from '@/lib/structuredData'
 
 const serviceArea = "Dallas-Fort Worth Metroplex";
 
@@ -590,3 +591,9 @@ export default function AssemblyPage() {
     </>
   );
 }
+
+const serviceSchema = generateServiceSchema({
+  serviceName: 'Assembly Services',
+  description: 'Furniture and equipment assembly services across Dallas-Fort Worth including home, office, and outdoor items.',
+  serviceUrl: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://creative-constructors.com'}/services/assembly`,
+})
