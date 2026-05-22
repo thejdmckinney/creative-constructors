@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { seoConfig } from "@/seo.config";
+import PhoneLink from "./PhoneLink";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -220,44 +221,90 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact Info with Schema Markup */}
           <div>
             <h3 className="font-bold text-lg mb-4">Contact Us</h3>
-            <ul className="space-y-2 text-silver">
-              <li>
-                <a
-                  href={`tel:${seoConfig.business.phone}`}
-                  className="hover:text-orange transition-colors"
-                >
-                  📞 {seoConfig.business.phone}
-                </a>
-              </li>
-              <li>
+            <address 
+              className="space-y-2 text-silver not-italic"
+              itemScope 
+              itemType="https://schema.org/LocalBusiness"
+            >
+              <meta itemProp="name" content={seoConfig.business.name} />
+              <meta itemProp="url" content={seoConfig.baseUrl} />
+              
+              <div>
+                <PhoneLink 
+                  className="hover:text-orange transition-colors block"
+                  showIcon
+                />
+              </div>
+              
+              <div>
                 <a
                   href={`mailto:${seoConfig.business.email}`}
                   className="hover:text-orange transition-colors"
+                  itemProp="email"
                 >
                   ✉️ {seoConfig.business.email}
                 </a>
-              </li>
-              <li className="pt-2">
+              </div>
+              
+              <div className="pt-2" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
                 <p className="text-sm font-semibold text-white mb-1">📍 Office Location:</p>
                 <p className="text-sm">
-                  {seoConfig.business.address.streetAddress}<br />
-                  {seoConfig.business.address.addressLocality}, {seoConfig.business.address.addressRegion} {seoConfig.business.address.postalCode}
+                  <span itemProp="streetAddress">{seoConfig.business.address.streetAddress}</span><br />
+                  <span itemProp="addressLocality">{seoConfig.business.address.addressLocality}</span>, <span itemProp="addressRegion">{seoConfig.business.address.addressRegion}</span> <span itemProp="postalCode">{seoConfig.business.address.postalCode}</span>
                 </p>
-              </li>
-              <li className="pt-2">
+              </div>
+              
+              <div className="pt-2">
+                <p className="text-sm font-semibold text-white mb-1">🏆 Licensed & Insured</p>
+                <p className="text-xs text-silver">Serving Dallas-Fort Worth Since 2011</p>
+              </div>
+              
+              <div className="pt-2">
                 <p className="text-sm font-semibold text-orange">
                   Serving the Dallas-Fort Worth Metroplex
                 </p>
-              </li>
-            </ul>
+                <p className="text-xs text-silver mt-1">
+                  Available 24/7 for Emergency Services
+                </p>
+              </div>
+            </address>
+          </div>
+        </div>
+
+        {/* Trust Signals & Certifications */}
+        <div className="border-t border-royal-blue mt-8 pt-8">
+          <div className="text-center mb-6">
+            <h3 className="text-sm font-semibold text-white mb-3">Why Choose Creative Constructors?</h3>
+            <div className="flex flex-wrap justify-center gap-6 text-xs text-silver">
+              <div className="flex items-center gap-2">
+                <span className="text-orange text-lg">✓</span>
+                <span>15+ Years Experience</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-orange text-lg">✓</span>
+                <span>Licensed & Insured</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-orange text-lg">✓</span>
+                <span>Same-Day Service Available</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-orange text-lg">✓</span>
+                <span>100% Satisfaction Guaranteed</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-orange text-lg">✓</span>
+                <span>5-Star Rated</span>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-royal-blue mt-8 pt-8">
+        <div className="border-t border-royal-blue pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-silver text-sm">
             <p>
               &copy; {currentYear} {seoConfig.siteName}. All rights reserved.

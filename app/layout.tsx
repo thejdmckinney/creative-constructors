@@ -6,6 +6,8 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import StructuredData from "@/components/StructuredData";
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const barlow = Barlow({
   weight: ["400", "500", "600", "700"],
@@ -52,6 +54,12 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '',
+    // Add your verification codes in .env.local:
+    // NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=your-code
+    // NEXT_PUBLIC_BING_SITE_VERIFICATION=your-code
+  },
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -81,6 +89,32 @@ export default function RootLayout({
         <main>{children}</main>
         <TestimonialsCarousel />
         <Footer />
+        
+        {/* Analytics */}
+        <Analytics />
+        <SpeedInsights />
+        
+        {/* Google Analytics - Add your GA4 ID in .env.local as NEXT_PUBLIC_GA_ID */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+          />
+        )}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+            }}
+          />
+        )}
         
         {/* Tawk.to Live Chat Widget */}
         <script
