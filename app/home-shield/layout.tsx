@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { seoConfig } from "@/seo.config";
 
 export const metadata: Metadata = {
-  title: `Home Shield Program - Annual Home Maintenance | ${seoConfig.business.name}`,
-  description: `Skip the stress of home maintenance with Home Shield. Quarterly inspections, priority service, and direct access to our experts in Dallas-Fort Worth. From $249/month. Call ${seoConfig.business.phone}`,
+  title: `Home Shield Program - University Park & Highland Park Home Maintenance`,
+  description: `Home Shield: Year-round home care for University Park & Highland Park estates. 4 quarterly inspections, preventive maintenance, small repairs included. Direct access to Jeremy. From $249/month. ${seoConfig.business.phone}`,
   keywords: [
     "home maintenance program Dallas",
     "home maintenance plan Fort Worth",
