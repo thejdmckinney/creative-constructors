@@ -548,7 +548,7 @@ export default function HomeShieldPage() {
               </p>
               <div className="border-t border-gray-200 pt-4">
                 <div className="font-bold text-navy">Michael & Sarah T.</div>
-                <div className="text-sm text-gray-600">University Park • Member since 2023</div>
+                <div className="text-sm text-gray-600">University Park • Member since 2026</div>
               </div>
             </div>
 
@@ -564,7 +564,7 @@ export default function HomeShieldPage() {
               </p>
               <div className="border-t border-gray-200 pt-4">
                 <div className="font-bold text-navy">Jennifer R.</div>
-                <div className="text-sm text-gray-600">Highland Park • Member since 2022</div>
+                <div className="text-sm text-gray-600">Highland Park • Member since 2026</div>
               </div>
             </div>
 
@@ -580,7 +580,7 @@ export default function HomeShieldPage() {
               </p>
               <div className="border-t border-gray-200 pt-4">
                 <div className="font-bold text-navy">David & Lauren K.</div>
-                <div className="text-sm text-gray-600">University Park • Member since 2024</div>
+                <div className="text-sm text-gray-600">University Park • Member since 2026</div>
               </div>
             </div>
           </div>
